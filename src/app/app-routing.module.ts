@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DefaultLayoutComponent } from './components/default-layout/default-layout.component';
+import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
 	{
 		path: '',
-		component: DefaultLayoutComponent
+		redirectTo: 'home',
+		pathMatch: 'full'
+	},
+	{
+		path: 'home',
+		component: HomeComponent
 	}
 ];
 
