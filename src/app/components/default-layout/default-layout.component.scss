@@ -22,6 +22,11 @@
 			&:hover {
 				color: $primary;
 			}
+
+			.mat-icon {
+				font-size: 14px;
+				color: $text-light;
+			}
 		}
 	}
 
