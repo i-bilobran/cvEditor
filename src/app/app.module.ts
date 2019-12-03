@@ -8,11 +8,13 @@ import { SharedModule } from './modules/shared.module';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
+import { ArchiveComponent } from './pages/archive/archive.component';
 
 @NgModule({
 	declarations: [
 		AppComponent,
-		HomeComponent
+		HomeComponent,
+		ArchiveComponent
 	],
 	imports: [
 		BrowserModule,

@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
 
 import { DefaultLayoutComponent } from '../components/default-layout/default-layout.component';
 import { MaterialModule } from './material.module';
@@ -8,6 +10,7 @@ import { MaterialModule } from './material.module';
 	declarations: [DefaultLayoutComponent],
 	imports: [
 		CommonModule,
+		RouterModule,
 		MaterialModule,
 	],
 	exports: [
