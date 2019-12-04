@@ -1,0 +1,23 @@
+@font-face {
+    font-family: 'AvertaStd';
+    src: local('☞AvertaStd-Semibold'), local('AvertaStd-Semibold'),
+        url('../../assets/fonts/AvertaStd-Semibold.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AvertaStd';
+    src: local('☞AvertaStd-Bold'), local('AvertaStd-Bold'),
+        url('../../assets/fonts/AvertaStd-Bold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AvertaStd';
+    src: local('☞AvertaStd-Regular'), local('AvertaStd-Regular'),
+        url('../../assets/fonts/AvertaStd-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}

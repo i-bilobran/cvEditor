@@ -1,11 +1,12 @@
 @import 'material';
+@import 'fonts';
 @import 'variables';
 @import 'custom';
 
 html, body { height: 100%; }
 body {
     margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-family: "AvertaStd", monospace;
     font-size: 16px;
     color: $text-primary;
 }
