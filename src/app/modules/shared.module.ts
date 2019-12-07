@@ -7,11 +7,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { DefaultLayoutComponent } from '../components/default-layout/default-layout.component';
 import { MaterialModule } from './material.module';
 import { PageHeaderComponent } from '../components/page-header/page-header.component';
+import { CvCardComponent } from '../components/cv-card/cv-card.component';
 
 @NgModule({
 	declarations: [
 		DefaultLayoutComponent,
-		PageHeaderComponent
+		PageHeaderComponent,
+		CvCardComponent
 	],
 	imports: [
 		CommonModule,
@@ -21,7 +23,8 @@ import { PageHeaderComponent } from '../components/page-header/page-header.compo
 	],
 	exports: [
 		DefaultLayoutComponent,
-		PageHeaderComponent
+		PageHeaderComponent,
+		CvCardComponent
 	]
 })
 export class SharedModule { }
