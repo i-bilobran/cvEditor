@@ -9,12 +9,14 @@ import { SharedModule } from './modules/shared.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ArchiveComponent } from './pages/archive/archive.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		HomeComponent,
-		ArchiveComponent
+		ArchiveComponent,
+		FooterComponent
 	],
 	imports: [
 		BrowserModule,
