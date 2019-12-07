@@ -1,0 +1,21 @@
+@import '../../scss/variables';
+
+.cv-card {
+    width: 260px;
+    margin: 0 40px 40px 0;
+
+    .mat-card-content {
+        padding: 0 10px;
+
+        .name {
+            font-size: 20px;
+            font-weight: 500;
+        }
+        .title {
+            margin-top: 10px;
+            color: text-secondary;
+            font-size: 14px;
+            color: $text-light;
+        }
+    }
+}
