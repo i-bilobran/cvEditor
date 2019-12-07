@@ -1,7 +1,8 @@
 @import "../../scss/variables";
 
 .content {
-    padding: 40px 0;
+    padding-top: 40px;
+    padding-bottom: 40px;
 
     .text { 
 
@@ -54,12 +55,12 @@
             }
         }
     }
-
 }
-        .hr {
-            position: absolute;
-            width: 100%;
-            border-bottom: 1px solid $border-light;
-            left: 0;
-            right: 0;
-        }
+
+.hr {
+    position: relative;
+    width: 100%;
+    border-bottom: 1px solid $border-light;
+    left: 0;
+    right: 0;
+}

@@ -1,7 +1,6 @@
 .main {
-    padding: 0 135px;
     margin-top: 64px;
     margin-bottom: 59px;
-    // height: calc(100vh);
-    // overflow: auto;
+    height: calc(100vh - (64px + 59px));
+    overflow: auto;
 }
