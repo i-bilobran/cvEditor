@@ -13,7 +13,6 @@ body {
 }
 
 .cv-card {
-	cursor: pointer;
 	width: 260px;
 	height: 355px;
 	margin: 0 40px 40px 0;
@@ -24,7 +23,7 @@ body {
 		transform: scale(1.02);
 
 		.delete {
-			display: block;
+			display: block !important;
 		}
 	}
 }

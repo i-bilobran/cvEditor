@@ -6,15 +6,25 @@
 		margin-bottom: 0;
 
 		.name {
+			padding-right: 15px;
 			font-size: 20px;
 			font-weight: 500;
 		}
+
 		.title {
 			margin-top: 10px;
 			color: $text-secondary;
 			font-size: 14px;
 			color: $text-light;
 			font-weight: 300;
+		}
+
+		.delete {
+			display: none;
+			position: absolute;
+			color: $text-light;
+			top: 226px;
+			right: 10px;
 		}
 	}
 
