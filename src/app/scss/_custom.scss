@@ -1,13 +1,30 @@
-@import 'variables';
+@import "variables";
 
 body {
-    background-color: $bg-grey;
+	background-color: $bg-grey;
 }
 
 .primary {
-    color: $primary !important;
+	color: $primary !important;
 }
 
 .section {
-    padding: 40px 135px;
+	padding: 40px 135px;
+}
+
+.cv-card {
+	cursor: pointer;
+	width: 260px;
+	height: 355px;
+	margin: 0 40px 40px 0;
+	transition: transform 0.2s ease-in !important;
+	transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+
+	&:hover {
+		transform: scale(1.02);
+
+		.delete {
+			display: block;
+		}
+	}
 }
