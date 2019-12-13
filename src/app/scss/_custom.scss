@@ -4,12 +4,12 @@ body {
 	background-color: $bg-grey;
 }
 
-.primary {
-	color: $primary !important;
-}
+// layout
 
 .section {
 	padding: 40px 135px;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .cv-card {
@@ -26,4 +26,14 @@ body {
 			display: block !important;
 		}
 	}
+}
+
+// utils
+
+.primary {
+	color: $primary !important;
+}
+
+.pointer {
+	cursor: pointer;
 }

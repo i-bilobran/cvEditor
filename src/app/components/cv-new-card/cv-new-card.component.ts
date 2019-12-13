@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-cv-new-card',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CvNewCardComponent implements OnInit {
 
-	constructor() { }
+	constructor(private router: Router) { }
 
 	ngOnInit() {
 	}
 
+	public createNew(): void {
+		this.router.navigate(['/new-resume']);
+	}
 }
