@@ -1,12 +1,20 @@
-@import 'material';
-@import 'fonts';
-@import 'variables';
-@import 'custom';
+@import "material";
+@import "fonts";
+@import "variables";
+@import "custom";
 
-html, body { height: 100%; overflow: hidden; }
+html,
 body {
-    margin: 0;
-    font-family: "AvertaStd", monospace;
-    font-size: 16px;
-    color: $text-primary;
+	height: 100%;
+	overflow: hidden;
+}
+body {
+	margin: 0;
+	font-family: "AvertaStd", monospace;
+	font-size: 16px;
+	color: $text-primary;
+}
+
+* {
+	box-sizing: border-box;
 }
