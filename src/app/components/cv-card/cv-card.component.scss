@@ -7,6 +7,7 @@
 
 	.mat-card-content {
 		padding: 0 10px;
+		margin-bottom: 0;
 
 		.name {
 			font-size: 20px;
@@ -14,9 +15,36 @@
 		}
 		.title {
 			margin-top: 10px;
-			color: text-secondary;
+			color: $text-secondary;
 			font-size: 14px;
 			color: $text-light;
+			font-weight: 300;
+		}
+	}
+
+	.mat-card-actions {
+		margin-top: 5px;
+		padding: 10px;
+		display: flex;
+		justify-content: space-between;
+
+		button {
+			font-weight: 400;
+		}
+
+		button:first-child {
+			background-color: rgba(254, 246, 212, 1);
+			color: rgba(222, 187, 113, 1);
+			font-size: 13px;
+		}
+
+		button:last-child {
+			margin: 0;
+			color: $text-light;
+
+			.mat-icon {
+				font-size: 21px;
+			}
 		}
 	}
 }
