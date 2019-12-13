@@ -13,7 +13,7 @@ export class CvNewCardComponent implements OnInit {
 	ngOnInit() {
 	}
 
-	public createNew(): void {
+	public navigate(): void {
 		this.router.navigate(['/new-resume']);
 	}
 }
