@@ -8,12 +8,14 @@ import { DefaultLayoutComponent } from '../components/default-layout/default-lay
 import { MaterialModule } from './material.module';
 import { PageHeaderComponent } from '../components/page-header/page-header.component';
 import { CvCardComponent } from '../components/cv-card/cv-card.component';
+import { CvNewCardComponent } from '../components/cv-new-card/cv-new-card.component';
 
 @NgModule({
 	declarations: [
 		DefaultLayoutComponent,
 		PageHeaderComponent,
-		CvCardComponent
+		CvCardComponent,
+		CvNewCardComponent
 	],
 	imports: [
 		CommonModule,
@@ -24,7 +26,8 @@ import { CvCardComponent } from '../components/cv-card/cv-card.component';
 	exports: [
 		DefaultLayoutComponent,
 		PageHeaderComponent,
-		CvCardComponent
+		CvCardComponent,
+		CvNewCardComponent
 	]
 })
 export class SharedModule { }
