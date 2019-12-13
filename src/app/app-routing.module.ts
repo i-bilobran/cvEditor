@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { ArchiveComponent } from './pages/archive/archive.component';
+import { NewResumeComponent } from './pages/new-resume/new-resume.component';
 
 const routes: Routes = [
 	{
@@ -16,6 +17,10 @@ const routes: Routes = [
 	{
 		path: 'archive',
 		component: ArchiveComponent
+	},
+	{
+		path: 'new-resume',
+		component: NewResumeComponent
 	}
 ];
 
