@@ -6,7 +6,30 @@
 </app-page-header>
 <div class="section">
     <div class="page">
-
+        <div class="header">
+            <div class="contact-info">
+                <button mat-icon-button aria-label="Edit" (click)="toggleContactEdit()">
+                    <mat-icon *ngIf="!contactEdit">edit</mat-icon>
+                    <mat-icon *ngIf="contactEdit">save</mat-icon>
+                </button>
+                <div class="content">
+                    <div>
+                        <span class="primary">Tel / </span>
+                        <input [readonly]="!contactEdit" type="text" name="phone" value="- 380 032 253 8076">
+                    </div>
+                    <input [readonly]="!contactEdit" type="text" name="sales" value="sales@sombrainc.com">
+                    <input [readonly]="!contactEdit" type="text" name="website" value="www.sombrainc.com">
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="aside">
+                aside
+            </div>
+            <div class="main">
+                main
+            </div>
+        </div>
         <button class="delete" mat-stroked-button color="warn">Delete resume</button>
     </div>
 </div>

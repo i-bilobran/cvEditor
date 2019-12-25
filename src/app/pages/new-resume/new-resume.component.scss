@@ -22,4 +22,25 @@
         font-size: 12px;
         line-height: 28px;
     }
+
+    .header {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: flex-end;
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+
+            .content {
+                font-size: 12px;
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    }
+
+    .content {
+        display: flex;
+    }
 }
