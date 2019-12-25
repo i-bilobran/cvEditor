@@ -13,8 +13,7 @@ export class NewResumeComponent implements OnInit {
   ngOnInit() {
   }
 
-  public toggleContactEdit(): void {
-    this.contactEdit = !this.contactEdit;
+  public toggleAdititionalEdit(key: string): void {
+    this[`${key}Edit`] = !this[`${key}Edit`];
   }
-
 }
