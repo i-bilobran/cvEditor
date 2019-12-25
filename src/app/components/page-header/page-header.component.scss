@@ -16,7 +16,7 @@
         }
     }
 
-    .search-wrapper {
+    .actions-wrapper {
         .search {
             border: 1px solid $border-light;
             border-radius: 30px;
@@ -53,6 +53,10 @@
             button {
                 padding: 0 30px;
             }
+        }
+        
+        .actions {
+            margin-top: 10px;
         }
     }
 }

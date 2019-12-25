@@ -8,7 +8,8 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 export class PageHeaderComponent implements OnInit {
   @Input() title: string;
   @Input() description?: string;
-  @Output() search?: EventEmitter<string> = new EventEmitter();
+  @Input() search?: boolean;
+  @Output() searchEvent?: EventEmitter<string> = new EventEmitter();
 
   constructor() { }
 
