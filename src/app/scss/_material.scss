@@ -42,6 +42,41 @@ $sombra-primary: (
     )
 );
 
+$sombra-warn: (
+    50 : #fae5e9,
+    100 : #f3bec7,
+    200 : #eb92a2,
+    300 : #e2667c,
+    400 : #dc4660,
+    500 : #d62544,
+    600 : #d1213e,
+    700 : #cc1b35,
+    800 : #c6162d,
+    900 : #bc0d1f,
+    A100 : #ffe9eb,
+    A200 : #ffb6bb,
+    A400 : #ff838c,
+    A700 : #ff6975,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
@@ -49,7 +84,7 @@ $cvEditor-primary: mat-palette($sombra-primary);
 $cvEditor-accent: mat-palette($mat-pink, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
-$cvEditor-warn: mat-palette($mat-red);
+$cvEditor-warn: mat-palette($sombra-warn);
 
 // Create the theme object (a Sass map containing all of the palettes).
 $cvEditor-theme: mat-light-theme($cvEditor-primary, $cvEditor-accent, $cvEditor-warn);

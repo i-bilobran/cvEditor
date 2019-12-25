@@ -24,6 +24,7 @@ import { CvNewCardComponent } from '../components/cv-new-card/cv-new-card.compon
 		FlexLayoutModule
 	],
 	exports: [
+		MaterialModule,
 		DefaultLayoutComponent,
 		PageHeaderComponent,
 		CvCardComponent,
