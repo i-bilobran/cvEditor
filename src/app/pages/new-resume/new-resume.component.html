@@ -12,7 +12,7 @@
                     <mat-icon *ngIf="!contactEdit">edit</mat-icon>
                     <mat-icon *ngIf="contactEdit">save</mat-icon>
                 </button>
-                <div class="content">
+                <div class="content text-secondary">
                     <div>
                         <span class="primary">Tel / </span>
                         <input [readonly]="!contactEdit" type="text" name="phone" value="- 380 032 253 8076">
@@ -24,7 +24,22 @@
         </div>
         <div class="content">
             <div class="aside">
-                aside
+                <div class="photo"></div>
+                <div class="location">
+                    <button mat-icon-button aria-label="Edit" (click)="toggleAdititionalEdit('location')">
+                        <mat-icon *ngIf="!locationEdit">edit</mat-icon>
+                        <mat-icon *ngIf="locationEdit">save</mat-icon>
+                    </button>
+                    <div class="content text-secondary">
+                        <input [readonly]="!locationEdit" type="text" name="name" value="Sombrain Inc.">
+                        <input [readonly]="!locationEdit" type="text" name="street" value="Uhorska St, 14">
+                        <input [readonly]="!locationEdit" type="text" name="sity" value="Lviv, Lvivska oblast,">
+                        <input [readonly]="!locationEdit" type="number" name="post" value="79000">
+                        <input [readonly]="!locationEdit" type="text" name="country" value="Ukraine">
+
+                    </div>
+                </div>
+                <img height="33" src="../../../assets/logo/sombra-logo.svg" alt="sombra-logo">
             </div>
             <div class="main">
                 main

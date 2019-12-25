@@ -6,41 +6,76 @@
         margin: 0 5px;
     }
 }
+.section {
+    display: flex;
+    justify-content: center;
+    
+    .page {
+        position: relative;
+        width: 100%;
+        max-width: 1158px;
+        background-color: $white;
+        border-radius: 2px;
+        box-shadow: 0px 3px 6px 0px rgba(47, 83, 151, 0.12);
+        padding: 50px 40px;
+        margin-bottom: 55px;
 
-.page {
-    position: relative;
-    background-color: $white;
-    border-radius: 2px;
-    box-shadow: 0px 3px 6px 0px rgba(47, 83, 151, 0.12);
-    padding: 50px 40px;
-    margin-bottom: 55px;
+        button.delete {
+            position: absolute;
+            bottom: -45px;
+            right: 0;
+            font-size: 12px;
+            line-height: 28px;
+        }
 
-    button.delete {
-        position: absolute;
-        bottom: -45px;
-        right: 0;
-        font-size: 12px;
-        line-height: 28px;
-    }
-
-    .header {
-        margin-bottom: 20px;
-        display: flex;
-        justify-content: flex-end;
-
-        .contact-info {
+        .header {
+            margin-bottom: 20px;
             display: flex;
-            align-items: center;
+            justify-content: flex-end;
 
-            .content {
-                font-size: 12px;
+            .contact-info {
                 display: flex;
-                flex-direction: column;
+                align-items: center;
+
+                .content {
+                    font-size: 12px;
+                    display: flex;
+                    flex-direction: column;
+                }
             }
         }
-    }
 
-    .content {
-        display: flex;
+        .content {
+            display: flex;
+
+            .aside {
+                .photo {
+                    height: 480px;
+                    width: 300px;
+                    border: 1px solid rgba(131, 131, 131, 1);
+                    border-radius: 4px;
+                    border-style: dashed;
+                }
+                .location {
+                    margin-top: 50px;
+                    display: flex;
+                    align-items: center;
+
+                    .content {
+                        font-size: 12px;
+                        display: flex;
+                        flex-direction: column;
+                    }
+                }
+
+                img[alt="sombra-logo"] {
+                    margin: 28px 0 0 41px;
+                }
+            }
+
+            .main {
+                padding-left: 40px;
+            }
+        }
     }
 }

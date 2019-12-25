@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewResumeComponent implements OnInit {
   public contactEdit: boolean;
+  public locationEdit: boolean;
 
   constructor() { }
 
