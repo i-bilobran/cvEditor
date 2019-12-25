@@ -24,7 +24,15 @@
         </div>
         <div class="content">
             <div class="aside">
-                <div class="photo"></div>
+                <div class="photo drop-area">
+                    <div class="area">
+                        <mat-icon>cloud_upload</mat-icon>
+                        <div>. JPG or . PNG</div>
+                        <p>Drag and drop photo <br>
+                            or <a href>upload from computer</a></p>
+                    </div>
+
+                </div>
                 <div class="location">
                     <button mat-icon-button aria-label="Edit" (click)="toggleAdititionalEdit('location')">
                         <mat-icon *ngIf="!locationEdit">edit</mat-icon>
