@@ -1,5 +1,12 @@
 @import "../../scss/variables";
 
+.actions {
+    button {
+        padding: 0 40px;
+        margin: 0 5px;
+    }
+}
+
 .page {
     position: relative;
     background-color: $white;
