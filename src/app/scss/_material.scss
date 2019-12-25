@@ -1,4 +1,5 @@
 
+@import "variables";
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
@@ -96,4 +97,8 @@ $cvEditor-theme: mat-light-theme($cvEditor-primary, $cvEditor-accent, $cvEditor-
 
 button {
     border-radius: 18px !important;
+
+    &.mat-icon-button {
+        color: $text-light;
+    }
 }
