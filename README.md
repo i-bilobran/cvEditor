@@ -1,6 +1,15 @@
+
 # CvEditor
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.1.
+## Milestones:
+
+  1. Corporate Auth via Google API, CI/CD - 24.01
+  2. Mockups 09.01 - 29.01
+  3. Dynamic form functionality + (formly/shema's investigation) - 07.02
+  4. Main functionality - 12.02
+  5. PWA, tests - 18.02
+
+### Deadline: 20.02.20
 
 ## Development server
 
