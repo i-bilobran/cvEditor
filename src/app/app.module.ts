@@ -5,6 +5,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './modules/shared.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -26,6 +27,7 @@ import { NewResumeComponent } from './pages/new-resume/new-resume.component';
 		BrowserAnimationsModule,
 		FlexLayoutModule,
 		SharedModule,
+		AuthModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent]
