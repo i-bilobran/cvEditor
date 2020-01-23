@@ -27,7 +27,7 @@ import { NewResumeComponent } from './pages/new-resume/new-resume.component';
 		BrowserAnimationsModule,
 		FlexLayoutModule,
 		SharedModule,
-		AuthModule,
+		AuthModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]
