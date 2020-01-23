@@ -15,7 +15,7 @@ export class AuthService {
 				fetch_basic_profile: true
 			}).then((auth) => {
 				this.zone.run(() => {
-					// const GoogleAuth = gapi.auth2.getAuthInstance();
+					const GoogleAuth = gapi.auth2.getAuthInstance();
 					this.auth2 = gapi.auth2;
 
 					// console.log(this.auth2.currentUser.get())
@@ -23,9 +23,9 @@ export class AuthService {
 					// access_denied ?
 					// The user denied the permission to the scopes required.
 
-					this.auth2.signgIn().then(user => {
-						console.log(user, user.getBasicProfile())
-					})
+					// this.auth2.signgIn().then(user => {
+					// 	console.log(user, user.getBasicProfile())
+					// })
 					// this.auth2.signgIn().then(user => {
 					// 	console.log(user)
 					// })
