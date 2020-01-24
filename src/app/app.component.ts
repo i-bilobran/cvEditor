@@ -3,8 +3,7 @@ import { AuthService } from './modules/auth/auth.service';
 
 @Component({
 	selector: 'app-root',
-	templateUrl: './app.component.html',
-	styleUrls: ['./app.component.scss']
+	template: `<router-outlet></router-outlet>`
 })
 export class AppComponent {
 	constructor(private auth: AuthService) {
