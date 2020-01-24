@@ -23,6 +23,11 @@ const routes: Routes = [
 		component: DefaultLayoutComponent,
 		children: [
 			{
+				path: '',
+				redirectTo: 'home',
+				pathMatch: 'full'
+			},
+			{
 				path: 'home',
 				component: HomeComponent
 			},
@@ -35,8 +40,11 @@ const routes: Routes = [
 				component: NewResumeComponent
 			}
 		]
+	},
+	{
+		path: '**',
+		redirectTo: 'login'
 	}
-
 ];
 
 @NgModule({
