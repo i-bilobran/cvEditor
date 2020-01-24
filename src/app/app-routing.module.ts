@@ -7,7 +7,6 @@ import { ArchiveComponent } from './modules/dashboard/pages/archive/archive.comp
 import { NewResumeComponent } from './modules/dashboard/pages/new-resume/new-resume.component';
 import { DefaultLayoutComponent } from './modules/shared/components/default-layout/default-layout.component';
 
-
 const routes: Routes = [
 	{
 		path: 'login',

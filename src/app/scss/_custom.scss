@@ -8,6 +8,7 @@ body {
 
 .section {
 	padding: 40px 135px;
+	min-height: calc(100vh - 64px - 140px - 59px);
 }
 
 .cv-card {
