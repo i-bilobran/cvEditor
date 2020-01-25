@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { AuthGuard } from './guards/auth.guard';
+import { LoginGuard } from './guards/login.guard';
+
 import { LoginComponent } from './modules/auth/pages/login/login.component';
 import { HomeComponent } from './modules/dashboard/pages/home/home.component';
 import { ArchiveComponent } from './modules/dashboard/pages/archive/archive.component';
@@ -10,7 +13,10 @@ import { DefaultLayoutComponent } from './modules/shared/components/default-layo
 const routes: Routes = [
 	{
 		path: 'login',
-		component: LoginComponent
+		component: LoginComponent,
+		canActivate: [
+			LoginGuard
+		]
 	},
 	{
 		path: '',
@@ -20,6 +26,9 @@ const routes: Routes = [
 	{
 		path: 'dashboard',
 		component: DefaultLayoutComponent,
+		canActivate: [
+			AuthGuard
+		],
 		children: [
 			{
 				path: '',
