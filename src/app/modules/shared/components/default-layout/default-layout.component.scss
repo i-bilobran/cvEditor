@@ -46,14 +46,12 @@
 		.user-avatar {
 			height: 35px;
 			width: 35px;
-			background-color: rgba(46, 146, 71, 0.16);
 			border-radius: 35px;
 			text-align: center;
-
-			span {
-				line-height: 35px;
-				color: rgba(19, 105, 52, 1);
-			}
+			background-color: rgba(46, 146, 71, 0.16);
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: contain;
 		}
 	}
 }

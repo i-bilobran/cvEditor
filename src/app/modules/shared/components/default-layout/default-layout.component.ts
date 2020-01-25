@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { SocialUser } from 'angularx-social-login';
+
+import { UserService } from '@services/user.service';
 
 @Component({
-	selector: 'app-default-layout',
 	templateUrl: './default-layout.component.html',
-	styleUrls: ['./default-layout.component.scss']
+	styleUrls: ['./default-layout.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DefaultLayoutComponent implements OnInit {
+	public user: SocialUser;
 
-	constructor() { }
+	constructor(
+		private userService: UserService
+	) { }
 
 	ngOnInit() {
+		this.user = this.userService.currentUser;
 	}
-
 }
