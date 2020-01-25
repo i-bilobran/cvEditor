@@ -36,6 +36,7 @@ export class AuthenticationService {
 			.pipe(
 				map((d) => {
 					console.log(d);
+					return d;
 				}),
 				catchError((error) => {
 					console.log(error);
@@ -44,6 +45,7 @@ export class AuthenticationService {
 			)
 			.subscribe((response: SocialUser) => {
 				this.userService.setUserData(response);
+				this.router.navigate(['/dashboard'])
 			});
 	}
 
