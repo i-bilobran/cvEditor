@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SocialUser, AuthService, GoogleLoginProvider } from 'angularx-social-login';
+import { Router } from '@angular/router';
 import { from, Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
@@ -11,7 +12,8 @@ import { UserService } from '../../services/user.service';
 export class AuthenticationService {
 	constructor(
 		private authService: AuthService,
-		private userService: UserService) {
+		private userService: UserService,
+		private router: Router) {
 	}
 
 	public authStatus(): Observable<boolean> {
@@ -48,6 +50,7 @@ export class AuthenticationService {
 	public signOut(): void {
 		this.authService.signOut();
 		this.userService.clearUserData();
+		this.router.navigate(['/login']);
 	}
 
 	private async signInWithGoogle(): Promise<SocialUser> {
