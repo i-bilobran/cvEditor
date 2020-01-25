@@ -18,7 +18,9 @@
 		<span>{{user.name}}</span>
 		<div class="user-avatar" [ngStyle]="{'background-image': 'url(' + user.photoUrl + ')'}">
 		</div>
-
+		<button (click)="signOut()" mat-icon-button aria-label="signOut">
+			<mat-icon>exit_to_app</mat-icon>
+		</button>
 	</div>
 </mat-toolbar>
 

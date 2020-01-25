@@ -36,6 +36,7 @@
 
 	.user-section {
 		display: flex;
+		align-items: center;
 		font-size: 14px;
 		font-weight: 400;
 
@@ -52,6 +53,10 @@
 			background-repeat: no-repeat;
 			background-position: center;
 			background-size: contain;
+		}
+
+		.mat-icon {
+			padding-left: 13px;
 		}
 	}
 }
