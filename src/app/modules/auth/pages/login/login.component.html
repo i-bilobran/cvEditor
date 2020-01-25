@@ -1,4 +1,10 @@
 <div class="wrapper" fxLayout="row">
-	<div class="asside" fxFlex="50%"></div>
-	<div class="login-form" fxFlex="50%"></div>
+	<div class="asside" fxFlex="60%"></div>
+	<div class="login-form" fxFlex="40%" fxLayoutAlign="center center">
+		<div>Sign in</div>
+		<div id="customBtn" class="customGPlusSignIn">
+			<span class="icon"></span>
+			<span class="button-text" (click)="signIn()">Sign in with Google</span>
+		</div>
+	</div>
 </div>

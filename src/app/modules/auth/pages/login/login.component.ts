@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { AuthService, GoogleLoginProvider, LoginOpt } from 'angularx-social-login';
+import { AuthenticationService } from '../../auth.service';
 
 @Component({
 	selector: 'app-login',
@@ -9,21 +9,15 @@ import { AuthService, GoogleLoginProvider, LoginOpt } from 'angularx-social-logi
 })
 export class LoginComponent implements OnInit {
 
-	constructor(private authService: AuthService) { }
+	constructor(private authService: AuthenticationService) { }
 
 	ngOnInit() {
-		// this.authService.signOut();
-		// this.signInWithGoogle();
-		// this.signInWithGoogle()
-
-		// this.authService.authState.subscribe((user) => {
-		// 	console.log(user)
-		// });
+		this.authService.authStatus().subscribe(e => {
+			console.log('just take a look. Loggined?', e);
+		})
 	}
 
-	signInWithGoogle(): void {
-		this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-
+	public signIn(): void {
+		this.authService.signIn();
 	}
-
 }
