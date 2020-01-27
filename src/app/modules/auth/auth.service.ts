@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { SocialUser, AuthService, GoogleLoginProvider } from 'angularx-social-login';
 import { Router } from '@angular/router';
 import { from, Observable } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { map, finalize } from 'rxjs/operators';
 
 import { UserService } from '../../services/user.service';
 
@@ -28,31 +28,23 @@ export class AuthenticationService {
 
 					return !!response;
 				})
-			)
+			);
 	}
 
 	public signIn(): void {
 		from(this.signInWithGoogle())
-			.pipe(
-				map((d) => {
-					console.log(d);
-					return d;
-				}),
-				catchError((error) => {
-					console.log(error);
-					return error;
-				})
-			)
 			.subscribe((response: SocialUser) => {
 				this.userService.setUserData(response);
-				this.router.navigate(['/dashboard'])
+				this.router.navigate(['/dashboard']);
 			});
 	}
 
-	public signOut(): void {
-		this.authService.signOut();
-		this.userService.clearUserData();
-		this.router.navigate(['/login']);
+	public signOut(): Observable<void> {
+		return from(this.authService.signOut())
+			.pipe(finalize(() => {
+				this.userService.clearUserData();
+				this.router.navigate(['/login']);
+			}));
 	}
 
 	private async signInWithGoogle(): Promise<SocialUser> {

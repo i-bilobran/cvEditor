@@ -22,6 +22,6 @@ export class DefaultLayoutComponent implements OnInit {
 	}
 
 	public signOut(): void {
-		this.authService.signOut();
+		this.authService.signOut().subscribe();
 	}
 }
