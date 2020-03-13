@@ -24,15 +24,20 @@
         </div>
         <div class="content">
             <div class="aside">
-                <div class="photo drop-area">
-                    <div class="area">
+                <ng-container *ngIf="!imgUrl">
+                    <file-drop dropZoneClassName="photo drop-area" contentClassName="area" [multiple]="false"
+                        (onFileDrop)="dropped($event)">
+
                         <mat-icon>cloud_upload</mat-icon>
                         <div>. JPG or . PNG</div>
                         <p>Drag and drop photo <br>
                             or <a href>upload from computer</a></p>
-                    </div>
 
-                </div>
+                    </file-drop>
+                </ng-container>
+
+                <div *ngIf="imgUrl" class="photo" [ngStyle]="{'background-image': 'url(' + imgUrl + ')'}"></div>
+
                 <div class="location">
                     <button mat-icon-button aria-label="Edit" (click)="toggleAdititionalEdit('location')">
                         <mat-icon *ngIf="!locationEdit">edit</mat-icon>
