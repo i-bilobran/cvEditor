@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FileDropModule } from 'ngx-file-drop';
 
 import { DefaultLayoutComponent } from './components/default-layout/default-layout.component';
 import { MaterialModule } from './material.module';
@@ -22,7 +23,8 @@ import { FooterComponent } from './components/footer/footer.component';
 		CommonModule,
 		RouterModule,
 		MaterialModule,
-		FlexLayoutModule
+		FlexLayoutModule,
+		FileDropModule
 	],
 	exports: [
 		MaterialModule,
@@ -30,7 +32,8 @@ import { FooterComponent } from './components/footer/footer.component';
 		DefaultLayoutComponent,
 		PageHeaderComponent,
 		CvCardComponent,
-		CvNewCardComponent
+		CvNewCardComponent,
+		FileDropModule
 	]
 })
 export class SharedModule { }
