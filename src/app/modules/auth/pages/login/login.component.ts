@@ -1,17 +1,28 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { AuthenticationService } from '../../auth.service';
+import { Component } from '@angular/core';
+import { catchError } from 'rxjs/operators';
+
+import { AuthenticationService } from '@auth/auth.service';
 
 @Component({
 	selector: 'app-login',
 	templateUrl: './login.component.html',
-	styleUrls: ['./login.component.scss'],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+	public errorMessage: string;
 
 	constructor(private authService: AuthenticationService) { }
 
 	public signIn(): void {
-		this.authService.signIn();
+		this.authService.signIn()
+			.pipe(
+				catchError((error: string) => {
+					console.log(error)
+					this.errorMessage = 'Login canceled or unable to authorize'
+					throw new Error(error)
+				}))
+			.subscribe(() => {
+				this.errorMessage = '';
+			});
 	}
 }

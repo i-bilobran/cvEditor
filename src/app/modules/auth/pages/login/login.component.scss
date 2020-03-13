@@ -1,3 +1,5 @@
+@import '../../../../scss/variables';
+
 .wrapper {
 	height: 100%;
 
@@ -14,6 +16,7 @@
 		.title {
 			font-size: 30px;
 			margin-bottom: 35px;
+			position: relative;
 		}
 
 		.google-button {
@@ -47,6 +50,12 @@
 				font-weight: bold;
 				font-family: "Roboto", sans-serif;
 			}
+		}
+
+		.error-message {
+			color: $danger;
+			padding-top: 15px;
+			top: 10px;
 		}
 	}
 }

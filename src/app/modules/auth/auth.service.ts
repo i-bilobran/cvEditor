@@ -31,12 +31,16 @@ export class AuthenticationService {
 			);
 	}
 
-	public signIn(): void {
-		from(this.signInWithGoogle())
-			.subscribe((response: SocialUser) => {
-				this.userService.setUserData(response);
-				this.router.navigate(['/dashboard']);
-			});
+	public signIn(): Observable<null> {
+		return from(this.signInWithGoogle())
+			.pipe(
+				map((response: SocialUser) => {
+					this.userService.setUserData(response);
+					this.router.navigate(['/dashboard']);
+
+					return null;
+				})
+			);
 	}
 
 	public signOut(): Observable<void> {
