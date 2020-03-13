@@ -3,11 +3,11 @@
 
 ## Milestones:
 
-  1. Corporate Auth via Google API, CI/CD - 24.01
-  2. Mockups 09.01 - 29.01
-  3. Dynamic form functionality + (formly/shema's investigation) - 07.02
-  4. Main functionality - 12.02
-  5. PWA, tests - 18.02
+  1. Corporate Auth via Google API, CI/CD
+  2. Mockups
+  3. Dynamic form functionality + (formly/shema's investigation)
+  4. Main functionality
+  5. PWA, tests
 
 ### Deadline: 20.02.20
 
