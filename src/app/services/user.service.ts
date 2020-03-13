@@ -14,8 +14,6 @@ export class UserService {
 	constructor() {
 		this.currentUserSubject = new BehaviorSubject<SocialUser>(JSON.parse(localStorage.getItem('currentUser')));
 		this.currentUser$ = this.currentUserSubject.asObservable();
-
-		console.log('currentUserSubject on init: ', this.currentUserSubject.value);
 	}
 
 	get currentUser(): SocialUser {
@@ -26,13 +24,11 @@ export class UserService {
 		this.currentUserSubject.next(user);
 		this.userAuthorized = true;
 
-		console.log('CurrentUser:', user);
+		console.log('User: ', user);
 	}
 
 	public clearUserData(): void {
 		this.currentUserSubject.next(null);
 		this.userAuthorized = false;
-
-		console.log('CurrentUser:', null);
 	}
 }

@@ -17,7 +17,6 @@ export class LoginComponent {
 		this.authService.signIn()
 			.pipe(
 				catchError((error: string) => {
-					console.log(error)
 					this.errorMessage = 'Login canceled or unable to authorize'
 					throw new Error(error)
 				}))

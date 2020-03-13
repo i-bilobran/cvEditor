@@ -16,11 +16,11 @@ export class AuthGuard implements CanActivate {
 	canActivate(): Observable<boolean> {
 		return this.authService.authStatus()
 			.pipe(map((response: boolean) => {
-				console.log('here I am, THE GUARD', response);
 
 				if (!response) {
 					this.router.navigate(['/login']);
 				}
+
 				return response;
 			}));
 	}
