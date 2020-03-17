@@ -1,67 +1,71 @@
 <app-page-header [search]="false" title="Create resume" description="See an example">
-    <div class="actions">
-        <button mat-stroked-button>Preview</button>
-        <button mat-raised-button color="primary">Download</button>
-    </div>
+	<div class="actions">
+		<button mat-stroked-button>Preview</button>
+		<button mat-raised-button color="primary">Download</button>
+	</div>
 </app-page-header>
 <div class="section">
-    <div class="page">
-        <div class="header">
-            <div class="contact-info">
-                <button mat-icon-button aria-label="Edit" (click)="toggleAdititionalEdit('contact')">
-                    <mat-icon *ngIf="!contactEdit">edit</mat-icon>
-                    <mat-icon *ngIf="contactEdit">save</mat-icon>
-                </button>
-                <div class="content text-secondary">
-                    <div>
-                        <span class="primary">Tel / </span>
-                        <input [readonly]="!contactEdit" type="text" name="phone" value="- 380 032 253 8076">
-                    </div>
-                    <input [readonly]="!contactEdit" type="text" name="sales" value="sales@sombrainc.com">
-                    <input [readonly]="!contactEdit" type="text" name="website" value="www.sombrainc.com">
-                </div>
-            </div>
-        </div>
-        <div class="content">
-            <div class="aside">
-                <ng-container *ngIf="!imgUrl">
-                    <file-drop dropZoneClassName="photo drop-area" contentClassName="area" [multiple]="false"
-                        (onFileDrop)="dropped($event)">
+	<div class="page">
+		<div class="header">
+			<div class="contact-info">
+				<button mat-icon-button aria-label="Edit" (click)="toggleAdititionalEdit('contact')">
+					<mat-icon *ngIf="!contactEdit">edit</mat-icon>
+					<mat-icon *ngIf="contactEdit">save</mat-icon>
+				</button>
+				<div class="content text-secondary">
+					<div>
+						<span class="primary">Tel / </span>
+						<input [readonly]="!contactEdit" type="text" name="phone" value="- 380 032 253 8076">
+					</div>
+					<input [readonly]="!contactEdit" type="text" name="sales" value="sales@sombrainc.com">
+					<input [readonly]="!contactEdit" type="text" name="website" value="www.sombrainc.com">
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<div class="aside">
+				<ng-container *ngIf="!imgUrl">
+					<file-drop dropZoneClassName="photo drop-area" contentClassName="area" [accept]="acceptableType"
+						[multiple]="false" (onFileDrop)="dropped($event)">
 
-                        <mat-icon>cloud_upload</mat-icon>
-                        <div>. JPG or . PNG</div>
-                        <p>Drag and drop photo <br>
-                            or <label class="primary" for="file-upload">upload from computer</label>
+						<mat-icon>cloud_upload</mat-icon>
+						<div>. JPG or . PNG</div>
+						<p>Drag and drop photo <br>
+							or <a href="javascript:void(0);"><label class="pointer" for="file-upload">upload from
+									computer</label></a>
 
-                            <input type="file" id="file-upload" (change)="input($event)" [disabled]="fileLoading"
-                                [accept]="acceptableType">
-                        </p>
+							<input type="file" id="file-upload" (change)="fileInput($event)" [disabled]="fileLoading"
+								[accept]="acceptableType" hidden>
+						</p>
 
-                    </file-drop>
-                </ng-container>
+					</file-drop>
+				</ng-container>
 
-                <div *ngIf="imgUrl" class="photo" [ngStyle]="{'background-image': 'url(' + imgUrl + ')'}"></div>
+				<!-- ngx-image-cropper -->
+				<!-- <image-cropper></image-cropper> -->
 
-                <div class="location">
-                    <button mat-icon-button aria-label="Edit" (click)="toggleAdititionalEdit('location')">
-                        <mat-icon *ngIf="!locationEdit">edit</mat-icon>
-                        <mat-icon *ngIf="locationEdit">save</mat-icon>
-                    </button>
-                    <div class="content text-secondary">
-                        <input [readonly]="!locationEdit" type="text" name="name" value="Sombrain Inc.">
-                        <input [readonly]="!locationEdit" type="text" name="street" value="Uhorska St, 14">
-                        <input [readonly]="!locationEdit" type="text" name="sity" value="Lviv, Lvivska oblast,">
-                        <input [readonly]="!locationEdit" type="number" name="post" value="79000">
-                        <input [readonly]="!locationEdit" type="text" name="country" value="Ukraine">
+				<img *ngIf="imgUrl" class="photo" [src]="imgUrl">
 
-                    </div>
-                </div>
-                <img height="33" src="assets/logo/sombra-logo.svg" alt="sombra-logo">
-            </div>
-            <div class="main">
-                main
-            </div>
-        </div>
-        <button class="delete" mat-stroked-button color="warn">Delete resume</button>
-    </div>
+				<div class="location">
+					<button mat-icon-button aria-label="Edit" (click)="toggleAdititionalEdit('location')">
+						<mat-icon *ngIf="!locationEdit">edit</mat-icon>
+						<mat-icon *ngIf="locationEdit">save</mat-icon>
+					</button>
+					<div class="content text-secondary">
+						<input [readonly]="!locationEdit" type="text" name="name" value="Sombrain Inc.">
+						<input [readonly]="!locationEdit" type="text" name="street" value="Uhorska St, 14">
+						<input [readonly]="!locationEdit" type="text" name="sity" value="Lviv, Lvivska oblast,">
+						<input [readonly]="!locationEdit" type="number" name="post" value="79000">
+						<input [readonly]="!locationEdit" type="text" name="country" value="Ukraine">
+
+					</div>
+				</div>
+				<img height="33" src="assets/logo/sombra-logo.svg" alt="sombra-logo">
+			</div>
+			<div class="main">
+				main
+			</div>
+		</div>
+		<button class="delete" mat-stroked-button color="warn">Delete resume</button>
+	</div>
 </div>

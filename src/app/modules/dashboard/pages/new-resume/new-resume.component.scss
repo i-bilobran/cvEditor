@@ -1,4 +1,4 @@
-@import "../../../../scss/variables";
+@import "../../../../scss/custom";
 
 .actions {
 	button {
@@ -53,12 +53,6 @@
 				.drop-area {
 					height: 480px;
 					width: 300px;
-				}
-
-				.photo {
-					background-repeat: no-repeat;
-					background-position: center;
-					background-size: cover;
 				}
 
 				.drop-area {
