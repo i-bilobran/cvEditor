@@ -31,7 +31,11 @@
                         <mat-icon>cloud_upload</mat-icon>
                         <div>. JPG or . PNG</div>
                         <p>Drag and drop photo <br>
-                            or <a href>upload from computer</a></p>
+                            or <label class="primary" for="file-upload">upload from computer</label>
+
+                            <input type="file" id="file-upload" (change)="input($event)" [disabled]="fileLoading"
+                                [accept]="acceptableType">
+                        </p>
 
                     </file-drop>
                 </ng-container>

@@ -1,6 +1,8 @@
 import { Component, OnInit, NgZone, ChangeDetectorRef } from '@angular/core';
 import { UploadEvent, FileSystemFileEntry } from 'ngx-file-drop';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
+import { switchMap, map } from 'rxjs/operators';
+import { Observable, fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-new-resume',
@@ -10,6 +12,8 @@ import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browse
 export class NewResumeComponent implements OnInit {
   public contactEdit: boolean;
   public locationEdit: boolean;
+  public fileLoading: boolean;
+  public acceptableType: string;
 
   public imgUrl: SafeUrl;
 
@@ -34,19 +38,49 @@ export class NewResumeComponent implements OnInit {
         const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
 
         fileEntry.file((file: File) => {
-          const reader = new FileReader();
-
-          reader.readAsDataURL(file);
-
-          reader.onload = () => {
-            this.sanitizer.sanitize(2, `url(${reader.result})`);
-            this.imgUrl = reader.result;
-            this.chDetectorRef.markForCheck();
-          };
-
+          this.getBase64Image(file)
+            .subscribe((url: string) => {
+              this.imgUrl = url;
+              this.chDetectorRef.markForCheck();
+            })
         })
       }
     }
+  }
 
+  input(event) {
+    const files = event.target.files;
+
+    if (files && files[0]) {
+      for (const file of files) {
+        // this.uploadFile(file, event.target);
+        this.getBase64Image(file)
+          .subscribe((url: string) => {
+            this.imgUrl = url;
+            this.chDetectorRef.markForCheck();
+          })
+      }
+    }
+  }
+
+  public getBase64Image(file: File): Observable<string> {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    // creating and getting image url
+    return fromEvent(reader, 'load').pipe(
+      switchMap(response => {
+        const img = new Image();
+        console.log(response.target)
+        img.src = (response.target as any).result;
+
+        return fromEvent(img, 'load').pipe(
+          map(() => {
+            console.log(img.src)
+            return img.src;
+          })
+        );
+      })
+    );
   }
 }
