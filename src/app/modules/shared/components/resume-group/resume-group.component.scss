@@ -1,0 +1,18 @@
+@import "../../../../scss/variables";
+
+.card-body {
+	padding: 0 6px;
+}
+
+.card-header {
+	font-size: 18px;
+	font-weight: 500;
+	color: $text-secondary;
+	padding: 18px 0 25px 0;
+}
+
+.border {
+	width: 100%;
+	border-bottom: 1px solid rgba(230, 232, 241, 1);
+	margin: 25px 0;
+}

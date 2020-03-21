@@ -13,6 +13,7 @@ import { PageHeaderComponent } from './components/page-header/page-header.compon
 import { CvCardComponent } from './components/cv-card/cv-card.component';
 import { CvNewCardComponent } from './components/cv-new-card/cv-new-card.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ResumeGroupComponent } from './components/resume-group/resume-group.component';
 
 @NgModule({
 	declarations: [
@@ -20,7 +21,8 @@ import { FooterComponent } from './components/footer/footer.component';
 		PageHeaderComponent,
 		CvCardComponent,
 		CvNewCardComponent,
-		FooterComponent
+		FooterComponent,
+		ResumeGroupComponent
 	],
 	imports: [
 		CommonModule,
@@ -29,7 +31,12 @@ import { FooterComponent } from './components/footer/footer.component';
 		FlexLayoutModule,
 		FileDropModule,
 		ReactiveFormsModule,
-		FormlyModule.forRoot(),
+		FormlyModule.forRoot({
+			wrappers: [
+				{ name: 'group', component: ResumeGroupComponent },
+			],
+		}
+		),
 		FormlyMaterialModule
 	],
 	exports: [
