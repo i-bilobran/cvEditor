@@ -14,6 +14,7 @@ import { CvCardComponent } from './components/cv-card/cv-card.component';
 import { CvNewCardComponent } from './components/cv-new-card/cv-new-card.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ResumeGroupComponent } from './components/resume-group/resume-group.component';
+import { ResumeGroupArrayComponent } from './components/resume-group-array/resume-group-array.component';
 
 @NgModule({
 	declarations: [
@@ -22,7 +23,8 @@ import { ResumeGroupComponent } from './components/resume-group/resume-group.com
 		CvCardComponent,
 		CvNewCardComponent,
 		FooterComponent,
-		ResumeGroupComponent
+		ResumeGroupComponent,
+		ResumeGroupArrayComponent
 	],
 	imports: [
 		CommonModule,
@@ -33,8 +35,11 @@ import { ResumeGroupComponent } from './components/resume-group/resume-group.com
 		ReactiveFormsModule,
 		FormlyModule.forRoot({
 			wrappers: [
-				{ name: 'group', component: ResumeGroupComponent },
+				{ name: 'group', component: ResumeGroupComponent }
 			],
+			types: [
+				{ name: 'repeat', component: ResumeGroupArrayComponent }
+			]
 		}
 		),
 		FormlyMaterialModule
