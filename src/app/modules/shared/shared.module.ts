@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyMaterialModule } from '@ngx-formly/material';
 import { FileDropModule } from 'ngx-file-drop';
 
 import { DefaultLayoutComponent } from './components/default-layout/default-layout.component';
@@ -24,7 +27,10 @@ import { FooterComponent } from './components/footer/footer.component';
 		RouterModule,
 		MaterialModule,
 		FlexLayoutModule,
-		FileDropModule
+		FileDropModule,
+		ReactiveFormsModule,
+		FormlyModule.forRoot(),
+		FormlyMaterialModule
 	],
 	exports: [
 		MaterialModule,
@@ -33,7 +39,10 @@ import { FooterComponent } from './components/footer/footer.component';
 		PageHeaderComponent,
 		CvCardComponent,
 		CvNewCardComponent,
-		FileDropModule
+		FileDropModule,
+		ReactiveFormsModule,
+		FormlyModule,
+		FormlyMaterialModule
 	]
 })
 export class SharedModule { }
