@@ -12,7 +12,7 @@ import { Fields } from './form-schema';
 })
 export class ResumeFormComponent implements OnInit {
 	public form = new FormGroup({});
-	public model = {};
+	public model = { experience: [{}] };
 	public fields: FormlyFieldConfig[] = cloneDeep(Fields);
 
 	constructor() { }
