@@ -5,12 +5,14 @@ import { ArchiveComponent } from './pages/archive/archive.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NewResumeComponent } from './pages/new-resume/new-resume.component';
 import { SharedModule } from '../shared/shared.module';
+import { ResumeFormComponent } from './components/resume-form/resume-form.component';
 
 @NgModule({
 	declarations: [
 		ArchiveComponent,
 		HomeComponent,
-		NewResumeComponent
+		NewResumeComponent,
+		ResumeFormComponent
 	],
 	imports: [
 		CommonModule,
