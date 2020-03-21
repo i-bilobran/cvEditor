@@ -1,0 +1,11 @@
+<div *ngFor="let field of field.fieldGroup; let i = index;">
+	<formly-group class="col" [field]="field"></formly-group>
+	<div class="col-sm-2 d-flex align-items-center">
+		<button mat-stroked-button color="warn" (click)="remove(i)">Remove</button>
+	</div>
+	<div class="border"></div>
+</div>
+
+<div class="text-end">
+	<button mat-raised-button color="primary" (click)="add()">{{ to.addText }}</button>
+</div>
