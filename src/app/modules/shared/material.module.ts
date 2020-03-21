@@ -38,10 +38,10 @@ const customAppearance: MatFormFieldDefaultOptions = {
 		MatCardModule
 	],
 	providers: [
-		// {
-		// 	provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
-		// 	useValue: customAppearance
-		// }
+		{
+			provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+			useValue: customAppearance
+		}
 	],
 })
 export class MaterialModule { }
