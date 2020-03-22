@@ -62,22 +62,29 @@ export const Fields: FormlyFieldConfig[] = [
 				}
 			},
 			{
-				key: 'education',
-				type: 'input',
-				templateOptions: {
-					required: true,
-					type: 'text',
-					label: 'Education',
-				}
-			},
-			{
-				key: 'university',
-				type: 'input',
-				templateOptions: {
-					required: true,
-					type: 'text',
-					label: 'University/Institute/College',
-				}
+				fieldGroupClassName: 'form-flex',
+				fieldGroup: [
+					{
+						key: 'education',
+						type: 'input',
+						className: 'flex-1',
+						templateOptions: {
+							required: true,
+							type: 'text',
+							label: 'Education',
+						}
+					},
+					{
+						key: 'university',
+						type: 'input',
+						className: 'flex-1',
+						templateOptions: {
+							required: true,
+							type: 'text',
+							label: 'University/Institute/College',
+						}
+					}
+				]
 			}
 		],
 	},
@@ -111,104 +118,133 @@ export const Fields: FormlyFieldConfig[] = [
 		templateOptions: { label: 'Soft skills' },
 		fieldGroup: [
 			{
-				key: 'communication',
-				type: 'select',
-				templateOptions: {
-					required: true,
-					type: 'text',
-					label: 'Communication',
-					options: softSkillOptions
-				}
+				fieldGroupClassName: 'form-flex',
+				fieldGroup: [
+					{
+						key: 'communication',
+						type: 'select',
+						className: 'flex-1',
+						templateOptions: {
+							required: true,
+							type: 'text',
+							label: 'Communication',
+							options: softSkillOptions
+						}
+					},
+					{
+						key: 'positiveAttitude',
+						type: 'select',
+						className: 'flex-1',
+						templateOptions: {
+							required: true,
+							type: 'text',
+							label: 'Positive Attitude',
+							options: softSkillOptions
+						}
+					},
+					{
+						key: 'teamwork',
+						type: 'select',
+						className: 'flex-1',
+						templateOptions: {
+							required: true,
+							type: 'text',
+							label: 'Teamwork',
+							options: softSkillOptions
+						}
+					},
+
+				]
 			},
 			{
-				key: 'positiveAttitude',
-				type: 'select',
-				templateOptions: {
-					required: true,
-					type: 'text',
-					label: 'Positive Attitude',
-					options: softSkillOptions
-				}
+				fieldGroupClassName: 'form-flex',
+				fieldGroup: [
+					{
+						key: 'responsibility',
+						type: 'select',
+						className: 'flex-1',
+						templateOptions: {
+							required: true,
+							type: 'text',
+							label: 'Responsibility',
+							options: softSkillOptions
+						}
+					},
+					{
+						key: 'handingPressure',
+						type: 'select',
+						className: 'flex-1',
+						templateOptions: {
+							required: true,
+							type: 'text',
+							label: 'Handing pressure',
+							options: softSkillOptions
+						}
+					},
+					{
+						key: 'flexibility',
+						type: 'select',
+						className: 'flex-1',
+						templateOptions: {
+							required: true,
+							type: 'text',
+							label: 'Flexibility',
+							options: softSkillOptions
+						}
+					},
+				]
 			},
 			{
-				key: 'teamwork',
-				type: 'select',
-				templateOptions: {
-					required: true,
-					type: 'text',
-					label: 'Teamwork',
-					options: softSkillOptions
-				}
+				fieldGroupClassName: 'form-flex',
+				fieldGroup: [
+					{
+						key: 'problemSolving',
+						type: 'select',
+						className: 'flex-1',
+						templateOptions: {
+							required: true,
+							type: 'text',
+							label: 'Problem solving',
+							options: softSkillOptions
+						}
+					},
+					{
+						key: 'criticalThinking',
+						type: 'select',
+						className: 'flex-1',
+						templateOptions: {
+							required: true,
+							type: 'text',
+							label: 'Critical thinking',
+							options: softSkillOptions
+						}
+					},
+					{
+						key: 'workEthics',
+						type: 'select',
+						className: 'flex-1',
+						templateOptions: {
+							required: true,
+							type: 'text',
+							label: 'Work ethics',
+							options: softSkillOptions
+						}
+					},
+				]
 			},
 			{
-				key: 'responsibility',
-				type: 'select',
-				templateOptions: {
-					required: true,
-					type: 'text',
-					label: 'Responsibility',
-					options: softSkillOptions
-				}
-			},
-			{
-				key: 'handingPressure',
-				type: 'select',
-				templateOptions: {
-					required: true,
-					type: 'text',
-					label: 'Handing pressure',
-					options: softSkillOptions
-				}
-			},
-			{
-				key: 'flexibility',
-				type: 'select',
-				templateOptions: {
-					required: true,
-					type: 'text',
-					label: 'Flexibility',
-					options: softSkillOptions
-				}
-			},
-			{
-				key: 'problemSolving',
-				type: 'select',
-				templateOptions: {
-					required: true,
-					type: 'text',
-					label: 'Problem solving',
-					options: softSkillOptions
-				}
-			},
-			{
-				key: 'criticalThinking',
-				type: 'select',
-				templateOptions: {
-					required: true,
-					type: 'text',
-					label: 'Critical thinking',
-					options: softSkillOptions
-				}
-			},
-			{
-				key: 'workEthics',
-				type: 'select',
-				templateOptions: {
-					required: true,
-					type: 'text',
-					label: 'Work ethics',
-					options: softSkillOptions
-				}
-			},
-			{
-				key: 'leading',
-				type: 'select',
-				templateOptions: {
-					required: true,
-					type: 'text',
-					label: 'Leading',
-					options: softSkillOptions
-				}
+				fieldGroupClassName: 'form-flex',
+				fieldGroup: [{
+					key: 'leading',
+					type: 'select',
+					className: 'flex-1',
+					templateOptions: {
+						required: true,
+						type: 'text',
+						label: 'Leading',
+						options: softSkillOptions
+					}
+				}]
 			}
 		]
 	},
@@ -242,22 +278,39 @@ export const Fields: FormlyFieldConfig[] = [
 					}
 				},
 				{
-					key: 'teamSize',
-					type: 'input',
-					templateOptions: {
-						required: true,
-						type: 'number',
-						label: 'Team size',
-					}
-				},
-				{
-					key: 'involvementDuration',
-					type: 'input',
-					templateOptions: {
-						required: true,
-						type: 'number',
-						label: 'Involvement duration (month)'
-					}
+					fieldGroupClassName: 'form-flex',
+					fieldGroup: [
+						{
+							key: 'teamSize',
+							type: 'input',
+							className: 'flex-1',
+							templateOptions: {
+								required: true,
+								type: 'number',
+								label: 'Team size',
+							}
+						},
+						{
+							key: 'involvementDuration',
+							type: 'input',
+							className: 'flex-1',
+							templateOptions: {
+								required: true,
+								type: 'number',
+								label: 'Involvement duration (month)'
+							}
+						},
+						{
+							key: 'role',
+							type: 'input',
+							className: 'flex-1',
+							templateOptions: {
+								required: true,
+								type: 'number',
+								label: 'Project role'
+							}
+						}
+					]
 				},
 				{
 					key: 'customer',
@@ -266,15 +319,6 @@ export const Fields: FormlyFieldConfig[] = [
 						required: true,
 						type: 'text',
 						label: 'Customer'
-					}
-				},
-				{
-					key: 'role',
-					type: 'input',
-					templateOptions: {
-						required: true,
-						type: 'number',
-						label: 'Project role'
 					}
 				},
 				{

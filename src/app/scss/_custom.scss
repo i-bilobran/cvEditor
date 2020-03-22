@@ -57,6 +57,34 @@ body {
 	cursor: pointer;
 }
 
+// formly fields layout
+
+.form-flex {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: stretch;
+
+	.flex-1 {
+		flex: 1;
+	}
+
+	.flex-2 {
+		flex: 2;
+	}
+
+	[class*="flex-"] {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+
+	[class*="flex-"]:first-child {
+		padding-left: 0;
+	}
+
+	[class*="flex-"]:last-child {
+		padding-right: 0;
+	}
+}
 // ngx-file-drop
 
 .photo,
