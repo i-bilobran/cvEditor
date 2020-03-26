@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { cloneDeep } from 'lodash';
@@ -11,6 +11,9 @@ import { Fields } from './form-schema';
 	styleUrls: ['./resume-form.component.scss']
 })
 export class ResumeFormComponent implements OnInit {
+	@Output() submit: EventEmitter<any> = new EventEmitter();
+	@Output() cancel: EventEmitter<void> = new EventEmitter();
+
 	public form = new FormGroup({});
 	public model = {
 		skills: [
@@ -27,7 +30,15 @@ export class ResumeFormComponent implements OnInit {
 	ngOnInit() {
 	}
 
-	onSubmit() {
+	public onCancel(): void {
+		this.cancel.emit();
+	}
+
+	public onSubmit(): void {
 		console.log(this.model);
+
+		if (this.form.valid) {
+			this.submit.emit(this.model);
+		}
 	}
 }
