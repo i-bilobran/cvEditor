@@ -3,6 +3,10 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+
+import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './modules/shared/shared.module';
@@ -30,6 +34,8 @@ export function provideConfig() {
 		BrowserModule,
 		AppRoutingModule,
 		BrowserAnimationsModule,
+		AngularFireModule.initializeApp(environment.firebase),
+		AngularFirestoreModule,
 		SocialLoginModule,
 		SharedModule,
 		AuthModule,
