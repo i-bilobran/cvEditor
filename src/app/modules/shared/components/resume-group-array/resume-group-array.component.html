@@ -1,11 +1,9 @@
-<div *ngFor="let field of field.fieldGroup; let i = index;">
-	<formly-group class="col" [field]="field"></formly-group>
-	<div class="col-sm-2 d-flex align-items-center">
+<button class="add-button" type="button" mat-stroked-button color="accent" (click)="add()">{{ to.addText }}</button>
+
+<div *ngFor="let group of field.fieldGroup; let i = index;">
+	<formly-group class="col" [field]="group"></formly-group>
+	<div class="remove-wrapper">
 		<button mat-stroked-button color="warn" (click)="remove(i)">Remove</button>
 	</div>
-	<div class="border"></div>
-</div>
-
-<div class="text-end">
-	<button type="button" mat-stroked-button color="accent" (click)="add()">{{ to.addText }}</button>
+	<div class="border" *ngIf="field.fieldGroup.length !== (i + 1)"></div>
 </div>
