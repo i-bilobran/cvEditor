@@ -1,15 +1,13 @@
-
 # CvEditor
 
 ## Milestones:
 
-  1. Corporate Auth via Google API, CI/CD
-  2. Mockups
-  3. Dynamic form functionality + (formly/shema's investigation)
-  4. Main functionality
-  5. PWA, tests
-
-### Deadline: 20.02.20
+1. Corporate Auth via Google API, CI/CD
+2. Mockups
+3. Dynamic form functionality + (formly/shema's investigation)
+4. Main functionality
+5. Firebase
+6. PWA, tests
 
 ## Development server
 
