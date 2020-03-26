@@ -55,9 +55,10 @@ export const Fields: FormlyFieldConfig[] = [
 					type: 'text',
 					label: 'English Proficiency Level',
 					options: [
-						{ value: 1, label: '1 - Elementary' },
-						{ value: 2, label: '2 - Intermediate' },
-						{ value: 3, label: '3 - Advanced' }
+						{ value: 'Pre intermediate', label: '1 - Pre intermediate' },
+						{ value: 'Intermediate', label: '2 - Intermediate' },
+						{ value: 'Upper intermediate', label: '3 - Upper intermediate' },
+						{ value: 'Advanced', label: '4 - Advanced' }
 					]
 				}
 			},
@@ -91,26 +92,34 @@ export const Fields: FormlyFieldConfig[] = [
 	{
 		key: 'skills',
 		wrappers: ['group'],
-		templateOptions: { label: 'Skills & Technologies' },
-		fieldGroup: [
-			{
-				key: 'technologies',
-				type: 'input',
-				templateOptions: {
-					required: true,
-					type: 'text',
-					label: 'Programming languages, technologies',
+		type: 'repeat',
+		templateOptions: {
+			label: 'Skills & Technologies',
+			addText: 'Add additional field',
+		},
+		fieldArray: {
+			fieldGroup: [
+				{
+					key: 'label',
+					type: 'input',
+					templateOptions: {
+						required: true,
+						type: 'text',
+						label: 'Technology title',
+					}
+				},
+				{
+					key: 'value',
+					type: 'textarea',
+					templateOptions: {
+						required: true,
+						rows: 3,
+						type: 'text',
+						label: 'Value',
+					}
 				}
-			},
-			{
-				key: 'frameworks',
-				type: 'input',
-				templateOptions: {
-					required: true,
-					type: 'text',
-					label: 'Frameworks',
-				}
-			}],
+			]
+		}
 	},
 	{
 		key: 'softSkills',
