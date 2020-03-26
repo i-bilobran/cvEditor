@@ -5,11 +5,10 @@ import { switchMap, map } from 'rxjs/operators';
 import { Observable, fromEvent } from 'rxjs';
 
 @Component({
-	selector: 'app-new-resume',
-	templateUrl: './new-resume.component.html',
-	styleUrls: ['./new-resume.component.scss']
+	templateUrl: './edit-resume.component.html',
+	styleUrls: ['./edit-resume.component.scss']
 })
-export class NewResumeComponent implements OnInit {
+export class EditResumeComponent implements OnInit {
 	public contactEdit: boolean;
 	public locationEdit: boolean;
 	public fileLoading: boolean;

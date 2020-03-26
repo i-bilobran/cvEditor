@@ -7,7 +7,7 @@ import { LoginGuard } from './guards/login.guard';
 import { LoginComponent } from './modules/auth/pages/login/login.component';
 import { HomeComponent } from './modules/dashboard/pages/home/home.component';
 import { ArchiveComponent } from './modules/dashboard/pages/archive/archive.component';
-import { NewResumeComponent } from './modules/dashboard/pages/new-resume/new-resume.component';
+import { EditResumeComponent } from './modules/dashboard/pages/edit-resume/edit-resume.component';
 import { DefaultLayoutComponent } from './modules/shared/components/default-layout/default-layout.component';
 
 const routes: Routes = [
@@ -45,7 +45,7 @@ const routes: Routes = [
 			},
 			{
 				path: 'new-resume',
-				component: NewResumeComponent
+				component: EditResumeComponent
 			}
 		]
 	},
