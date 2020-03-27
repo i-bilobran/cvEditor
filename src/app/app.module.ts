@@ -6,7 +6,7 @@ import { GoogleLoginProvider } from 'angularx-social-login';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
-import { environment } from '../environments/environment';
+import { environment } from '@env/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './modules/shared/shared.module';
@@ -18,7 +18,7 @@ import { AppComponent } from './app.component';
 const config = new AuthServiceConfig([
 	{
 		id: GoogleLoginProvider.PROVIDER_ID,
-		provider: new GoogleLoginProvider('365081571287-eoq9v835kse4lja6qvpnbhsutkhlqqv5.apps.googleusercontent.com')
+		provider: new GoogleLoginProvider(environment.googleLoginProviderId)
 	}
 ]);
 
