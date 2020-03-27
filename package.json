@@ -43,7 +43,6 @@
 	},
 	"devDependencies": {
 		"@angular-builders/custom-webpack": "^8.2.0",
-		"@angular-builders/dev-server": "^7.3.1",
 		"@angular-devkit/build-angular": "^0.802.0",
 		"@angular/cli": "~8.3.0",
 		"@angular/compiler-cli": "~8.2.3",
@@ -64,6 +63,7 @@
 		"protractor": "^5.4.3",
 		"ts-node": "~7.0.0",
 		"tslint": "~5.11.0",
-		"typescript": "~3.5.3"
+		"typescript": "~3.5.3",
+		"webpack-cli": "^3.3.7"
 	}
 }

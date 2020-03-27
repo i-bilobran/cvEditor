@@ -5,7 +5,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
-import { FileDropModule } from 'ngx-file-drop';
+import { NgxFileDropModule } from 'ngx-file-drop';
 
 import { DefaultLayoutComponent } from './components/default-layout/default-layout.component';
 import { MaterialModule } from '../material/material.module';
@@ -15,6 +15,7 @@ import { CvNewCardComponent } from './components/cv-new-card/cv-new-card.compone
 import { FooterComponent } from './components/footer/footer.component';
 import { ResumeGroupComponent } from './components/resume-group/resume-group.component';
 import { ResumeGroupArrayComponent } from './components/resume-group-array/resume-group-array.component';
+
 
 @NgModule({
 	declarations: [
@@ -31,7 +32,7 @@ import { ResumeGroupArrayComponent } from './components/resume-group-array/resum
 		RouterModule,
 		MaterialModule,
 		FlexLayoutModule,
-		FileDropModule,
+		NgxFileDropModule,
 		ReactiveFormsModule,
 		FormlyModule.forRoot({
 			wrappers: [
@@ -51,7 +52,7 @@ import { ResumeGroupArrayComponent } from './components/resume-group-array/resum
 		PageHeaderComponent,
 		CvCardComponent,
 		CvNewCardComponent,
-		FileDropModule,
+		NgxFileDropModule,
 		ReactiveFormsModule,
 		FormlyModule,
 		FormlyMaterialModule

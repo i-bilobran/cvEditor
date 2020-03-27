@@ -1,13 +1,11 @@
-const webpack = require("webpack");
+const Dotenv = require("dotenv-webpack");
 
-module.exports = {
-	plugins: [
-		new webpack.DefinePlugin({
-			"process.env": {
-				GOOGLE_PROVIDER_ID: JSON.stringify(
-					process.env.GOOGLE_PROVIDER_ID
-				)
-			}
+module.exports = config => {
+	config.plugins.push(
+		new Dotenv({
+			systemvars: true // load all the predefined 'process.env' variables which will trump anything local per dotenv specs.
 		})
-	]
+	);
+
+	return config;
 };

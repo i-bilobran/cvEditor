@@ -1,8 +1,9 @@
-import { Component, OnInit, NgZone, ChangeDetectorRef } from '@angular/core';
-import { UploadEvent, FileSystemFileEntry } from 'ngx-file-drop';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { switchMap, map } from 'rxjs/operators';
 import { Observable, fromEvent } from 'rxjs';
+import { NgxFileDropEntry, FileSystemFileEntry } from 'ngx-file-drop';
 
 @Component({
 	templateUrl: './edit-resume.component.html',
@@ -27,9 +28,9 @@ export class EditResumeComponent implements OnInit {
 		this[`${key}Edit`] = !this[`${key}Edit`];
 	}
 
-	public dropped(event: UploadEvent): void {
+	public dropped(event: NgxFileDropEntry[]): void {
 
-		for (const droppedFile of event.files) {
+		for (const droppedFile of event) {
 
 			// Is it a file?
 			if (droppedFile.fileEntry.isFile) {

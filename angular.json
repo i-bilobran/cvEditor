@@ -27,7 +27,8 @@
 						"scripts": [],
 						"es5BrowserSupport": true,
 						"customWebpackConfig": {
-							"path": "extra-webpack.config.js"
+							"path": "extra-webpack.config.js",
+							"mergeStrategies": { "externals": "replace" }
 						}
 					},
 					"configurations": {
@@ -58,9 +59,13 @@
 					}
 				},
 				"serve": {
-					"builder": "@angular-builders/dev-server:generic",
+					"builder": "@angular-builders/custom-webpack:dev-server",
 					"options": {
-						"browserTarget": "cvEditor:build"
+						"browserTarget": "cvEditor:build",
+						"customWebpackConfig": {
+							"path": "extra-webpack.config.js",
+							"mergeStrategies": { "externals": "replace" }
+						}
 					},
 					"configurations": {
 						"production": {
