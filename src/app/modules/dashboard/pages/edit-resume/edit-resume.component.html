@@ -25,7 +25,7 @@
 		<div class="content">
 			<div class="aside">
 				<ng-container *ngIf="!imgUrl">
-					<file-drop dropZoneClassName="photo drop-area" contentClassName="area" [accept]="acceptableType"
+					<ngx-file-drop dropZoneClassName="photo drop-area" contentClassName="area" [accept]="acceptableType"
 						[multiple]="false" (onFileDrop)="dropped($event)">
 
 						<mat-icon>cloud_upload</mat-icon>
@@ -38,7 +38,7 @@
 								[accept]="acceptableType" hidden>
 						</p>
 
-					</file-drop>
+					</ngx-file-drop>
 				</ng-container>
 
 				<!-- ngx-image-cropper -->

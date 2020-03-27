@@ -9,7 +9,7 @@ export class AppComponent {
 	constructor(
 		private db: AngularFirestore
 	) {
-		this.db.collection("/resume/lHvwrmlx2snvsiQmSYnj")
+		this.db.collection("/resume")
 			.valueChanges()
 			.subscribe(response => { console.log(response) })
 	}
