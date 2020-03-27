@@ -1,4 +1,5 @@
 import { FormlyFieldConfig } from '@ngx-formly/core';
+import { About, Skill, SoftSkills, Experience } from '@models/resume.models';
 
 const softSkillOptions = [
 	{ value: 1, label: '1' },
@@ -7,6 +8,17 @@ const softSkillOptions = [
 	{ value: 4, label: '4' },
 	{ value: 5, label: '5' },
 ];
+
+export const InitialModel = {
+	about: {} as About,
+	skills: [
+		{} as Skill
+	],
+	softSkills: {} as SoftSkills,
+	experience: [
+		{} as Experience
+	]
+};
 
 export const Fields: FormlyFieldConfig[] = [
 	{

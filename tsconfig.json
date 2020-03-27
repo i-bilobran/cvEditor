@@ -17,7 +17,7 @@
 		"paths": {
 			"@angular/*": ["../node_modules/@angular/*"],
 			"@env/*": ["environments/*"],
-			// "@pipes/*": ["app/pipes/*"],
+			"@models/*": ["app/models/*"],
 			// "@utils/*": ["app/utils/*"],
 			"@guards/*": ["app/guards/*"],
 			"@services/*": ["app/services/*"],
