@@ -64,10 +64,10 @@
 			</div>
 			<div class="main">
 				<ng-container *ngIf="id && resume">
-					<app-resume-form [model]="resume.resume"></app-resume-form>
+					<app-resume-form [model]="resume.resume" (submit)="updateResume($event)"></app-resume-form>
 				</ng-container>
 				<ng-container *ngIf="!id">
-					<app-resume-form></app-resume-form>
+					<app-resume-form (submit)="createResume($event)"></app-resume-form>
 				</ng-container>
 
 			</div>

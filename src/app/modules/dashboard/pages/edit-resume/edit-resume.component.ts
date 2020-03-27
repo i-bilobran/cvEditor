@@ -5,7 +5,7 @@ import { switchMap, map } from 'rxjs/operators';
 import { Observable, fromEvent } from 'rxjs';
 import { NgxFileDropEntry, FileSystemFileEntry } from 'ngx-file-drop';
 import { ActivatedRoute } from '@angular/router';
-import { Resume, ResumeEntity } from '@models/resume.models';
+import { Resume, ResumeEntity, ResumeForm } from '@models/resume.models';
 import { StoreService } from '@services/store.service';
 
 @Component({
@@ -93,14 +93,28 @@ export class EditResumeComponent implements OnInit {
 		);
 	}
 
+	public createResume(event: ResumeForm): void {
+		this.store.createResume(event)
+			.subscribe((response => {
+				console.log(response);
+			}));
+	}
+
+	public updateResume(event: ResumeForm): void {
+		console.log(event);
+	}
+
 	public deleteResume(): void {
 
 	}
 
+	// qcv7ohVORAe4YOJvtIGa
+
 	private initResume(id: string): void {
 		this.store.getResume(id)
-			.subscribe((response: Resume) => {
-				this.resume = response;
+			.subscribe((response: any) => {
+				this.resume = response.data();
+				console.log(this.resume)
 			});
 	}
 }

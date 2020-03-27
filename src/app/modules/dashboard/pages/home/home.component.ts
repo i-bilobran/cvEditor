@@ -17,9 +17,6 @@ export class HomeComponent implements OnInit {
 	}
 
 	private initResumeCards(): void {
-		this.store.getResume('qcv7ohVORAe4YOJvtIGa')
-			.subscribe(response => {
-				console.log(response.data())
-			})
+
 	}
 }

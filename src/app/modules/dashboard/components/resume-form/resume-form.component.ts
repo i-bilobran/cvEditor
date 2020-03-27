@@ -26,8 +26,6 @@ export class ResumeFormComponent {
 	}
 
 	public onSubmit(): void {
-		console.log(this.model);
-
 		if (this.form.valid) {
 			this.submit.emit(this.model);
 		}

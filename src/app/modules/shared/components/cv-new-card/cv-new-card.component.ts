@@ -14,6 +14,6 @@ export class CvNewCardComponent implements OnInit {
 	}
 
 	public navigate(): void {
-		this.router.navigate(['/dashboard/new-resume']);
+		this.router.navigate(['/dashboard/resume/new']);
 	}
 }

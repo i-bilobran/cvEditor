@@ -29,7 +29,7 @@ export class StoreService {
 			.collection(this.collection)
 			.doc(id)
 			.get()
-			.pipe(map(response => response.data()));
+			.pipe(map(response => response));
 
 	}
 
