@@ -6,4 +6,8 @@ import { FieldArrayType } from '@ngx-formly/core';
 	templateUrl: './resume-group-array.component.html',
 	styleUrls: ['./resume-group-array.component.scss']
 })
-export class ResumeGroupArrayComponent extends FieldArrayType { }
+export class ResumeGroupArrayComponent extends FieldArrayType {
+	constructor() {
+		super();
+	}
+}
