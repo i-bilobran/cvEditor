@@ -4,6 +4,9 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { switchMap, map } from 'rxjs/operators';
 import { Observable, fromEvent } from 'rxjs';
 import { NgxFileDropEntry, FileSystemFileEntry } from 'ngx-file-drop';
+import { ActivatedRoute } from '@angular/router';
+import { Resume, ResumeEntity } from '@models/resume.models';
+import { StoreService } from '@services/store.service';
 
 @Component({
 	templateUrl: './edit-resume.component.html',
@@ -15,13 +18,23 @@ export class EditResumeComponent implements OnInit {
 	public fileLoading: boolean;
 	public acceptableType = 'image/jpeg,image/png';
 	public imgUrl: SafeUrl;
+	public resume: Resume;
+	public id: string;
 
 	constructor(
 		private chDetectorRef: ChangeDetectorRef,
-		private sanitizer: DomSanitizer
+		private sanitizer: DomSanitizer,
+		private activatedRoute: ActivatedRoute,
+		private store: StoreService,
 	) { }
 
 	ngOnInit() {
+		this.id = this.activatedRoute.snapshot.params.id;
+
+		if (this.id) {
+			this.initResume(this.id);
+		} else {
+		}
 	}
 
 	public toggleAdititionalEdit(key: string): void {
@@ -78,5 +91,16 @@ export class EditResumeComponent implements OnInit {
 				);
 			})
 		);
+	}
+
+	public deleteResume(): void {
+
+	}
+
+	private initResume(id: string): void {
+		this.store.getResume(id)
+			.subscribe((response: Resume) => {
+				this.resume = response;
+			});
 	}
 }

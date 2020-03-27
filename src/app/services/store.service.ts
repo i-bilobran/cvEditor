@@ -27,7 +27,9 @@ export class StoreService {
 
 		return this.db
 			.collection(this.collection)
-			.doc(id).get();
+			.doc(id)
+			.get()
+			.pipe(map(response => response.data()));
 
 	}
 

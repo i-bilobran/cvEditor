@@ -63,9 +63,16 @@
 				<img height="33" src="assets/logo/sombra-logo.svg" alt="sombra-logo">
 			</div>
 			<div class="main">
-				<app-resume-form></app-resume-form>
+				<ng-container *ngIf="id && resume">
+					<app-resume-form [model]="resume.resume"></app-resume-form>
+				</ng-container>
+				<ng-container *ngIf="!id">
+					<app-resume-form></app-resume-form>
+				</ng-container>
+
 			</div>
 		</div>
-		<button class="delete" mat-stroked-button color="warn">Delete resume</button>
+		<button *ngIf="id" class="delete" mat-stroked-button color="warn" (click)="deleteResume()">Delete
+			resume</button>
 	</div>
 </div>
