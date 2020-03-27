@@ -44,8 +44,17 @@ const routes: Routes = [
 				component: ArchiveComponent
 			},
 			{
-				path: 'new-resume',
-				component: EditResumeComponent
+				path: 'resume',
+				children: [
+					{
+						path: 'new',
+						component: EditResumeComponent
+					},
+					{
+						path: ':id',
+						component: EditResumeComponent
+					}
+				]
 			}
 		]
 	},
