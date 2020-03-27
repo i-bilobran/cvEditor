@@ -315,7 +315,7 @@ export const Fields: FormlyFieldConfig[] = [
 							className: 'flex-1',
 							templateOptions: {
 								required: true,
-								type: 'number',
+								type: 'text',
 								label: 'Project role'
 							}
 						}
