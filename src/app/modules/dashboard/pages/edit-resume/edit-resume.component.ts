@@ -21,7 +21,7 @@ export class EditResumeComponent implements OnInit {
 	public fileLoading: boolean;
 	public acceptableType = 'image/jpeg,image/png';
 	public imgUrl: SafeUrl;
-	public resume: Resume;
+	public resume: ResumeForm;
 	public id: string;
 
 	constructor(
@@ -37,9 +37,9 @@ export class EditResumeComponent implements OnInit {
 
 		if (this.id) {
 			this.initResume(this.id);
+		} else {
+			this.initInfoForm();
 		}
-
-		this.initInfoForm();
 	}
 
 	public toggleAdititionalEdit(key: string): void {
@@ -98,11 +98,11 @@ export class EditResumeComponent implements OnInit {
 		);
 	}
 
-	public createResume(event: ResumeForm): void {
+	public createResume(event: ResumeForm): void {)
 		const resume = {
-			general: {},
-			location: {},
-			photo: {},
+			general: this.generalInfoForm.value,
+			location: this.locationInfoForm.value,
+			photo: 'blob',
 			resume: event
 		};
 
@@ -122,7 +122,7 @@ export class EditResumeComponent implements OnInit {
 
 	private initInfoForm(general?: GeneralData, location?: LocationData): void {
 		this.generalInfoForm = this.formBuilder.group({
-			phone: general ? general.phone : '- 380 032 253 8076',
+			phone: general ? general.phone : '380 032 253 8076',
 			email: general ? general.email : 'sales@sombrainc.com',
 			website: general ? general.website : 'www.sombrainc.com'
 		});
@@ -135,13 +135,15 @@ export class EditResumeComponent implements OnInit {
 		});
 	}
 
-	// qcv7ohVORAe4YOJvtIGa
-
 	private initResume(id: string): void {
 		this.store.getResume(id)
 			.subscribe((response: any) => {
-				this.resume = response.data();
-				console.log(this.resume)
+				const resume = response.data() as Resume;
+
+				this.initInfoForm(resume.general, resume.location);
+
+				this.resume = resume.resume;
+				this.chDetectorRef.markForCheck();
 			});
 	}
 }

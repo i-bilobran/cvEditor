@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, from } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
+import { Resume } from '@models/resume.models';
 
 @Injectable({
 	providedIn: 'root'
@@ -44,7 +45,7 @@ export class StoreService {
 			}));
 	}
 
-	public createResume(resume: any): Observable<any> {
+	public createResume(resume: Resume): Observable<any> {
 		return from(
 			this.db
 				.collection(this.collection)
