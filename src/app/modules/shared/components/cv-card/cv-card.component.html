@@ -1,6 +1,7 @@
 <mat-card class="cv-card">
 	<img height="215" mat-card-image src="assets/img/cv-card-img.png" alt="resume photo">
 	<mat-card-content>
+
 		<div class="name">
 			<span>{{card.name}}</span>
 		</div>
@@ -12,10 +13,11 @@
 
 		<mat-menu #appMenu="matMenu">
 			<ng-template matMenuContent let-name="name">
-				<button mat-menu-item (click)="onEdit()">Edit</button>
-				<button mat-menu-item (click)="onDelete()">Archive</button>
-				<button mat-menu-item (click)="onArchive()">Download</button>
-				<button mat-menu-item (click)="onDownload()">Delete</button>
+				<button mat-menu-item *ngIf="!card.archived" (click)="onEdit()">Edit</button>
+				<button mat-menu-item *ngIf="!card.archived" (click)="onArchive()">Archive</button>
+				<button mat-menu-item *ngIf="card.archived" (click)="onRestore()">Restore</button>
+				<button mat-menu-item (click)="onDownload()">Download</button>
+				<button mat-menu-item (click)="onDelete()">Delete</button>
 			</ng-template>
 		</mat-menu>
 

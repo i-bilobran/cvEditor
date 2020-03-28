@@ -12,8 +12,9 @@ import { ResumeCard } from '@models/resume.models';
 export class CvCardComponent {
 	@Input() card: ResumeCard;
 	@Output() delete: EventEmitter<string> = new EventEmitter();
-	@Output() archive: EventEmitter<string> = new EventEmitter();
 	@Output() download: EventEmitter<string> = new EventEmitter();
+	@Output() archive?: EventEmitter<string> = new EventEmitter();
+	@Output() restore?: EventEmitter<string> = new EventEmitter();
 
 	constructor(
 		private router: Router
@@ -29,6 +30,10 @@ export class CvCardComponent {
 
 	public onArchive(): void {
 		this.archive.emit(this.card.id);
+	}
+
+	public onRestore(): void {
+		this.restore.emit(this.card.id);
 	}
 
 	public onDownload(): void {

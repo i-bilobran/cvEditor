@@ -95,6 +95,15 @@ export class StoreService {
 		);
 	}
 
+	public restoreResume(id: string): Observable<void> {
+		return from(
+			this.db
+				.collection(this.collection)
+				.doc(id)
+				.set({ archived: false }, { merge: true })
+		);
+	}
+
 	public downloadResume(): void {
 
 	}
