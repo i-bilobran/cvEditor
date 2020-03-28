@@ -5,14 +5,17 @@ import { switchMap, map } from 'rxjs/operators';
 import { Observable, fromEvent } from 'rxjs';
 import { NgxFileDropEntry, FileSystemFileEntry } from 'ngx-file-drop';
 import { ActivatedRoute } from '@angular/router';
-import { Resume, ResumeEntity, ResumeForm } from '@models/resume.models';
+import { Resume, ResumeEntity, ResumeForm, GeneralData, LocationData } from '@models/resume.models';
 import { StoreService } from '@services/store.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
 	templateUrl: './edit-resume.component.html',
 	styleUrls: ['./edit-resume.component.scss']
 })
 export class EditResumeComponent implements OnInit {
+	public generalInfoForm: FormGroup;
+	public locationInfoForm: FormGroup;
 	public contactEdit: boolean;
 	public locationEdit: boolean;
 	public fileLoading: boolean;
@@ -22,6 +25,7 @@ export class EditResumeComponent implements OnInit {
 	public id: string;
 
 	constructor(
+		private formBuilder: FormBuilder,
 		private chDetectorRef: ChangeDetectorRef,
 		private sanitizer: DomSanitizer,
 		private activatedRoute: ActivatedRoute,
@@ -33,8 +37,9 @@ export class EditResumeComponent implements OnInit {
 
 		if (this.id) {
 			this.initResume(this.id);
-		} else {
 		}
+
+		this.initInfoForm();
 	}
 
 	public toggleAdititionalEdit(key: string): void {
@@ -94,7 +99,14 @@ export class EditResumeComponent implements OnInit {
 	}
 
 	public createResume(event: ResumeForm): void {
-		this.store.createResume(event)
+		const resume = {
+			general: {},
+			location: {},
+			photo: {},
+			resume: event
+		};
+
+		this.store.createResume(resume)
 			.subscribe((response => {
 				console.log(response);
 			}));
@@ -106,6 +118,21 @@ export class EditResumeComponent implements OnInit {
 
 	public deleteResume(): void {
 
+	}
+
+	private initInfoForm(general?: GeneralData, location?: LocationData): void {
+		this.generalInfoForm = this.formBuilder.group({
+			phone: general ? general.phone : '- 380 032 253 8076',
+			email: general ? general.email : 'sales@sombrainc.com',
+			website: general ? general.website : 'www.sombrainc.com'
+		});
+		this.locationInfoForm = this.formBuilder.group({
+			title: location ? location.title : 'Sombrain Inc.',
+			street: location ? location.street : 'Uhorska St, 14',
+			state: location ? location.state : 'Lviv, Lvivska oblast',
+			postalCode: location ? location.postalCode : '79000',
+			country: location ? location.country : 'Ukraine'
+		});
 	}
 
 	// qcv7ohVORAe4YOJvtIGa

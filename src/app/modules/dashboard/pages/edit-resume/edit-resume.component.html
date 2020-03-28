@@ -51,13 +51,12 @@
 						<mat-icon *ngIf="!locationEdit">edit</mat-icon>
 						<mat-icon *ngIf="locationEdit">save</mat-icon>
 					</button>
-					<div class="content text-secondary">
-						<input [readonly]="!locationEdit" type="text" name="name" value="Sombrain Inc.">
-						<input [readonly]="!locationEdit" type="text" name="street" value="Uhorska St, 14">
-						<input [readonly]="!locationEdit" type="text" name="sity" value="Lviv, Lvivska oblast,">
-						<input [readonly]="!locationEdit" type="number" name="post" value="79000">
-						<input [readonly]="!locationEdit" type="text" name="country" value="Ukraine">
-
+					<div class="content text-secondary" [formGroup]="locationInfoForm">
+						<input [readonly]="!locationEdit" type="text" formControlName="title">
+						<input [readonly]="!locationEdit" type="text" formControlName="street">
+						<input [readonly]="!locationEdit" type="text" formControlName="state">
+						<input [readonly]="!locationEdit" type="number" formControlName="postalCode">
+						<input [readonly]="!locationEdit" type="text" formControlName="country">
 					</div>
 				</div>
 				<img height="33" src="assets/logo/sombra-logo.svg" alt="sombra-logo">
