@@ -1,15 +1,46 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { ResumeCard } from '@models/resume.models';
+import { StoreService } from '@services/store.service';
 
 @Component({
-  selector: 'app-archive',
-  templateUrl: './archive.component.html',
-  styleUrls: ['./archive.component.scss']
+	templateUrl: './archive.component.html',
+	styleUrls: ['./archive.component.scss']
 })
 export class ArchiveComponent implements OnInit {
+	public resumeCards: ResumeCard[];
 
-  constructor() { }
+	constructor(
+		private store: StoreService,
+		private changeDetectorRef: ChangeDetectorRef
+	) { }
 
-  ngOnInit() {
-  }
+	ngOnInit() {
+		this.getResumeCards();
+	}
 
+	public deleteResume(id: string): void {
+		this.store.deleteResume(id)
+			.subscribe(() => {
+				console.log('Success');
+			});
+	}
+
+	public restoreResume(id: string): void {
+		this.store.restoreResume(id)
+			.subscribe(() => {
+				console.log('Success');
+			});
+	}
+
+	public downloadResume(id: string): void {
+
+	}
+
+	private getResumeCards(): void {
+		this.store.getResumeCards(true)
+			.subscribe((response: ResumeCard[]) => {
+				this.resumeCards = response;
+				this.changeDetectorRef.markForCheck();
+			});
+	}
 }

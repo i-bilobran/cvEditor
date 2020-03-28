@@ -1,7 +1,7 @@
 <app-page-header [search]="true" title="Archive" description="Find what you're looking for"></app-page-header>
 <div class="section">
-	<app-cv-card></app-cv-card>
-	<app-cv-card></app-cv-card>
-	<app-cv-card></app-cv-card>
-	<app-cv-card></app-cv-card>
+	<ng-container *ngFor="let card of resumeCards">
+		<app-cv-card [card]="card" (delete)="deleteResume($event)" (restore)="restoreResume($event)"
+			(download)="downloadResume($event)"></app-cv-card>
+	</ng-container>
 </div>
