@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, from } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
-import { Resume } from '@models/resume.models';
+import { Resume, ResumeEntity } from '@models/resume.models';
 
 @Injectable({
 	providedIn: 'root'
@@ -18,8 +18,13 @@ export class StoreService {
 		// add query function
 		return this.getResumes()
 			.pipe(
-				map((response: any[]) => response.filter((resume: any) => resume.archived === archived))
-			);
+				map((response: any[]) => {
+					console.log(response);
+
+					return response.map(a => a.payload.doc.data())
+					return response.filter((resume: any) => resume.archived === archived)
+				}));
+
 	}
 
 	public getResume(id: string): Observable<any> {
@@ -30,7 +35,12 @@ export class StoreService {
 			.collection(this.collection)
 			.doc(id)
 			.get()
-			.pipe(map(response => response));
+			.pipe(
+				map(response => {
+					console.log(response.data().data)
+					return response.data().data;
+				})
+			);
 
 	}
 
@@ -46,14 +56,24 @@ export class StoreService {
 	}
 
 	public createResume(resume: Resume): Observable<any> {
+		const entity: ResumeEntity = {
+			archived: false,
+			creationDate: new Date().toISOString(),
+			data: resume
+		};
+
 		return from(
 			this.db
 				.collection(this.collection)
-				.add(resume)
+				.add(entity)
 		);
 	}
 
-	public updateResume(id: string, body: Resume): Observable<void> {
+	public updateResume(id: string, data: Resume): Observable<void> {
+		const body = {
+			data
+		};
+
 		return from(
 			this.db
 				.collection(this.collection)

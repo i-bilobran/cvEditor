@@ -158,12 +158,10 @@ export class EditResumeComponent implements OnInit {
 
 	private initResume(id: string): void {
 		this.store.getResume(id)
-			.subscribe((response: any) => {
-				const resume = response.data() as Resume;
+			.subscribe((response: Resume) => {
+				this.initInfoForm(response.general, response.location);
 
-				this.initInfoForm(resume.general, resume.location);
-
-				this.resume = resume.resume;
+				this.resume = response.resume;
 				this.chDetectorRef.markForCheck();
 			});
 	}

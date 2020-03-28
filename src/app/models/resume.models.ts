@@ -7,9 +7,8 @@ export interface ResumeCard {
 }
 
 export interface ResumeEntity {
-	id: string;
 	archived: boolean;
-	creationDate: Date;
+	creationDate: string;
 	data: Resume;
 }
 
