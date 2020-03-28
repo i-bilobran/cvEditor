@@ -1,5 +1,3 @@
-console.log('hi from prod env', process);
-
 export const environment = {
 	production: true,
 	googleLoginProviderId: process.env.GOOGLE_PROVIDER_ID,
