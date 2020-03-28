@@ -3,8 +3,9 @@
 </app-page-header>
 <div class="section">
 	<app-cv-new-card></app-cv-new-card>
-	<app-cv-card></app-cv-card>
-	<app-cv-card></app-cv-card>
-	<app-cv-card></app-cv-card>
-	<app-cv-card></app-cv-card>
+
+	<ng-container *ngFor="let resume of resumeCards">
+		<app-cv-card></app-cv-card>
+	</ng-container>
+
 </div>
