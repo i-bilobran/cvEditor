@@ -43,7 +43,17 @@ export const Fields: FormlyFieldConfig[] = [
 					type: 'text',
 					label: 'Last name',
 				}
-			}],
+			},
+			{
+				key: 'position',
+				type: 'input',
+				templateOptions: {
+					required: true,
+					type: 'text',
+					label: 'Position',
+				}
+			}
+		],
 	},
 	{
 		key: 'about',

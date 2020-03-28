@@ -2,7 +2,7 @@ export interface ResumeCard {
 	id: string;
 	name: string;
 	title: string;
-	creationDate: Date;
+	creationDate: string;
 	archived: boolean;
 }
 
@@ -43,6 +43,7 @@ export interface ResumeForm {
 export interface About {
 	firstName: string;
 	lastName: string;
+	position: string;
 	fullInfo: string;
 	englishProficiencyLevel: string;
 	education: string;
