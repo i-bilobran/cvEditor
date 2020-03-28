@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+
 import { StoreService } from '@services/store.service';
 import { ResumeCard } from '@models/resume.models';
 
@@ -16,14 +17,32 @@ export class HomeComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		this.initResumeCards();
+		this.getResumeCards();
 	}
 
-	private initResumeCards(): void {
+	public deleteResume(id: string): void {
+		this.store.deleteResume(id)
+			.subscribe(() => {
+				console.log('Success');
+			});
+	}
+
+	public archiveResume(id: string): void {
+		this.store.archiveResume(id)
+			.subscribe(() => {
+				console.log('Success');
+			});
+	}
+
+	public downloadResume(id: string): void {
+
+	}
+
+	private getResumeCards(): void {
 		this.store.getResumeCards(false)
 			.subscribe((response: ResumeCard[]) => {
 				this.resumeCards = response;
 				this.changeDetectorRef.markForCheck();
-			})
+			});
 	}
 }
