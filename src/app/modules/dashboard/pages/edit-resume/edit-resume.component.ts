@@ -104,8 +104,7 @@ export class EditResumeComponent implements OnInit {
 
 		this.store.createResume(resume)
 			.subscribe(() => {
-				console.log('Success');
-				this.router.navigate(['/dashboard/home']);
+				this.successResponseHandler();
 			});
 	}
 
@@ -114,13 +113,23 @@ export class EditResumeComponent implements OnInit {
 
 		this.store.updateResume(this.id, resume)
 			.subscribe(() => {
-				console.log('Success');
-				this.router.navigate(['/dashboard/home']);
+				this.successResponseHandler();
 			});
 	}
 
 	public deleteResume(): void {
+		// TODO: confirmation modal
 
+		this.store.deleteResume(this.id)
+			.subscribe(() => {
+				this.successResponseHandler();
+			});
+	}
+
+	private successResponseHandler(): void {
+		// show toaster message
+		console.log('Success');
+		this.router.navigate(['/dashboard/home']);
 	}
 
 	private getResume(resume: ResumeForm): Resume {
