@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, from } from 'rxjs';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
-import { Resume, ResumeEntity } from '@models/resume.models';
+import { AngularFirestore } from '@angular/fire/firestore';
+
+import { Resume, ResumeEntity, ResumeCard } from '@models/resume.models';
 
 @Injectable({
 	providedIn: 'root'
@@ -15,22 +16,19 @@ export class StoreService {
 	) { }
 
 	public getResumeCards(archived: boolean): Observable<any[]> {
-		// add query function
+		// add query function based on archived param
+
 		return this.getResumes()
 			.pipe(
 				map((response: any[]) => {
-					console.log(response);
-
-					return response.map(a => a.payload.doc.data())
-					return response.filter((resume: any) => resume.archived === archived)
+					return response
+						.map((item: any[]) => this.generateResumeCard(item))
+						.filter((resume: ResumeCard) => resume.archived === archived);
 				}));
 
 	}
 
 	public getResume(id: string): Observable<any> {
-		// actual data = response[i].payload.doc.data()
-		// id = response[i].payload.doc.id
-
 		return this.db
 			.collection(this.collection)
 			.doc(id)
@@ -49,16 +47,13 @@ export class StoreService {
 		// id = response[i].payload.doc.id
 
 		return this.db.collection(this.collection)
-			.snapshotChanges()
-			.pipe(map((e) => {
-				return e;
-			}));
+			.snapshotChanges();
 	}
 
 	public createResume(resume: Resume): Observable<any> {
 		const entity: ResumeEntity = {
 			archived: false,
-			creationDate: new Date().toISOString(),
+			creationDate: new Date().toDateString().slice(4),
 			data: resume
 		};
 
@@ -104,7 +99,15 @@ export class StoreService {
 
 	}
 
-	private fromFirebase(payload: any): any {
-		return payload;
+	private generateResumeCard(source: any): ResumeCard {
+		const entity = source.payload.doc.data() as ResumeEntity;
+
+		return {
+			id: source.payload.doc.id,
+			name: `${entity.data.resume.about.firstName} ${entity.data.resume.about.lastName}`,
+			title: entity.data.resume.about.position,
+			creationDate: entity.creationDate,
+			archived: entity.archived
+		};
 	}
 }
