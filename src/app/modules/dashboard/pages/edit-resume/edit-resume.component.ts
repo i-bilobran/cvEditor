@@ -5,7 +5,7 @@ import { switchMap, map } from 'rxjs/operators';
 import { Observable, fromEvent } from 'rxjs';
 import { NgxFileDropEntry, FileSystemFileEntry } from 'ngx-file-drop';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Resume, ResumeEntity, ResumeForm, GeneralData, LocationData } from '@models/resume.models';
+import { Resume, ResumeForm, GeneralData, LocationData } from '@models/resume.models';
 import { StoreService } from '@services/store.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
@@ -100,26 +100,17 @@ export class EditResumeComponent implements OnInit {
 	}
 
 	public createResume(event: ResumeForm): void {
-		const resume = {
-			general: this.generalInfoForm.value,
-			location: this.locationInfoForm.value,
-			photo: 'blob',
-			resume: event
-		};
+		const resume = this.getResume(event)
 
 		this.store.createResume(resume)
-			.subscribe((response => {
-				console.log(response);
-			}));
+			.subscribe(() => {
+				console.log('Success');
+				this.router.navigate(['/dashboard/home']);
+			});
 	}
 
 	public updateResume(event: ResumeForm): void {
-		const resume = {
-			general: this.generalInfoForm.value,
-			location: this.locationInfoForm.value,
-			photo: 'blob',
-			resume: event
-		};
+		const resume = this.getResume(event)
 
 		this.store.updateResume(this.id, resume)
 			.subscribe(() => {
@@ -132,6 +123,15 @@ export class EditResumeComponent implements OnInit {
 
 	}
 
+	private getResume(resume: ResumeForm): Resume {
+		return {
+			general: this.generalInfoForm.value,
+			location: this.locationInfoForm.value,
+			photo: 'blob',
+			resume
+		};
+	}
+
 	private initInfoForm(general?: GeneralData, location?: LocationData): void {
 		this.generalInfoForm = this.formBuilder.group({
 			phone: general ? general.phone : '380 032 253 8076',
@@ -140,7 +140,7 @@ export class EditResumeComponent implements OnInit {
 		});
 		this.locationInfoForm = this.formBuilder.group({
 			title: location ? location.title : 'Sombrain Inc.',
-			street: location ? location.street : 'Uhorska St, 14',
+			street: location ? location.street : 'Zelena St, 44 a',
 			state: location ? location.state : 'Lviv, Lvivska oblast',
 			postalCode: location ? location.postalCode : '79000',
 			country: location ? location.country : 'Ukraine'
