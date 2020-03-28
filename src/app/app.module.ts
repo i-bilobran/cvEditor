@@ -5,6 +5,7 @@ import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { environment } from '@env/environment';
 
@@ -39,7 +40,8 @@ export function provideConfig() {
 		SocialLoginModule,
 		SharedModule,
 		AuthModule,
-		DashboardModule
+		DashboardModule,
+		ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
 	],
 	providers: [
 		{
