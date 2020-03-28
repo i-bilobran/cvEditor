@@ -7,7 +7,7 @@
 		"build": "ng build",
 		"build-href": "ng build --prod --base-href 'https://ihorbilobran.github.io/cvEditor/'",
 		"build:ssr": "ng run cvEditor:server",
-		"build:prod": "npm run build --prod",
+		"build:prod": "npm run build-href",
 		"test": "ng test",
 		"lint-fix": "ng lint --fix=true",
 		"e2e": "ng e2e"
