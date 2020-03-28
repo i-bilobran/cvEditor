@@ -4,7 +4,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { switchMap, map } from 'rxjs/operators';
 import { Observable, fromEvent } from 'rxjs';
 import { NgxFileDropEntry, FileSystemFileEntry } from 'ngx-file-drop';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Resume, ResumeEntity, ResumeForm, GeneralData, LocationData } from '@models/resume.models';
 import { StoreService } from '@services/store.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -25,6 +25,7 @@ export class EditResumeComponent implements OnInit {
 	public id: string;
 
 	constructor(
+		private router: Router,
 		private formBuilder: FormBuilder,
 		private chDetectorRef: ChangeDetectorRef,
 		private sanitizer: DomSanitizer,
@@ -98,7 +99,7 @@ export class EditResumeComponent implements OnInit {
 		);
 	}
 
-	public createResume(event: ResumeForm): void {)
+	public createResume(event: ResumeForm): void {
 		const resume = {
 			general: this.generalInfoForm.value,
 			location: this.locationInfoForm.value,
@@ -113,7 +114,18 @@ export class EditResumeComponent implements OnInit {
 	}
 
 	public updateResume(event: ResumeForm): void {
-		console.log(event);
+		const resume = {
+			general: this.generalInfoForm.value,
+			location: this.locationInfoForm.value,
+			photo: 'blob',
+			resume: event
+		};
+
+		this.store.updateResume(this.id, resume)
+			.subscribe(() => {
+				console.log('Success');
+				this.router.navigate(['/dashboard/home']);
+			});
 	}
 
 	public deleteResume(): void {

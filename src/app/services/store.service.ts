@@ -53,7 +53,7 @@ export class StoreService {
 		);
 	}
 
-	public updateResume(id: string, body: any): Observable<void> {
+	public updateResume(id: string, body: Resume): Observable<void> {
 		return from(
 			this.db
 				.collection(this.collection)

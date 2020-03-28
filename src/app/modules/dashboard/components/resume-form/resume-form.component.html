@@ -1,8 +1,8 @@
-<form [formGroup]="form">
+<div [formGroup]="form">
 	<formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
 
 	<div class="submit-wrapper">
 		<button mat-stroked-button (click)="onCancel()">Cancel</button>
 		<button color="primary" mat-raised-button (click)="onSubmit()">Save</button>
 	</div>
-</form>
+</div>
