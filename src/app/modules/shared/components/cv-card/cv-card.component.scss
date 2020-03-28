@@ -18,13 +18,6 @@
 			color: $text-light;
 			font-weight: 300;
 		}
-
-		.delete {
-			display: none;
-			position: absolute;
-			top: 226px;
-			right: 10px;
-		}
 	}
 
 	.mat-card-actions {
@@ -48,7 +41,7 @@
 			color: $text-light;
 
 			.mat-icon {
-				font-size: 21px;
+				font-size: 30px;
 			}
 		}
 	}

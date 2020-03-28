@@ -1,22 +1,27 @@
 <mat-card class="cv-card">
-	<img height="215" mat-card-image src="assets/img/cv-card-img.png" alt="Photo of a Shiba Inu">
+	<img height="215" mat-card-image src="assets/img/cv-card-img.png" alt="resume photo">
 	<mat-card-content>
 		<div class="name">
-			<span>Bohdamyr</span>
-			<div class="delete">
-				<button mat-icon-button aria-label="Delete">
-					<mat-icon>delete</mat-icon>
-				</button>
-			</div>
+			<span>{{card.name}}</span>
 		</div>
-		<div class="title">Java developer</div>
+		<div class="title">{{card.title}}</div>
 
 	</mat-card-content>
 	<mat-card-actions>
-		<button disabled mat-button>06 Oct 2018</button>
-		<button mat-button>
-			<mat-icon>save_alt</mat-icon>
-			Download
+		<button disabled mat-button>{{card.creationDate}}</button>
+
+		<mat-menu #appMenu="matMenu">
+			<ng-template matMenuContent let-name="name">
+				<button mat-menu-item>Edit</button>
+				<button mat-menu-item>Archive</button>
+				<button mat-menu-item>Download</button>
+				<button mat-menu-item>Delete</button>
+			</ng-template>
+		</mat-menu>
+
+		<button mat-icon-button [matMenuTriggerFor]="appMenu">
+			<mat-icon class="menu-trigger">more_vert</mat-icon>
 		</button>
+
 	</mat-card-actions>
 </mat-card>
