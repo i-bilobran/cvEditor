@@ -12,13 +12,13 @@
 					<mat-icon *ngIf="!contactEdit">edit</mat-icon>
 					<mat-icon *ngIf="contactEdit">save</mat-icon>
 				</button>
-				<div class="content text-secondary">
+				<div class="content text-secondary" *ngIf="generalInfoForm" [formGroup]="generalInfoForm">
 					<div>
-						<span class="primary">Tel / </span>
-						<input [readonly]="!contactEdit" type="text" name="phone" value="- 380 032 253 8076">
+						<span class="primary">Tel / </span> -
+						<input [readonly]="!contactEdit" type="text" formControlName="phone">
 					</div>
-					<input [readonly]="!contactEdit" type="text" name="sales" value="sales@sombrainc.com">
-					<input [readonly]="!contactEdit" type="text" name="website" value="www.sombrainc.com">
+					<input [readonly]="!contactEdit" type="text" formControlName="email">
+					<input [readonly]="!contactEdit" type="text" formControlName="website">
 				</div>
 			</div>
 		</div>
@@ -51,7 +51,7 @@
 						<mat-icon *ngIf="!locationEdit">edit</mat-icon>
 						<mat-icon *ngIf="locationEdit">save</mat-icon>
 					</button>
-					<div class="content text-secondary" [formGroup]="locationInfoForm">
+					<div class="content text-secondary" *ngIf="locationInfoForm" [formGroup]="locationInfoForm">
 						<input [readonly]="!locationEdit" type="text" formControlName="title">
 						<input [readonly]="!locationEdit" type="text" formControlName="street">
 						<input [readonly]="!locationEdit" type="text" formControlName="state">
@@ -63,7 +63,7 @@
 			</div>
 			<div class="main">
 				<ng-container *ngIf="id && resume">
-					<app-resume-form [model]="resume.resume" (submit)="updateResume($event)"></app-resume-form>
+					<app-resume-form [model]="resume" (submit)="updateResume($event)"></app-resume-form>
 				</ng-container>
 				<ng-container *ngIf="!id">
 					<app-resume-form (submit)="createResume($event)"></app-resume-form>
