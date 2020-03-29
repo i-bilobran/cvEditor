@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { SocialUser } from 'angularx-social-login';
-import { AuthenticationService } from '../modules/auth/auth.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -14,6 +13,7 @@ export class UserService {
 	constructor() {
 		this.currentUserSubject = new BehaviorSubject<SocialUser>(JSON.parse(localStorage.getItem('currentUser')));
 		this.currentUser$ = this.currentUserSubject.asObservable();
+		this.userAuthorized = !!this.currentUserSubject.value;
 	}
 
 	get currentUser(): SocialUser {
@@ -23,6 +23,7 @@ export class UserService {
 	public setUserData(user: SocialUser): void {
 		this.currentUserSubject.next(user);
 		this.userAuthorized = true;
+		localStorage.setItem('currentUser', JSON.stringify(user));
 
 		console.log('User: ', user);
 	}
@@ -30,5 +31,6 @@ export class UserService {
 	public clearUserData(): void {
 		this.currentUserSubject.next(null);
 		this.userAuthorized = false;
+		localStorage.removeItem('currentUser');
 	}
 }
