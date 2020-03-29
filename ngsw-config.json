@@ -1,24 +1,56 @@
 {
-  "index": "/index.html",
-  "assetGroups": [{
-    "name": "app",
-    "installMode": "prefetch",
-    "resources": {
-      "files": [
-        "/favicon.ico",
-        "/index.html",
-        "/*.css",
-        "/*.js"
-      ]
-    }
-  }, {
-    "name": "assets",
-    "installMode": "lazy",
-    "updateMode": "prefetch",
-    "resources": {
-      "files": [
-        "/assets/**"
-      ]
-    }
-  }]
+	"index": "/index.html",
+	"assetGroups": [
+		{
+			"name": "app",
+			"installMode": "prefetch",
+			"resources": {
+				"files": [
+					"/favicon.ico",
+					"/index.html",
+					"/manifest.webmanifest",
+					"/*.css",
+					"/*.js"
+				],
+				"urls": [
+					"https://fonts.googleapis.com/css?family=Roboto:300,400,500",
+					"https://fonts.googleapis.com/icon?family=Material+Icons",
+					"https://fonts.gstatic.com/**"
+				]
+			}
+		},
+		{
+			"name": "assets",
+			"installMode": "lazy",
+			"updateMode": "prefetch",
+			"resources": {
+				"files": [
+					"/assets/**",
+					"/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
+				]
+			}
+		}
+	],
+	"dataGroups": [
+		{
+			"name": "google-auth-api",
+			"urls": ["https://accounts.google.com/o/oauth2/iframerpc"],
+			"cacheConfig": {
+				"maxSize": 100,
+				"maxAge": "12h",
+				"strategy": "freshness"
+			}
+		},
+		{
+			"name": "firebase-api",
+			"urls": [
+				"https://firestore.googleapis.com/google.firestore.v1.Firestore/Listen/channel"
+			],
+			"cacheConfig": {
+				"maxSize": 100,
+				"maxAge": "12h",
+				"strategy": "freshness"
+			}
+		}
+	]
 }
