@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 const customAppearance: MatFormFieldDefaultOptions = {
 	appearance: 'outline'
@@ -25,7 +26,8 @@ const customAppearance: MatFormFieldDefaultOptions = {
 		MatIconModule,
 		MatFormFieldModule,
 		MatInputModule,
-		MatCardModule
+		MatCardModule,
+		MatSnackBarModule
 	],
 	exports: [
 		MatMenuModule,
@@ -35,7 +37,8 @@ const customAppearance: MatFormFieldDefaultOptions = {
 		MatIconModule,
 		MatFormFieldModule,
 		MatInputModule,
-		MatCardModule
+		MatCardModule,
+		MatSnackBarModule
 	],
 	providers: [
 		{

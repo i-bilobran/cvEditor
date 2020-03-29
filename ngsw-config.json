@@ -37,7 +37,7 @@
 			"urls": ["https://accounts.google.com/o/oauth2/iframerpc"],
 			"cacheConfig": {
 				"maxSize": 100,
-				"maxAge": "12h",
+				"maxAge": "1h",
 				"strategy": "freshness"
 			}
 		},
@@ -48,7 +48,7 @@
 			],
 			"cacheConfig": {
 				"maxSize": 100,
-				"maxAge": "12h",
+				"maxAge": "1h",
 				"strategy": "freshness"
 			}
 		}
