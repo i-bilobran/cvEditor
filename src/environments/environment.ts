@@ -5,7 +5,6 @@
 export const environment = {
 	production: false,
 	googleLoginProviderId: process.env.GOOGLE_PROVIDER_ID,
-	FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
 	firebase: {
 		apiKey: process.env.FIREBASE_API_KEY,
 		authDomain: process.env.FIREBASE_AUTH_DOMAIN,
