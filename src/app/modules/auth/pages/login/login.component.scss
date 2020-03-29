@@ -1,10 +1,10 @@
-@import '../../../../scss/variables';
+@import "../../../../scss/variables";
 
 .wrapper {
 	height: 100%;
 
 	.asside {
-		background-image: url("../../../../../assets/img/signin.svg");
+		background-image: url("assets/img/signin.svg");
 		background-repeat: no-repeat;
 		background-size: cover;
 		background-position: center;
@@ -33,7 +33,7 @@
 			}
 
 			span.icon {
-				background-image: url("../../../../../assets/img/g-normal.png");
+				background-image: url("assets/img/g-normal.png");
 				background-repeat: no-repeat;
 				background-size: contain;
 				display: inline-block;
