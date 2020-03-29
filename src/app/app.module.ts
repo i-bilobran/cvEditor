@@ -16,6 +16,8 @@ import { DashboardModule } from './modules/dashboard/dashboard.module';
 
 import { AppComponent } from './app.component';
 
+console.log(environment);
+
 const config = new AuthServiceConfig([
 	{
 		id: GoogleLoginProvider.PROVIDER_ID,
