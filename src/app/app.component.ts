@@ -2,18 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { ConnectionService } from 'ng-connection-service';
 import { SwUpdate } from '@angular/service-worker';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SwStoreService } from '@services/sw-store.service';
 
 @Component({
 	selector: 'app-root',
 	template: `<router-outlet></router-outlet>`
 })
 export class AppComponent implements OnInit {
-	public isConnected = true;
-
 	constructor(
 		private connectionService: ConnectionService,
 		private updates: SwUpdate,
-		private snackBar: MatSnackBar
+		private snackBar: MatSnackBar,
+		private swStore: SwStoreService
 	) { }
 
 	ngOnInit(): void {
@@ -26,8 +26,8 @@ export class AppComponent implements OnInit {
 	}
 
 	private initNetworkMonitoring(): void {
-		this.connectionService.monitor().subscribe(isConnected => {
-			this.isConnected = isConnected;
+		this.connectionService.monitor().subscribe((isConnected: boolean) => {
+			this.swStore.setConnectionStatus(isConnected);
 
 			const [message, button] = isConnected
 				? ['Internet connection restored.', 'Hurray!']

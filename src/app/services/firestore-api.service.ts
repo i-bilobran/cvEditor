@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
 
 import { Resume, ResumeEntity, ResumeCard } from '@models/resume.models';
+import { SwStoreService } from './sw-store.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -12,7 +13,8 @@ export class FirestoreApiService {
 	private collection = 'resumes';
 
 	constructor(
-		private db: AngularFirestore
+		private db: AngularFirestore,
+		private swStore: SwStoreService
 	) { }
 
 	public getResumeCards(archived: boolean): Observable<any[]> {
@@ -56,6 +58,8 @@ export class FirestoreApiService {
 			creationDate: new Date().toDateString().slice(4),
 			data: resume
 		};
+		console.log(this.swStore.isNetworkConnected)
+		this.swStore.noConnectionMessage('/dashboard/home');
 
 		return from(
 			this.db
@@ -68,6 +72,7 @@ export class FirestoreApiService {
 		const body = {
 			data
 		};
+		this.swStore.noConnectionMessage('/dashboard/home');
 
 		return from(
 			this.db
@@ -78,6 +83,8 @@ export class FirestoreApiService {
 	}
 
 	public deleteResume(id: string): Observable<void> {
+		this.swStore.noConnectionMessage();
+
 		return from(
 			this.db
 				.collection(this.collection)
@@ -87,6 +94,8 @@ export class FirestoreApiService {
 	}
 
 	public archiveResume(id: string): Observable<void> {
+		this.swStore.noConnectionMessage();
+
 		return from(
 			this.db
 				.collection(this.collection)
@@ -96,6 +105,8 @@ export class FirestoreApiService {
 	}
 
 	public restoreResume(id: string): Observable<void> {
+		this.swStore.noConnectionMessage();
+
 		return from(
 			this.db
 				.collection(this.collection)

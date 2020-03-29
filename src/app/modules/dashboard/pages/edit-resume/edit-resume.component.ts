@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Resume, ResumeForm, GeneralData, LocationData } from '@models/resume.models';
 import { FirestoreApiService } from '@services/firestore-api.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
 	templateUrl: './edit-resume.component.html',
@@ -31,6 +32,7 @@ export class EditResumeComponent implements OnInit {
 		private sanitizer: DomSanitizer,
 		private activatedRoute: ActivatedRoute,
 		private store: FirestoreApiService,
+		private snackBar: MatSnackBar
 	) { }
 
 	ngOnInit() {
@@ -104,7 +106,7 @@ export class EditResumeComponent implements OnInit {
 
 		this.store.createResume(resume)
 			.subscribe(() => {
-				this.successResponseHandler();
+				this.successResponseHandler('Resume created.');
 			});
 	}
 
@@ -113,7 +115,7 @@ export class EditResumeComponent implements OnInit {
 
 		this.store.updateResume(this.id, resume)
 			.subscribe(() => {
-				this.successResponseHandler();
+				this.successResponseHandler('Resume updated.');
 			});
 	}
 
@@ -122,13 +124,14 @@ export class EditResumeComponent implements OnInit {
 
 		this.store.deleteResume(this.id)
 			.subscribe(() => {
-				this.successResponseHandler();
+				this.successResponseHandler('Resume deleted.');
 			});
 	}
 
-	private successResponseHandler(): void {
-		// show toaster message
-		console.log('Success');
+	private successResponseHandler(message: string): void {
+		this.snackBar.open(message, '', {
+			duration: 3000
+		});
 		this.router.navigate(['/dashboard/home']);
 	}
 
