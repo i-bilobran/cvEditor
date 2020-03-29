@@ -8,7 +8,7 @@ import { Resume, ResumeEntity, ResumeCard } from '@models/resume.models';
 @Injectable({
 	providedIn: 'root'
 })
-export class StoreService {
+export class FirestoreApiService {
 	private collection = 'resumes';
 
 	constructor(

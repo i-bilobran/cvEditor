@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ResumeCard } from '@models/resume.models';
-import { StoreService } from '@services/store.service';
+import { FirestoreApiService } from '@services/firestore-api.service';
 
 @Component({
 	templateUrl: './archive.component.html',
@@ -10,7 +10,7 @@ export class ArchiveComponent implements OnInit {
 	public resumeCards: ResumeCard[];
 
 	constructor(
-		private store: StoreService,
+		private store: FirestoreApiService,
 		private changeDetectorRef: ChangeDetectorRef
 	) { }
 

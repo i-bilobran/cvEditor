@@ -6,7 +6,7 @@ import { Observable, fromEvent } from 'rxjs';
 import { NgxFileDropEntry, FileSystemFileEntry } from 'ngx-file-drop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Resume, ResumeForm, GeneralData, LocationData } from '@models/resume.models';
-import { StoreService } from '@services/store.service';
+import { FirestoreApiService } from '@services/firestore-api.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
@@ -30,7 +30,7 @@ export class EditResumeComponent implements OnInit {
 		private chDetectorRef: ChangeDetectorRef,
 		private sanitizer: DomSanitizer,
 		private activatedRoute: ActivatedRoute,
-		private store: StoreService,
+		private store: FirestoreApiService,
 	) { }
 
 	ngOnInit() {
