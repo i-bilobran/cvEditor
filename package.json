@@ -4,10 +4,7 @@
 	"scripts": {
 		"ng": "ng",
 		"start": "ng serve",
-		"build": "ng build",
-		"build-href": "ng build --prod --base-href 'https://ihorbilobran.github.io/cvEditor/'",
-		"build:ssr": "ng run cvEditor:server",
-		"build:prod": "npm run build-href",
+		"build": "ng build --prod --base-href 'https://ihorbilobran.github.io/cvEditor/'",
 		"test": "ng test",
 		"lint-fix": "ng lint --fix=true",
 		"e2e": "ng e2e"
@@ -63,6 +60,7 @@
 		"karma-coverage-istanbul-reporter": "~2.0.4",
 		"karma-jasmine": "~2.0.1",
 		"karma-jasmine-html-reporter": "^1.4.1",
+		"lite-server": "^2.5.4",
 		"protractor": "^5.4.3",
 		"ts-node": "~7.0.0",
 		"tslint": "~5.11.0",

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
-import { AngularFireModule } from '@angular/fire';
+import { AngularFireModule, FirebaseOptionsToken } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
@@ -15,8 +15,6 @@ import { AuthModule } from './modules/auth/auth.module';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 
 import { AppComponent } from './app.component';
-
-console.log(environment);
 
 const config = new AuthServiceConfig([
 	{
@@ -34,10 +32,10 @@ export function provideConfig() {
 		AppComponent
 	],
 	imports: [
-		BrowserModule.withServerTransition({ appId: 'serverApp' }),
+		BrowserModule,
 		AppRoutingModule,
 		BrowserAnimationsModule,
-		AngularFireModule.initializeApp(environment.firebase),
+		AngularFireModule,
 		AngularFirestoreModule,
 		SocialLoginModule,
 		SharedModule,
@@ -49,7 +47,8 @@ export function provideConfig() {
 		{
 			provide: AuthServiceConfig,
 			useFactory: provideConfig
-		}
+		},
+		{ provide: FirebaseOptionsToken, useValue: environment.firebase }
 	],
 	bootstrap: [AppComponent]
 })
