@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ConnectionService } from 'ng-connection-service';
 import { SwUpdate } from '@angular/service-worker';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ConnectionService } from 'ng-connection-service';
+
 import { SwStoreService } from '@services/sw-store.service';
 
 @Component({
