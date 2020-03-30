@@ -70,6 +70,7 @@
 	},
 	"jest": {
 		"verbose": true,
+		"testTimeout": 3000,
 		"moduleNameMapper": {
 			"@angular/(.*)": "<rootDir>/node_modules/@angular/$1",
 			"@env/(.*)": "<rootDir>/src/environments/$1",

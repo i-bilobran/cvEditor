@@ -41,7 +41,6 @@ export class FirestoreApiService {
 					return response.data().data;
 				})
 			);
-
 	}
 
 	public getResumes(): Observable<any> {

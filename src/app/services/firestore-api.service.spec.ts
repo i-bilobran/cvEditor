@@ -4,9 +4,10 @@ import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestor
 import { FirestoreApiService } from './firestore-api.service';
 import { SwStoreService } from '@services/sw-store.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { FirebaseOptionsToken } from '@angular/fire';
+import { FirebaseOptionsToken, AngularFireModule } from '@angular/fire';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 
 const firebaseOptions = {
 	apiKey: 'test',
@@ -19,10 +20,15 @@ const firebaseOptions = {
 };
 
 describe('FirestoreApiService', () => {
+	let service: FirestoreApiService;
+	let httpTestingController: HttpTestingController;
+
 	beforeEach(() => TestBed.configureTestingModule({
 		imports: [
 			RouterTestingModule,
 			AngularFirestoreModule,
+			AngularFireModule,
+			HttpClientTestingModule,
 			MatSnackBarModule,
 			ServiceWorkerModule.register('', { enabled: false })
 		],
@@ -33,8 +39,31 @@ describe('FirestoreApiService', () => {
 		]
 	}));
 
-	it('should be created', () => {
-		const service: FirestoreApiService = TestBed.get(FirestoreApiService);
+	beforeEach(() => {
+		service = TestBed.get(FirestoreApiService);
+		httpTestingController = TestBed.get(HttpTestingController);
+	});
+
+	test('should be created', () => {
 		expect(service).toBeTruthy();
 	});
+
+	// test('should get all archived Resume cards', (done) => {
+	// 	service.getResumeCards(true)
+	// 		// .pipe(retry(1))
+	// 		.subscribe((response) => {
+	// 			expect(response).toBeTruthy();
+	// 			// expect(response).toEqual('json');
+	// 			done();
+	// 		});
+	// });
+
+	// test('should get Resume', (done) => {
+	// 	service.getResume('test')
+	// 		// .pipe(retry(1))
+	// 		.subscribe((response) => {
+	// 			expect(response).toBeTruthy();
+	// 			done();
+	// 		});
+	// });
 });
