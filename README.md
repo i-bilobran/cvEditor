@@ -2,12 +2,14 @@
 
 ## Milestones:
 
-1. Corporate Auth via Google API, CI/CD
+1. Corporate Auth via Google API
 2. Mockups
 3. Dynamic form functionality + (formly/shema's investigation)
 4. Main functionality
-5. Firebase
-6. PWA, tests
+5. Firebase configuration
+6. CI/CD, Enviroment variables setup
+7. PWA
+8. Unit tests
 
 ## Development server
 
