@@ -67,5 +67,17 @@
 		"typescript": "~3.5.3",
 		"webpack-bundle-analyzer": "^3.6.1",
 		"webpack-cli": "^3.3.11"
+	},
+	"jest": {
+		"verbose": true,
+		"moduleNameMapper": {
+			"@angular/(.*)": "<rootDir>/node_modules/@angular/$1",
+			"@env/(.*)": "<rootDir>/src/environments/$1",
+			"@models/(.*)": "<rootDir>/src/app/models/$1",
+			"@guards/(.*)": "<rootDir>/src/app/guards/$1",
+			"@shared/(.*)": "<rootDir>/src/app/modules/shared/$1",
+			"@auth/(.*)": "<rootDir>/src/app/modules/auth/$1",
+			"@services/(.*)": "<rootDir>/src/app/services/$1"
+		}
 	}
 }
