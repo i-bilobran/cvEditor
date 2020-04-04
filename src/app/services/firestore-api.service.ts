@@ -123,6 +123,7 @@ export class FirestoreApiService {
 
 		return {
 			id: source.payload.doc.id,
+			photo: entity.data.photo,
 			name: `${entity.data.resume.about.firstName} ${entity.data.resume.about.lastName}`,
 			title: entity.data.resume.about.position,
 			creationDate: entity.creationDate,

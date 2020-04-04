@@ -1,6 +1,7 @@
 export interface ResumeCard {
 	id: string;
 	name: string;
+	photo: string;
 	title: string;
 	creationDate: string;
 	archived: boolean;

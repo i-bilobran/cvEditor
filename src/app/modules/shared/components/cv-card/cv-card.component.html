@@ -1,5 +1,5 @@
 <mat-card class="cv-card">
-	<img height="215" mat-card-image src="assets/img/cv-card-img.png" alt="resume photo">
+	<div class="card-image" [ngStyle]="{'background-image': 'url(' + card.photo + ')'}"></div>
 	<mat-card-content>
 
 		<div class="name">
