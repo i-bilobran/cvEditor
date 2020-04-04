@@ -133,6 +133,10 @@ export class EditResumeComponent implements OnInit {
 			});
 	}
 
+	public deletePhoto(): void {
+		this.imgUrl = null;
+	}
+
 	private successResponseHandler(message: string): void {
 		this.snackBar.open(message, '', {
 			duration: 3000

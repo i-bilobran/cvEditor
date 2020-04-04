@@ -24,7 +24,10 @@
 		</div>
 		<div class="content">
 			<div class="aside">
-
+				<button *ngIf="imgUrl" class="delete delete-img" mat-stroked-button color="warn"
+					(click)="deletePhoto()">
+					Remove Photo
+				</button>
 				<ng-container *ngIf="!imgUrl">
 					<ngx-file-drop dropZoneClassName="photo drop-area" contentClassName="area" [accept]="acceptableType"
 						[multiple]="false" (onFileDrop)="dropped($event)">
@@ -72,7 +75,7 @@
 
 			</div>
 		</div>
-		<button *ngIf="id" class="delete" mat-stroked-button color="warn" (click)="deleteResume()">
+		<button *ngIf="id" class="delete delete-resume" mat-stroked-button color="warn" (click)="deleteResume()">
 			Delete resume
 		</button>
 	</div>

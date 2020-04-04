@@ -22,10 +22,17 @@
 
 		button.delete {
 			position: absolute;
-			bottom: -45px;
-			left: 0;
 			font-size: 12px;
 			line-height: 28px;
+
+			&-resume {
+				bottom: -45px;
+				left: 0;
+			}
+
+			&-img {
+				top: 85px;
+			}
 		}
 
 		.header {
