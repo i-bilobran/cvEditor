@@ -24,20 +24,21 @@
 		</div>
 		<div class="content">
 			<div class="aside">
+
 				<ng-container *ngIf="!imgUrl">
 					<ngx-file-drop dropZoneClassName="photo drop-area" contentClassName="area" [accept]="acceptableType"
 						[multiple]="false" (onFileDrop)="dropped($event)">
+						<ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+							<mat-icon>cloud_upload</mat-icon>
+							<div>. JPG or . PNG</div>
+							<p>Drag and drop photo <br>
+								or <a href="javascript:void(0);"><label class="pointer" for="file-upload">upload from
+										computer</label></a>
 
-						<mat-icon>cloud_upload</mat-icon>
-						<div>. JPG or . PNG</div>
-						<p>Drag and drop photo <br>
-							or <a href="javascript:void(0);"><label class="pointer" for="file-upload">upload from
-									computer</label></a>
-
-							<input type="file" id="file-upload" (change)="fileInput($event)" [disabled]="fileLoading"
-								[accept]="acceptableType" hidden>
-						</p>
-
+								<input type="file" id="file-upload" (change)="fileInput($event)"
+									[disabled]="fileLoading" [accept]="acceptableType" hidden>
+							</p>
+						</ng-template>
 					</ngx-file-drop>
 				</ng-container>
 
