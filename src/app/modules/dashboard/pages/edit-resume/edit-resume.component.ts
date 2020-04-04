@@ -102,21 +102,26 @@ export class EditResumeComponent implements OnInit {
 	}
 
 	public createResume(event: ResumeForm): void {
-		const resume = this.getResume(event)
+		// TODO: create one method for create/edit resume, add validation message (no image selected)
+		if (this.imgUrl) {
+			const resume = this.getResume(event);
 
-		this.store.createResume(resume)
-			.subscribe(() => {
-				this.successResponseHandler('Resume created.');
-			});
+			this.store.createResume(resume)
+				.subscribe(() => {
+					this.successResponseHandler('Resume created.');
+				});
+		}
 	}
 
 	public updateResume(event: ResumeForm): void {
-		const resume = this.getResume(event)
+		if (this.imgUrl) {
+			const resume = this.getResume(event);
 
-		this.store.updateResume(this.id, resume)
-			.subscribe(() => {
-				this.successResponseHandler('Resume updated.');
-			});
+			this.store.updateResume(this.id, resume)
+				.subscribe(() => {
+					this.successResponseHandler('Resume updated.');
+				});
+		}
 	}
 
 	public deleteResume(): void {
@@ -139,7 +144,7 @@ export class EditResumeComponent implements OnInit {
 		return {
 			general: this.generalInfoForm.value,
 			location: this.locationInfoForm.value,
-			photo: 'blob',
+			photo: this.imgUrl.toString(),
 			resume
 		};
 	}
@@ -165,6 +170,7 @@ export class EditResumeComponent implements OnInit {
 				this.initInfoForm(response.general, response.location);
 
 				this.resume = response.resume;
+				this.imgUrl = response.photo;
 				this.chDetectorRef.markForCheck();
 			});
 	}
