@@ -4,11 +4,10 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { switchMap, map } from 'rxjs/operators';
 import { Observable, fromEvent } from 'rxjs';
 import { NgxFileDropEntry, FileSystemFileEntry } from 'ngx-file-drop';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Resume, ResumeForm, GeneralData, LocationData } from '@models/resume.models';
 import { FirestoreApiService } from '@services/firestore-api.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
 	templateUrl: './edit-resume.component.html',
@@ -26,13 +25,11 @@ export class EditResumeComponent implements OnInit {
 	public id: string;
 
 	constructor(
-		private router: Router,
 		private formBuilder: FormBuilder,
 		private chDetectorRef: ChangeDetectorRef,
 		private sanitizer: DomSanitizer,
 		private activatedRoute: ActivatedRoute,
 		private store: FirestoreApiService,
-		private snackBar: MatSnackBar
 	) { }
 
 	ngOnInit() {
@@ -108,7 +105,7 @@ export class EditResumeComponent implements OnInit {
 
 			this.store.createResume(resume)
 				.subscribe(() => {
-					this.successResponseHandler('Resume created.');
+					this.store.successResponseHandler('Resume created.');
 				});
 		}
 	}
@@ -119,7 +116,7 @@ export class EditResumeComponent implements OnInit {
 
 			this.store.updateResume(this.id, resume)
 				.subscribe(() => {
-					this.successResponseHandler('Resume updated.');
+					this.store.successResponseHandler('Resume updated.');
 				});
 		}
 	}
@@ -129,19 +126,12 @@ export class EditResumeComponent implements OnInit {
 
 		this.store.deleteResume(this.id)
 			.subscribe(() => {
-				this.successResponseHandler('Resume deleted.');
+				this.store.successResponseHandler('Resume deleted.');
 			});
 	}
 
 	public deletePhoto(): void {
 		this.imgUrl = null;
-	}
-
-	private successResponseHandler(message: string): void {
-		this.snackBar.open(message, '', {
-			duration: 3000
-		});
-		this.router.navigate(['/dashboard/home']);
 	}
 
 	private getResume(resume: ResumeForm): Resume {
