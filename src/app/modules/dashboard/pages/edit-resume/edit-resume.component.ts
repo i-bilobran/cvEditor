@@ -20,9 +20,10 @@ export class EditResumeComponent implements OnInit {
 	public locationEdit: boolean;
 	public fileLoading: boolean;
 	public acceptableType = 'image/jpeg,image/png';
-	public imgUrl: SafeUrl;
+	public photoUrl: SafeUrl;
 	public resume: ResumeForm;
 	public id: string;
+	public errorMessage: string;
 
 	constructor(
 		private formBuilder: FormBuilder,
@@ -57,7 +58,7 @@ export class EditResumeComponent implements OnInit {
 				fileEntry.file((file: File) => {
 					this.getBase64Image(file)
 						.subscribe((url: string) => {
-							this.imgUrl = url;
+							this.photoUrl = url;
 							this.chDetectorRef.markForCheck();
 						});
 				});
@@ -72,7 +73,7 @@ export class EditResumeComponent implements OnInit {
 			for (const file of files) {
 				this.getBase64Image(file)
 					.subscribe((url: string) => {
-						this.imgUrl = url;
+						this.photoUrl = url;
 						this.chDetectorRef.markForCheck();
 					});
 			}
@@ -100,24 +101,28 @@ export class EditResumeComponent implements OnInit {
 
 	public createResume(event: ResumeForm): void {
 		// TODO: create one method for create/edit resume, add validation message (no image selected)
-		if (this.imgUrl) {
+		if (this.photoUrl) {
 			const resume = this.getResume(event);
 
 			this.store.createResume(resume)
 				.subscribe(() => {
 					this.store.successResponseHandler('Resume created.');
 				});
+		} else {
+			this.errorMessage = 'Please upload a photo for resume.';
 		}
 	}
 
 	public updateResume(event: ResumeForm): void {
-		if (this.imgUrl) {
+		if (this.photoUrl) {
 			const resume = this.getResume(event);
 
 			this.store.updateResume(this.id, resume)
 				.subscribe(() => {
 					this.store.successResponseHandler('Resume updated.');
 				});
+		} else {
+			this.errorMessage = 'Please upload a photo for resume.';
 		}
 	}
 
@@ -131,14 +136,14 @@ export class EditResumeComponent implements OnInit {
 	}
 
 	public deletePhoto(): void {
-		this.imgUrl = null;
+		this.photoUrl = null;
 	}
 
 	private getResume(resume: ResumeForm): Resume {
 		return {
 			general: this.generalInfoForm.value,
 			location: this.locationInfoForm.value,
-			photo: this.imgUrl.toString(),
+			photo: this.photoUrl.toString(),
 			resume
 		};
 	}
@@ -164,7 +169,7 @@ export class EditResumeComponent implements OnInit {
 				this.initInfoForm(response.general, response.location);
 
 				this.resume = response.resume;
-				this.imgUrl = response.photo;
+				this.photoUrl = response.photo;
 				this.chDetectorRef.markForCheck();
 			});
 	}
