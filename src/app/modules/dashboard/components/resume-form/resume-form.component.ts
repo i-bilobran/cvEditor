@@ -1,4 +1,5 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { cloneDeep } from 'lodash';
@@ -19,10 +20,10 @@ export class ResumeFormComponent {
 	public form = new FormGroup({});
 	public fields: FormlyFieldConfig[] = cloneDeep(Fields);
 
-	constructor() { }
+	constructor(private router: Router) { }
 
 	public onCancel(): void {
-		this.cancel.emit();
+		this.router.navigate(['/dashboard/home']);
 	}
 
 	public onSubmit(): void {

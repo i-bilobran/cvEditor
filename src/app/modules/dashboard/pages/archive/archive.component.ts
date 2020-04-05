@@ -21,14 +21,15 @@ export class ArchiveComponent implements OnInit {
 	public deleteResume(id: string): void {
 		this.store.deleteResume(id)
 			.subscribe(() => {
-				console.log('Success');
+				this.store.successResponseHandler('Resume deleted.', '/dashboard/archive');
+
 			});
 	}
 
 	public restoreResume(id: string): void {
 		this.store.restoreResume(id)
 			.subscribe(() => {
-				console.log('Success');
+				this.store.successResponseHandler('Resume restored.', '/dashboard/archive');
 			});
 	}
 

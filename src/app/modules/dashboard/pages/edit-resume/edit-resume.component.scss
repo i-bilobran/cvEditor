@@ -20,6 +20,13 @@
 		padding: 50px 40px;
 		margin-bottom: 55px;
 
+		.error-message {
+			color: $danger;
+			right: 40px;
+			bottom: 20px;
+			position: absolute;
+		}
+
 		button.delete {
 			position: absolute;
 			font-size: 12px;
@@ -30,7 +37,7 @@
 				left: 0;
 			}
 
-			&-img {
+			&-photo {
 				top: 85px;
 			}
 		}

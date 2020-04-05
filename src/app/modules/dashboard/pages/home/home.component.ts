@@ -22,14 +22,14 @@ export class HomeComponent implements OnInit {
 	public deleteResume(id: string): void {
 		this.store.deleteResume(id)
 			.subscribe(() => {
-				console.log('Success');
+				this.store.successResponseHandler('Resume deleted.');
 			});
 	}
 
 	public archiveResume(id: string): void {
 		this.store.archiveResume(id)
 			.subscribe(() => {
-				console.log('Success');
+				this.store.successResponseHandler('Resume archived.');
 			});
 	}
 

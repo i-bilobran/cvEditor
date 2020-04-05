@@ -4,11 +4,10 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { switchMap, map } from 'rxjs/operators';
 import { Observable, fromEvent } from 'rxjs';
 import { NgxFileDropEntry, FileSystemFileEntry } from 'ngx-file-drop';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Resume, ResumeForm, GeneralData, LocationData } from '@models/resume.models';
 import { FirestoreApiService } from '@services/firestore-api.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
 	templateUrl: './edit-resume.component.html',
@@ -21,18 +20,17 @@ export class EditResumeComponent implements OnInit {
 	public locationEdit: boolean;
 	public fileLoading: boolean;
 	public acceptableType = 'image/jpeg,image/png';
-	public imgUrl: SafeUrl;
+	public photoUrl: SafeUrl;
 	public resume: ResumeForm;
 	public id: string;
+	public errorMessage: string;
 
 	constructor(
-		private router: Router,
 		private formBuilder: FormBuilder,
 		private chDetectorRef: ChangeDetectorRef,
 		private sanitizer: DomSanitizer,
 		private activatedRoute: ActivatedRoute,
 		private store: FirestoreApiService,
-		private snackBar: MatSnackBar
 	) { }
 
 	ngOnInit() {
@@ -60,7 +58,7 @@ export class EditResumeComponent implements OnInit {
 				fileEntry.file((file: File) => {
 					this.getBase64Image(file)
 						.subscribe((url: string) => {
-							this.imgUrl = url;
+							this.photoUrl = url;
 							this.chDetectorRef.markForCheck();
 						});
 				});
@@ -75,7 +73,7 @@ export class EditResumeComponent implements OnInit {
 			for (const file of files) {
 				this.getBase64Image(file)
 					.subscribe((url: string) => {
-						this.imgUrl = url;
+						this.photoUrl = url;
 						this.chDetectorRef.markForCheck();
 					});
 			}
@@ -103,24 +101,28 @@ export class EditResumeComponent implements OnInit {
 
 	public createResume(event: ResumeForm): void {
 		// TODO: create one method for create/edit resume, add validation message (no image selected)
-		if (this.imgUrl) {
+		if (this.photoUrl) {
 			const resume = this.getResume(event);
 
 			this.store.createResume(resume)
 				.subscribe(() => {
-					this.successResponseHandler('Resume created.');
+					this.store.successResponseHandler('Resume created.');
 				});
+		} else {
+			this.errorMessage = 'Please upload a photo for resume.';
 		}
 	}
 
 	public updateResume(event: ResumeForm): void {
-		if (this.imgUrl) {
+		if (this.photoUrl) {
 			const resume = this.getResume(event);
 
 			this.store.updateResume(this.id, resume)
 				.subscribe(() => {
-					this.successResponseHandler('Resume updated.');
+					this.store.successResponseHandler('Resume updated.');
 				});
+		} else {
+			this.errorMessage = 'Please upload a photo for resume.';
 		}
 	}
 
@@ -129,26 +131,19 @@ export class EditResumeComponent implements OnInit {
 
 		this.store.deleteResume(this.id)
 			.subscribe(() => {
-				this.successResponseHandler('Resume deleted.');
+				this.store.successResponseHandler('Resume deleted.');
 			});
 	}
 
 	public deletePhoto(): void {
-		this.imgUrl = null;
-	}
-
-	private successResponseHandler(message: string): void {
-		this.snackBar.open(message, '', {
-			duration: 3000
-		});
-		this.router.navigate(['/dashboard/home']);
+		this.photoUrl = null;
 	}
 
 	private getResume(resume: ResumeForm): Resume {
 		return {
 			general: this.generalInfoForm.value,
 			location: this.locationInfoForm.value,
-			photo: this.imgUrl.toString(),
+			photo: this.photoUrl.toString(),
 			resume
 		};
 	}
@@ -174,7 +169,7 @@ export class EditResumeComponent implements OnInit {
 				this.initInfoForm(response.general, response.location);
 
 				this.resume = response.resume;
-				this.imgUrl = response.photo;
+				this.photoUrl = response.photo;
 				this.chDetectorRef.markForCheck();
 			});
 	}

@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, from } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
 
 import { Resume, ResumeEntity, ResumeCard } from '@models/resume.models';
 import { SwStoreService } from './sw-store.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
 	providedIn: 'root'
@@ -13,6 +15,8 @@ export class FirestoreApiService {
 	private collection = 'resumes';
 
 	constructor(
+		private router: Router,
+		private snackBar: MatSnackBar,
 		private db: AngularFirestore,
 		private swStore: SwStoreService
 	) { }
@@ -112,6 +116,13 @@ export class FirestoreApiService {
 				.doc(id)
 				.set({ archived: false }, { merge: true })
 		);
+	}
+
+	public successResponseHandler(message: string, redirect: string = '/dashboard/home'): void {
+		this.snackBar.open(message, '', {
+			duration: 3000
+		});
+		this.router.navigate([redirect]);
 	}
 
 	public downloadResume(): void {

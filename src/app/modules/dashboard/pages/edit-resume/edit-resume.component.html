@@ -24,11 +24,11 @@
 		</div>
 		<div class="content">
 			<div class="aside">
-				<button *ngIf="imgUrl" class="delete delete-img" mat-stroked-button color="warn"
+				<button *ngIf="photoUrl" class="delete delete-photo" mat-stroked-button color="warn"
 					(click)="deletePhoto()">
 					Remove Photo
 				</button>
-				<ng-container *ngIf="!imgUrl">
+				<ng-container *ngIf="!photoUrl">
 					<ngx-file-drop dropZoneClassName="photo drop-area" contentClassName="area" [accept]="acceptableType"
 						[multiple]="false" (onFileDrop)="dropped($event)">
 						<ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
@@ -48,7 +48,7 @@
 				<!-- ngx-image-cropper -->
 				<!-- <image-cropper></image-cropper> -->
 
-				<img *ngIf="imgUrl" class="photo" [src]="imgUrl">
+				<img *ngIf="photoUrl" class="photo" [src]="photoUrl">
 
 				<div class="location">
 					<button mat-icon-button aria-label="Edit" (click)="toggleAdititionalEdit('location')">
@@ -72,9 +72,9 @@
 				<ng-container *ngIf="!id">
 					<app-resume-form (submit)="createResume($event)"></app-resume-form>
 				</ng-container>
-
 			</div>
 		</div>
+		<div class="error-message" *ngIf="errorMessage && !photoUrl">{{errorMessage}}</div>
 		<button *ngIf="id" class="delete delete-resume" mat-stroked-button color="warn" (click)="deleteResume()">
 			Delete resume
 		</button>
