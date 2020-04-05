@@ -4,7 +4,7 @@
 	"scripts": {
 		"ng": "ng",
 		"start": "ng serve",
-		"build": "ng build --prod --base-href 'https://ihorbilobran.github.io/cvEditor/'",
+		"build": "ng build --prod",
 		"test": "ng test",
 		"lint-fix": "ng lint --fix=true",
 		"e2e": "ng e2e"
