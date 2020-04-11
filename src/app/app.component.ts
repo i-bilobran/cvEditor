@@ -23,7 +23,12 @@ export class AppComponent implements OnInit {
 	}
 
 	private initSwUpdateMonitoring(): void {
-		this.updates.available.subscribe(() => this.updates.activateUpdate().then(() => document.location.reload(true)));
+		// initial activation
+		this.updates.activateUpdate();
+		this.updates.available
+			.subscribe(() => this.updates.activateUpdate()
+				.then(() => document.location.reload(true))
+			);
 	}
 
 	private initNetworkMonitoring(): void {
