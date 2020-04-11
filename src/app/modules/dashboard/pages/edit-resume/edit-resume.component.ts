@@ -66,7 +66,7 @@ export class EditResumeComponent implements OnInit {
 	public dropped(event: NgxFileDropEntry[]): void {
 
 		for (const droppedFile of event) {
-			this.fileInput(droppedFile)
+			this.fileInput(droppedFile);
 			// Is it a file?
 			if (droppedFile.fileEntry.isFile) {
 				const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;

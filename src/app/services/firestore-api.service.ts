@@ -41,7 +41,7 @@ export class FirestoreApiService {
 			.get()
 			.pipe(
 				map(response => {
-					console.log(response.data().data)
+					console.log(response.data().data);
 					return response.data().data;
 				})
 			);
@@ -61,7 +61,7 @@ export class FirestoreApiService {
 			creationDate: new Date().toDateString().slice(4),
 			data: resume
 		};
-		console.log(this.swStore.isNetworkConnected)
+		console.log(this.swStore.isNetworkConnected);
 		this.swStore.noConnectionMessage('/dashboard/home');
 
 		return from(
