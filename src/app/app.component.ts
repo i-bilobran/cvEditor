@@ -34,7 +34,6 @@ export class AppComponent implements OnInit {
 	private initNetworkMonitoring(): void {
 		this.connectionService.monitor().subscribe((isConnected: boolean) => {
 			this.swStore.setConnectionStatus(isConnected);
-
 			const [message, button] = isConnected
 				? ['Internet connection restored.', 'Hurray!']
 				: ['Internet connection lost. Offline mode', 'Ok'];
