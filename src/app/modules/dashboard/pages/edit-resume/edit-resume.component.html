@@ -28,7 +28,15 @@
 					(click)="deletePhoto()">
 					Remove Photo
 				</button>
-				<ng-container *ngIf="!photoUrl">
+				<button *ngIf="!photoUrl  && imageChangedEvent" class="delete delete-photo" mat-stroked-button
+					color="warn" (click)="resetCroppedImage()">
+					Cancel
+				</button>
+				<button *ngIf="!photoUrl  && imageChangedEvent" class="delete delete-photo" mat-stroked-button
+					color="primary" (click)="saveCruppedImage()">
+					Save
+				</button>
+				<ng-container *ngIf="!photoUrl && !imageChangedEvent">
 					<ngx-file-drop dropZoneClassName="photo drop-area" contentClassName="area" [accept]="acceptableType"
 						[multiple]="false" (onFileDrop)="dropped($event)">
 						<ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
@@ -45,8 +53,11 @@
 					</ngx-file-drop>
 				</ng-container>
 
-				<!-- ngx-image-cropper -->
-				<!-- <image-cropper></image-cropper> -->
+				<div class="photo" *ngIf="!photoUrl && imageChangedEvent">
+					<image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true"
+						[aspectRatio]="5 / 8" format="png" (imageCropped)="imageCropped($event)">
+					</image-cropper>
+				</div>
 
 				<img *ngIf="photoUrl" class="photo" [src]="photoUrl">
 
