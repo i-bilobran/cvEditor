@@ -8,6 +8,7 @@ import { FirestoreApiService } from '@services/firestore-api.service';
 })
 export class ArchiveComponent implements OnInit {
 	public resumeCards: ResumeCard[];
+	private initialResumeCards: ResumeCard[];
 
 	constructor(
 		private store: FirestoreApiService,
@@ -16,6 +17,16 @@ export class ArchiveComponent implements OnInit {
 
 	ngOnInit() {
 		this.getResumeCards();
+	}
+
+	public filterResumes(search: string): void {
+		this.resumeCards = this.resumeCards.filter((resume: ResumeCard) => {
+			return resume.name.toLowerCase().includes(search) || resume.title.toLowerCase().includes(search);
+		});
+	}
+
+	public resetFilter(): void {
+		this.resumeCards = this.initialResumeCards;
 	}
 
 	public deleteResume(id: string): void {
@@ -41,6 +52,7 @@ export class ArchiveComponent implements OnInit {
 		this.store.getResumeCards(true)
 			.subscribe((response: ResumeCard[]) => {
 				this.resumeCards = response;
+				this.initialResumeCards = response;
 				this.changeDetectorRef.markForCheck();
 			});
 	}

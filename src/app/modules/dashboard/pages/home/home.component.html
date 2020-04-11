@@ -1,4 +1,5 @@
-<app-page-header [search]="true" title="Resume Builder" description="Create a new resume or edit, search existing">
+<app-page-header [search]="true" title="Resume Builder" description="Create a new resume or edit, search existing"
+	(searchEvent)="filterResumes($event)" (resetEvent)="resetFilter()">
 </app-page-header>
 
 <div class="section">
