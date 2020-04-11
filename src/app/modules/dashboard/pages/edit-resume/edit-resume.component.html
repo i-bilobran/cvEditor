@@ -24,15 +24,15 @@
 		</div>
 		<div class="content">
 			<div class="aside">
-				<button *ngIf="photoUrl" class="delete delete-photo" mat-stroked-button color="warn"
+				<button *ngIf="photoUrl" class="small small-photo" mat-stroked-button color="warn"
 					(click)="deletePhoto()">
 					Remove Photo
 				</button>
-				<button *ngIf="!photoUrl  && imageChangedEvent" class="delete delete-photo" mat-stroked-button
+				<button *ngIf="!photoUrl  && imageChangedEvent" class="small small-photo" mat-stroked-button
 					color="warn" (click)="resetCroppedImage()">
 					Cancel
 				</button>
-				<button *ngIf="!photoUrl  && imageChangedEvent" class="delete delete-photo" mat-stroked-button
+				<button *ngIf="!photoUrl  && imageChangedEvent" class="small small-save" mat-stroked-button
 					color="primary" (click)="saveCruppedImage()">
 					Save
 				</button>
@@ -86,7 +86,7 @@
 			</div>
 		</div>
 		<div class="error-message" *ngIf="errorMessage && !photoUrl">{{errorMessage}}</div>
-		<button *ngIf="id" class="delete delete-resume" mat-stroked-button color="warn" (click)="deleteResume()">
+		<button *ngIf="id" class="small small-resume" mat-stroked-button color="warn" (click)="deleteResume()">
 			Delete resume
 		</button>
 	</div>

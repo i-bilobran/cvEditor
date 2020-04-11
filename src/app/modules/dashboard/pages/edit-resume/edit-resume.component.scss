@@ -27,7 +27,7 @@
 			position: absolute;
 		}
 
-		button.delete {
+		button.small {
 			position: absolute;
 			font-size: 12px;
 			line-height: 28px;
@@ -39,6 +39,11 @@
 
 			&-photo {
 				top: 85px;
+			}
+
+			&-save {
+				top: 85px;
+				left: 115px;
 			}
 		}
 
