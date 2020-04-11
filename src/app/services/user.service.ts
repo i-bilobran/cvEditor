@@ -11,7 +11,7 @@ export class UserService {
 	private currentUserSubject: BehaviorSubject<SocialUser>;
 
 	constructor() {
-		this.currentUserSubject = new BehaviorSubject<SocialUser>(JSON.parse(localStorage.getItem('currentUser')));
+		this.currentUserSubject = new BehaviorSubject<SocialUser>(JSON.parse(localStorage.getItem('SRECurrentUser')));
 		this.currentUser$ = this.currentUserSubject.asObservable();
 		this.userAuthorized = !!this.currentUserSubject.value;
 	}
@@ -23,7 +23,7 @@ export class UserService {
 	public setUserData(user: SocialUser): void {
 		this.currentUserSubject.next(user);
 		this.userAuthorized = true;
-		localStorage.setItem('currentUser', JSON.stringify(user));
+		localStorage.setItem('SRECurrentUser', JSON.stringify(user));
 
 		console.log('User: ', user);
 	}
@@ -31,6 +31,6 @@ export class UserService {
 	public clearUserData(): void {
 		this.currentUserSubject.next(null);
 		this.userAuthorized = false;
-		localStorage.removeItem('currentUser');
+		localStorage.removeItem('SRECurrentUser');
 	}
 }

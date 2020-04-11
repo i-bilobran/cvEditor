@@ -6,8 +6,12 @@
 	<div class="actions-wrapper" fxFlex="50%" fxLayout="column" fxLayoutAlign="center center">
 		<div *ngIf="search" class="search" fxLayoutAlign="center center">
 			<mat-icon>search</mat-icon>
-			<input placeholder="Search for a resume">
-			<button mat-raised-button color="primary">Search</button>
+			<input placeholder="Search for a resume" [formControl]="searchControl">
+			<button mat-stroked-button color="warn" (click)="resetSearch()"
+				[ngStyle]="{'visibility': isSearchValid? 'visible': 'hidden'}">
+				<mat-icon>clear</mat-icon>
+			</button>
+			<button mat-raised-button color="primary" (click)="emitSearch()">Search</button>
 		</div>
 		<div class="actions">
 			<ng-content></ng-content>

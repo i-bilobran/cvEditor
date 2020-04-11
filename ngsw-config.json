@@ -40,17 +40,6 @@
 				"maxAge": "1h",
 				"strategy": "freshness"
 			}
-		},
-		{
-			"name": "firebase-api",
-			"urls": [
-				"https://firestore.googleapis.com/google.firestore.v1.Firestore/Listen/channel"
-			],
-			"cacheConfig": {
-				"maxSize": 100,
-				"maxAge": "1h",
-				"strategy": "freshness"
-			}
 		}
 	]
 }

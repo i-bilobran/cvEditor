@@ -1,13 +1,12 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { switchMap, map } from 'rxjs/operators';
-import { Observable, fromEvent } from 'rxjs';
-import { NgxFileDropEntry, FileSystemFileEntry } from 'ngx-file-drop';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { NgxFileDropEntry, FileSystemFileEntry } from 'ngx-file-drop';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
+
 import { Resume, ResumeForm, GeneralData, LocationData } from '@models/resume.models';
 import { FirestoreApiService } from '@services/firestore-api.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
 	templateUrl: './edit-resume.component.html',
@@ -20,10 +19,13 @@ export class EditResumeComponent implements OnInit {
 	public locationEdit: boolean;
 	public fileLoading: boolean;
 	public acceptableType = 'image/jpeg,image/png';
-	public photoUrl: SafeUrl;
 	public resume: ResumeForm;
-	public id: string;
 	public errorMessage: string;
+	public id: string;
+
+	public photoUrl: SafeUrl;
+	public imageChangedEvent: any;
+	private croppedImage: string;
 
 	constructor(
 		private formBuilder: FormBuilder,
@@ -43,6 +45,20 @@ export class EditResumeComponent implements OnInit {
 		}
 	}
 
+	public imageCropped(event: ImageCroppedEvent) {
+		this.croppedImage = event.base64;
+	}
+
+	public resetCroppedImage(): void {
+		this.imageChangedEvent = null;
+		this.croppedImage = null;
+	}
+
+	public saveCruppedImage(): void {
+		this.photoUrl = this.croppedImage;
+		this.resetCroppedImage();
+	}
+
 	public toggleAdititionalEdit(key: string): void {
 		this[`${key}Edit`] = !this[`${key}Edit`];
 	}
@@ -50,53 +66,20 @@ export class EditResumeComponent implements OnInit {
 	public dropped(event: NgxFileDropEntry[]): void {
 
 		for (const droppedFile of event) {
-
+			this.fileInput(droppedFile)
 			// Is it a file?
 			if (droppedFile.fileEntry.isFile) {
 				const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
 
-				fileEntry.file((file: File) => {
-					this.getBase64Image(file)
-						.subscribe((url: string) => {
-							this.photoUrl = url;
-							this.chDetectorRef.markForCheck();
-						});
+				fileEntry.file((ev) => {
+					this.imageChangedEvent = { target: { files: [ev] } };
 				});
 			}
 		}
 	}
 
 	public fileInput(event: any): void {
-		const files = event.target.files;
-
-		if (files && files[0]) {
-			for (const file of files) {
-				this.getBase64Image(file)
-					.subscribe((url: string) => {
-						this.photoUrl = url;
-						this.chDetectorRef.markForCheck();
-					});
-			}
-		}
-	}
-
-	public getBase64Image(file: File): Observable<string> {
-		const reader = new FileReader();
-		reader.readAsDataURL(file);
-
-		// creating and getting image url
-		return fromEvent(reader, 'load').pipe(
-			switchMap(response => {
-				const img = new Image();
-				img.src = (response.target as any).result;
-
-				return fromEvent(img, 'load').pipe(
-					map(() => {
-						return img.src;
-					})
-				);
-			})
-		);
+		this.imageChangedEvent = event;
 	}
 
 	public createResume(event: ResumeForm): void {
