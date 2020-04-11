@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { NgxFileDropModule } from 'ngx-file-drop';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 import { DefaultLayoutComponent } from './components/default-layout/default-layout.component';
 import { MaterialModule } from '../material/material.module';
@@ -43,7 +44,8 @@ import { ResumeGroupArrayComponent } from './components/resume-group-array/resum
 			]
 		}
 		),
-		FormlyMaterialModule
+		FormlyMaterialModule,
+		ImageCropperModule
 	],
 	exports: [
 		MaterialModule,
@@ -55,7 +57,8 @@ import { ResumeGroupArrayComponent } from './components/resume-group-array/resum
 		NgxFileDropModule,
 		ReactiveFormsModule,
 		FormlyModule,
-		FormlyMaterialModule
+		FormlyMaterialModule,
+		ImageCropperModule
 	]
 })
 export class SharedModule { }
