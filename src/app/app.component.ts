@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
 
 	private initSwUpdateMonitoring(): void {
 		// initial activation
+		this.updates.checkForUpdate();
 		this.updates.activateUpdate().then(() => {
 			console.log('activateUpdate');
 		});
