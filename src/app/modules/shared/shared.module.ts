@@ -16,6 +16,8 @@ import { CvNewCardComponent } from './components/cv-new-card/cv-new-card.compone
 import { FooterComponent } from './components/footer/footer.component';
 import { ResumeGroupComponent } from './components/resume-group/resume-group.component';
 import { ResumeGroupArrayComponent } from './components/resume-group-array/resume-group-array.component';
+import { ResumePreviewComponent } from './components/resume-preview/resume-preview.component';
+import { PreviewModalComponent } from './components/preview-modal/preview-modal.component';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { ResumeGroupArrayComponent } from './components/resume-group-array/resum
 		CvNewCardComponent,
 		FooterComponent,
 		ResumeGroupComponent,
-		ResumeGroupArrayComponent
+		ResumeGroupArrayComponent,
+		ResumePreviewComponent,
+		PreviewModalComponent
 	],
 	imports: [
 		CommonModule,
