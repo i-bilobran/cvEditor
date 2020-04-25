@@ -3,8 +3,6 @@ import * as jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { from } from 'rxjs';
 
-declare var onePageCanvas: any;
-
 @Injectable({
 	providedIn: 'root'
 })
@@ -12,30 +10,29 @@ export class ResumeService {
 
 	constructor() { }
 
-	makePDF() {
-		const quotes = document.getElementById('container-fluid');
-
-		from(html2canvas(quotes))
+	makePDF(element: HTMLElement) {
+		from(html2canvas(element))
 			.subscribe(canvas => {
-				// ! MAKE YOUR PDF
-				const pdf = new jsPDF('p', 'pt', 'letter');
+				const pdf = new jsPDF('p', 'px', 'a4');
 
-				for (let i = 0; i <= quotes.clientHeight / 980; i++) {
+				console.log(element.clientWidth, element.clientHeight);
+
+				for (let i = 0; i <= element.clientHeight / 842; i++) {
 
 					// ! This is all just html2canvas stuff
 					const srcImg = canvas;
 					const sX = 0;
-					const sY = 980 * i; // start 980 pixels down for every new page
-					const sWidth = 900;
-					const sHeight = 980;
+					const sY = 842 * i; // start 842 pixels down for every new page
+					const sWidth = 595;
+					const sHeight = 842;
 					const dX = 0;
 					const dY = 0;
-					const dWidth = 900;
-					const dHeight = 980;
+					const dWidth = 595;
+					const dHeight = 842;
 
-					onePageCanvas = document.createElement('canvas');
-					onePageCanvas.setAttribute('width', 900);
-					onePageCanvas.setAttribute('height', 980);
+					const onePageCanvas = document.createElement('canvas');
+					onePageCanvas.setAttribute('width', '595');
+					onePageCanvas.setAttribute('height', '842');
 					const ctx = onePageCanvas.getContext('2d');
 					// details on this usage of this function:
 					// https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images#Slicing
@@ -47,15 +44,20 @@ export class ResumeService {
 					const width = onePageCanvas.width;
 					const height = onePageCanvas.clientHeight;
 
+					// a4 - 595, 842 (595pt, 842pt)
+					// mm 210mm, 297mm, (794px, 1122px)
+
+					// letter - 612pts, 791pts (816px, 1056px)
+
 					// ! If we're on anything other than the first page,
 					// add another page
 					if (i > 0) {
-						pdf.addPage([612, 791]); // 8.5' x 11' in pts (in*72)
+						pdf.addPage([595, 842]); // 8.5' x 11' in pts (in*72)
 					}
 					// ! now we declare that we're working on that page
 					pdf.setPage(i + 1);
 					// ! now we add content to that page!
-					pdf.addImage(canvasDataURL, 'PNG', 20, 40, (width * .62), (height * .62));
+					pdf.addImage(canvasDataURL, 'PNG', 0, 0, (width * .75), (height * .75));
 
 				}
 				// ! after the for loop is finished running, we save the pdf.

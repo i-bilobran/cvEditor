@@ -9,6 +9,7 @@ import { Resume, ResumeForm, GeneralData, LocationData } from '@models/resume.mo
 import { FirestoreApiService } from '@services/firestore-api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PreviewModalComponent } from '@shared/components/preview-modal/preview-modal.component';
+import { ResumeService } from '@services/resume.service';
 
 @Component({
 	templateUrl: './edit-resume.component.html',
@@ -35,6 +36,7 @@ export class EditResumeComponent implements OnInit {
 		private sanitizer: DomSanitizer,
 		private activatedRoute: ActivatedRoute,
 		private store: FirestoreApiService,
+		private resumeService: ResumeService,
 		public dialog: MatDialog
 	) { }
 
@@ -48,8 +50,14 @@ export class EditResumeComponent implements OnInit {
 		}
 	}
 
+	public download(component): void {
+		if (component) {
+			this.resumeService.makePDF(component.element.nativeElement);
+		}
+	}
+
 	public openPreview(): void {
-		const data = this.getResume(this.resume);
+		const data = this.getResume();
 
 		const dialogRef = this.dialog.open(PreviewModalComponent, {
 			data
@@ -137,12 +145,12 @@ export class EditResumeComponent implements OnInit {
 		this.photoUrl = null;
 	}
 
-	private getResume(resume: ResumeForm): Resume {
+	public getResume(resume?: ResumeForm): Resume {
 		return {
 			general: this.generalInfoForm.value,
 			location: this.locationInfoForm.value,
 			photo: this.photoUrl.toString(),
-			resume
+			resume: resume ? resume : this.resume
 		};
 	}
 

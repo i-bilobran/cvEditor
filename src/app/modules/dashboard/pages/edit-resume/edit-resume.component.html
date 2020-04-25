@@ -1,7 +1,7 @@
 <app-page-header [search]="false" title="Create resume" description="See an example">
 	<div class="actions">
 		<button mat-stroked-button (click)="openPreview()">Preview</button>
-		<button mat-raised-button color="primary">Download</button>
+		<button mat-raised-button color="primary" (click)="download(page)">Download</button>
 	</div>
 </app-page-header>
 <div class="section">

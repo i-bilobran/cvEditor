@@ -9,20 +9,6 @@ import { Resume } from '@models/resume.models';
 	styleUrls: ['./preview-modal.component.scss']
 })
 export class PreviewModalComponent {
-
-	// constructor(public dialog: MatDialog) { }
-
-	// openDialog(): void {
-	// 	const dialogRef = this.dialog.open(PreviewModalComponent, {
-	// 		width: '250px',
-	// 		data: resume
-	// 	});
-
-	// 	dialogRef.afterClosed().subscribe(result => {
-	// 		console.log('The dialog was closed');
-	// 	});
-	// }
-
 	constructor(
 		public dialogRef: MatDialogRef<PreviewModalComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: Resume) { }
