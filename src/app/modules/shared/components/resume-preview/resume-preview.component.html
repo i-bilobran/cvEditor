@@ -1,3 +1,37 @@
-<p>
-	resume-preview works!
-</p>
+<div class="resume-page" #element>
+	<div class="header">
+		<div class="contact-info">
+			<div class="content text-secondary">
+				<div>
+					<span class="primary">Tel / </span> -
+					<input readonly type="text" [value]="resume.general.phone">
+				</div>
+				<input readonly type="text" [value]="resume.general.email">
+				<input readonly type="text" [value]="resume.general.website">
+			</div>
+		</div>
+	</div>
+	<div class="content">
+		<div class="aside">
+
+			<img height="30" src="assets/logo/creating-value.svg" alt="logo-value">
+
+			<img class="photo" [src]="resume.photo">
+
+			<div class="location">
+				<div class="content text-secondary">
+					<input readonly type="text" [value]="resume.location.title">
+					<input readonly type="text" [value]="resume.location.street">
+					<input readonly type="text" [value]="resume.location.state">
+					<input readonly type="number" [value]="resume.location.postalCode">
+					<input readonly type="text" [value]="resume.location.country">
+				</div>
+
+				<img height="17" src="assets/logo/sombra-logo.svg" alt="sombra-logo">
+			</div>
+		</div>
+		<div class="main">
+
+		</div>
+	</div>
+</div>

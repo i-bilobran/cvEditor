@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 
 import { Resume } from '@models/resume.models';
 
@@ -9,10 +9,12 @@ import { Resume } from '@models/resume.models';
 })
 export class ResumePreviewComponent implements OnInit {
 	@Input() resume: Resume;
+	@ViewChild('element', { static: true }) element: ElementRef<any>;
 
 	constructor() { }
 
 	ngOnInit() {
+		console.log(this.resume)
 	}
 
 }
