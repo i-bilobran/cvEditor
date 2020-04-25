@@ -51,6 +51,9 @@ import { PreviewModalComponent } from './components/preview-modal/preview-modal.
 		FormlyMaterialModule,
 		ImageCropperModule
 	],
+	entryComponents: [
+		PreviewModalComponent
+	],
 	exports: [
 		MaterialModule,
 		FlexLayoutModule,
@@ -62,7 +65,9 @@ import { PreviewModalComponent } from './components/preview-modal/preview-modal.
 		ReactiveFormsModule,
 		FormlyModule,
 		FormlyMaterialModule,
-		ImageCropperModule
+		ImageCropperModule,
+		ResumePreviewComponent,
+		PreviewModalComponent
 	]
 })
 export class SharedModule { }

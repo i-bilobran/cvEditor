@@ -7,6 +7,8 @@ import { ImageCroppedEvent } from 'ngx-image-cropper';
 
 import { Resume, ResumeForm, GeneralData, LocationData } from '@models/resume.models';
 import { FirestoreApiService } from '@services/firestore-api.service';
+import { MatDialog } from '@angular/material/dialog';
+import { PreviewModalComponent } from '@shared/components/preview-modal/preview-modal.component';
 
 @Component({
 	templateUrl: './edit-resume.component.html',
@@ -33,6 +35,7 @@ export class EditResumeComponent implements OnInit {
 		private sanitizer: DomSanitizer,
 		private activatedRoute: ActivatedRoute,
 		private store: FirestoreApiService,
+		public dialog: MatDialog
 	) { }
 
 	ngOnInit() {
@@ -43,6 +46,18 @@ export class EditResumeComponent implements OnInit {
 		} else {
 			this.initInfoForm();
 		}
+	}
+
+	public openPreview(): void {
+		const data = this.getResume(this.resume);
+
+		const dialogRef = this.dialog.open(PreviewModalComponent, {
+			data
+		});
+
+		dialogRef.afterClosed().subscribe(() => {
+			console.log('The dialog was closed');
+		});
 	}
 
 	public imageCropped(event: ImageCroppedEvent) {
