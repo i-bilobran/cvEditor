@@ -10,3 +10,7 @@
 	display: flex;
 	justify-content: center;
 }
+
+::ng-deep .mat-dialog-container[aria-label="preview"] {
+	padding: 0px;
+}

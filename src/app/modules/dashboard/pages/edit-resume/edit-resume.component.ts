@@ -60,7 +60,8 @@ export class EditResumeComponent implements OnInit {
 		const data = this.getResume();
 
 		const dialogRef = this.dialog.open(PreviewModalComponent, {
-			data
+			data,
+			ariaLabel: 'preview'
 		});
 
 		dialogRef.afterClosed().subscribe(() => {
