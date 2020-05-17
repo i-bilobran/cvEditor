@@ -45,14 +45,14 @@
 			align-items: center;
 
 			.content {
-				font-size: 12px;
+				font-size: 13px;
 				display: flex;
 				flex-direction: column;
 			}
 		}
 	}
 
-	.content {
+	.page-content {
 		display: flex;
 
 		.aside {
@@ -94,7 +94,7 @@
 				align-items: center;
 
 				.content {
-					font-size: 12px;
+					font-size: 13px;
 					display: flex;
 					flex-direction: column;
 				}

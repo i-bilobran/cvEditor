@@ -1,12 +1,22 @@
+$page-width: 794px;
+$page-height: 1133px;
+$header-height: 51px;
+
+.wrapper {
+	border: 1px solid black;
+}
+
 .resume-page {
-	width: 794px;
-	min-height: 1133px;
-	padding: 10px 5px;
+	width: $page-width;
+	height: $page-height;
+	padding: 40px 30px 60px 30px;
 	box-shadow: none;
-	font-size: 16px;
+	font-size: 13px;
+	margin: 0 !important;
 
 	.header {
-		margin-bottom: 20px;
+		height: $header-height;
+		margin-bottom: 0px;
 		display: flex;
 		justify-content: flex-end;
 
@@ -15,36 +25,74 @@
 			align-items: center;
 
 			.content {
-				font-size: 12px;
+				font-size: 13px;
 				display: flex;
 				flex-direction: column;
 			}
 		}
 	}
 
-	.content {
-		display: flex;
+	.page-content {
+		padding-top: 20px;
+		height: calc(#{$page-height} - #{$header-height} - 100px);
 
 		.aside {
-			outline: 1px solid red;
+			border: 1px solid red;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+
+			img[alt="logo-value"] {
+				width: 105px;
+				height: 33px;
+				display: block;
+				margin-bottom: 13px;
+			}
+
+			img[alt="sombra-logo"] {
+				width: 90px;
+				height: 21px;
+				display: block;
+				margin: 25px 0 0 0;
+			}
+
+			.about-wrapper {
+				padding-top: 50px;
+
+				.first-name {
+					font-size: 20px;
+					font-weight: bold;
+				}
+
+				.position {
+					font-size: 18px;
+					padding-top: 5px;
+				}
+
+				.english {
+					padding-top: 25px;
+					font-size: 16px;
+
+					.primary {
+						padding-bottom: 5px;
+					}
+				}
+			}
 
 			.photo {
-				height: 286px;
-				width: 177px;
+				height: 355px;
+				width: 222px;
 			}
 
 			.location {
 				display: block;
-				position: absolute;
-				bottom: 0;
-				margin: 0;
-
-				img {
-					margin: 20px 0 0 0;
-				}
+				position: relative;
+				margin-top: 0;
 			}
 
 			.location,
+			.about-wrapper,
 			img[alt="logo-value"] {
 				margin-left: 15px;
 			}
@@ -53,6 +101,7 @@
 		.main {
 			padding-left: 40px;
 			width: 100%;
+			border: 1px solid blue;
 		}
 	}
 }
