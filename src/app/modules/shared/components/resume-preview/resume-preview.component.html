@@ -58,6 +58,20 @@
 						{{resume.resume.about.fullInfo}}
 					</div>
 				</div>
+
+				<div class="skills">
+					<div class="title text-secondary">Skills & Technologies</div>
+					<div class="repeat-wrapper">
+						<div class="skill-item" *ngFor="let skill of resume.resume.skills">
+							<div class="sub-title primary">
+								{{skill.label}}
+							</div>
+							<div class="value">
+								{{skill.value}}
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -116,6 +116,28 @@ $header-height: 51px;
 			.full {
 				margin-bottom: 30px;
 			}
+
+			.repeat-wrapper {
+				display: flex;
+				flex-wrap: wrap;
+
+				.skill-item {
+					margin-bottom: 15px;
+					width: 244px;
+					margin-right: 2px;
+
+					.sub-title {
+						padding: 10px;
+						background-color: $primary-light;
+						margin-bottom: 5px;
+					}
+
+					.value {
+						padding: 0 10px;
+						white-space: pre-line;
+					}
+				}
+			}
 		}
 	}
 }
