@@ -1,3 +1,5 @@
+@import "../../../../scss/variables";
+
 $page-width: 794px;
 $page-height: 1133px;
 $header-height: 51px;
@@ -99,9 +101,21 @@ $header-height: 51px;
 		}
 
 		.main {
-			padding-left: 40px;
+			padding-left: 15px;
 			width: 100%;
 			border: 1px solid blue;
+			font-size: 14px;
+			color: $text-secondary;
+
+			.title {
+				font-weight: bold;
+				font-size: 15px;
+				margin-bottom: 10px;
+			}
+
+			.full {
+				margin-bottom: 30px;
+			}
 		}
 	}
 }
