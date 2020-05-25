@@ -118,13 +118,8 @@ $header-height: 51px;
 			}
 
 			.repeat-wrapper {
-				display: flex;
-				flex-wrap: wrap;
-
-				.skill-item {
+				.item {
 					margin-bottom: 15px;
-					width: 244px;
-					margin-right: 2px;
 
 					.sub-title {
 						padding: 10px;
@@ -132,10 +127,37 @@ $header-height: 51px;
 						margin-bottom: 5px;
 					}
 
+					.label,
 					.value {
 						padding: 0 10px;
-						white-space: pre-line;
 					}
+				}
+			}
+
+			.skills {
+				.repeat-wrapper {
+					display: flex;
+					flex-wrap: wrap;
+
+					.item {
+						width: 244px;
+						margin-right: 2px;
+
+						.value {
+							white-space: pre-line;
+						}
+					}
+				}
+			}
+
+			.experience {
+				.detailed-description {
+					margin-top: 15px;
+				}
+
+				.label {
+					font-weight: bold;
+					margin-bottom: 5px;
 				}
 			}
 		}

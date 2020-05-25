@@ -59,6 +59,7 @@ export interface Experience {
 	role: string;
 	customer: string;
 	responsibilities: string;
+	technologies: string;
 }
 
 export interface Skill {

@@ -62,12 +62,76 @@
 				<div class="skills">
 					<div class="title text-secondary">Skills & Technologies</div>
 					<div class="repeat-wrapper">
-						<div class="skill-item" *ngFor="let skill of resume.resume.skills">
+						<div class="item" *ngFor="let skill of resume.resume.skills">
 							<div class="sub-title primary">
 								{{skill.label}}
 							</div>
 							<div class="value">
 								{{skill.value}}
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="experience">
+					<div class="title text-secondary">Experience</div>
+					<div class="repeat-wrapper">
+						<div class="item" *ngFor="let project of resume.resume.experience">
+							<div class="sub-title primary">
+								{{project.projectName}}
+							</div>
+							<div class="value">
+								{{project.description}}
+							</div>
+							<div class="detailed-description" fxLayout="row">
+								<div fxFlex="19">
+									<div class="label">
+										Team size
+									</div>
+									<div class="value">
+										{{project.teamSize}} team members
+									</div>
+								</div>
+								<div fxFlex="33">
+									<div class="label">
+										Involvement duration
+									</div>
+									<div class="value">{{project.involvementDuration}} months duration</div>
+								</div>
+								<div fxFlex="20">
+									<div class="label">
+										Customer
+									</div>
+									<div class="value">{{project.customer}}</div>
+								</div>
+								<div fxFlex="28">
+									<div class="label">
+										Project role
+									</div>
+									<div class="value">
+										{{project.role}}
+									</div>
+								</div>
+							</div>
+							<div class="detailed-description">
+								<div>
+									<div class="label">
+										Responsibilities
+									</div>
+									<div class="value">
+										{{project.responsibilities}}
+									</div>
+								</div>
+							</div>
+							<div class="detailed-description">
+								<div>
+									<div class="label">
+										Technologies
+									</div>
+									<div class="value">
+										{{project.technologies}}
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
