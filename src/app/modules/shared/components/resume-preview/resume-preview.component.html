@@ -1,149 +1,192 @@
-<div class="wrapper">
-	<div class="resume-page" #element>
-		<div class="header">
-			<div class="contact-info">
-				<div class="content text-secondary">
-					<div>
-						<span class="primary">Tel / </span> -
-						<input readonly type="text" [value]="resume.general.phone">
-					</div>
-					<input readonly type="text" [value]="resume.general.email">
-					<input readonly type="text" [value]="resume.general.website">
-				</div>
-			</div>
-		</div>
-		<div class="page-content">
-			<div class="aside">
-				<div>
-					<img src="assets/logo/creating-value.png" alt="logo-value">
-
-					<img class="photo" [src]="resume.photo">
-
-					<div class="about-wrapper" *ngIf="true">
-						<div class="first-name text-primary">
-							<strong>
-								{{resume.resume.about.firstName}}
-							</strong>
-						</div>
-						<div class="position text-secondary">
-							<strong>
-								{{resume.resume.about.position}}
-							</strong>
-						</div>
-						<div class="english">
-							<div class="primary">English Proficiency Level</div>
-							<div class="text-secondary">{{resume.resume.about.englishProficiencyLevel}}</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="location">
+<div class="wrapper" #element>
+	<ng-container *ngFor="let resume of pages">
+		<div class="resume-page pdf-page">
+			<div class="header">
+				<div class="contact-info">
 					<div class="content text-secondary">
-						<input readonly type="text" [value]="resume.location.title">
-						<input readonly type="text" [value]="resume.location.street">
-						<input readonly type="text" [value]="resume.location.state">
-						<input readonly type="number" [value]="resume.location.postalCode">
-						<input readonly type="text" [value]="resume.location.country">
+						<div>
+							<span class="primary">Tel / </span> -
+							<input readonly type="text" [value]="resume.general.phone">
+						</div>
+						<input readonly type="text" [value]="resume.general.email">
+						<input readonly type="text" [value]="resume.general.website">
 					</div>
-
-					<img src="assets/logo/sombra-logo.png" alt="sombra-logo">
 				</div>
 			</div>
-			<div class="main">
-				<div class="full">
-					<div class="title primary">
-						Full info
-					</div>
-					<div class="value">
-						{{resume.resume.about.fullInfo}}
-					</div>
-				</div>
+			<div class="page-content">
+				<div class="aside">
+					<div>
+						<img src="assets/logo/creating-value.png" alt="logo-value">
 
-				<div class="skills">
-					<div class="title text-secondary">Skills & Technologies</div>
-					<div class="repeat-wrapper">
-						<div class="item" *ngFor="let skill of resume.resume.skills">
-							<div class="sub-title primary">
-								{{skill.label}}
+						<img class="photo" [src]="resume.photo">
+
+						<div class="about-wrapper" *ngIf="true">
+							<div class="first-name text-primary">
+								<strong>
+									{{resume.resume.about.firstName}}
+								</strong>
 							</div>
-							<div class="value">
-								{{skill.value}}
+							<div class="position text-secondary">
+								<strong>
+									{{resume.resume.about.position}}
+								</strong>
+							</div>
+							<div class="english">
+								<div class="primary">English Proficiency Level</div>
+								<div class="text-secondary">{{resume.resume.about.englishProficiencyLevel}}</div>
 							</div>
 						</div>
 					</div>
-				</div>
 
-				<div class="experience">
-					<div class="title text-secondary">Experience</div>
-					<div class="repeat-wrapper">
-						<div class="item" *ngFor="let project of resume.resume.experience">
-							<div class="sub-title primary">
-								{{project.projectName}}
-							</div>
-							<div class="value">
-								{{project.description}}
-							</div>
-							<div class="detailed-description" fxLayout="row">
-								<div fxFlex="19">
-									<div class="label">
-										Team size
-									</div>
-									<div class="value">
-										{{project.teamSize}} team members
-									</div>
+					<div class="location">
+						<div class="content text-secondary">
+							<input readonly type="text" [value]="resume.location.title">
+							<input readonly type="text" [value]="resume.location.street">
+							<input readonly type="text" [value]="resume.location.state">
+							<input readonly type="number" [value]="resume.location.postalCode">
+							<input readonly type="text" [value]="resume.location.country">
+						</div>
+
+						<img src="assets/logo/sombra-logo.png" alt="sombra-logo">
+					</div>
+				</div>
+				<div class="main">
+					<div class="full">
+						<div class="title primary">
+							Full info
+						</div>
+						<div class="value">
+							{{resume.resume.about.fullInfo}}
+						</div>
+					</div>
+
+					<div class="skills resume-section" *ngIf="resume.resume.skills">
+						<div class="title text-secondary">Skills & Technologies</div>
+						<div class="repeat-wrapper">
+							<div class="item" *ngFor="let skill of resume.resume.skills">
+								<div class="sub-title primary">
+									{{skill.label}}
 								</div>
-								<div fxFlex="33">
-									<div class="label">
-										Involvement duration
-									</div>
-									<div class="value">{{project.involvementDuration}} months duration</div>
-								</div>
-								<div fxFlex="20">
-									<div class="label">
-										Customer
-									</div>
-									<div class="value">{{project.customer}}</div>
-								</div>
-								<div fxFlex="28">
-									<div class="label">
-										Project role
-									</div>
-									<div class="value">
-										{{project.role}}
-									</div>
-								</div>
-							</div>
-							<div class="detailed-description">
-								<div>
-									<div class="label">
-										Responsibilities
-									</div>
-									<div class="value">
-										{{project.responsibilities}}
-									</div>
-								</div>
-							</div>
-							<div class="detailed-description">
-								<div>
-									<div class="label">
-										Technologies
-									</div>
-									<div class="value">
-										{{project.technologies}}
-									</div>
+								<div class="value">
+									{{skill.value}}
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="english">
-					<div class="title primary">
-						Education
+
+					<div class="soft-skills resume-section" *ngIf="resume.resume.softSkills">
+						<div class="title primary">Soft skills</div>
+						<div class="repeat-wrapper" fxLayout="row">
+							<div fxFlex="50">
+								<div class="value text-primary">
+									Communication: <span class="text-secondary">{{resume.resume.softSkills.communication}}/5</span>
+								</div>
+								<div class="value text-primary">
+									Positive attitude: <span class="text-secondary">{{resume.resume.softSkills.positiveAttitude}}/5</span>
+								</div>
+								<div class="value text-primary">
+									Teamwork: <span class="text-secondary">{{resume.resume.softSkills.teamwork}}/5</span>
+								</div>
+								<div class="value text-primary">
+									Responsibility: <span class="text-secondary">{{resume.resume.softSkills.responsibility}}/5</span>
+								</div>
+								<div class="value text-primary">
+									Handing pressure: <span class="text-secondary">{{resume.resume.softSkills.handingPressure}}/5</span>
+								</div>
+							</div>
+							<div fxFlex="50">
+								<div class="value text-primary">
+									Flexibility: <span class="text-secondary">{{resume.resume.softSkills.flexibility}}/5</span>
+								</div>
+								<div class="value text-primary">
+									Problem solving: <span class="text-secondary">{{resume.resume.softSkills.problemSolving}}/5</span>
+								</div>
+								<div class="value text-primary">
+									Critical thinking: <span class="text-secondary">{{resume.resume.softSkills.criticalThinking}}/5</span>
+								</div>
+								<div class="value text-primary">
+									Work ethics: <span class="text-secondary">{{resume.resume.softSkills.workEthics}}/5</span>
+								</div>
+								<div class="value text-primary">
+									Leading: <span class="text-secondary">{{resume.resume.softSkills.leading}}/5</span>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="text-primary">{{resume.resume.about.education}}</div>
-					<div>{{resume.resume.about.university}}</div>
+
+					<div class="experience resume-section" *ngIf="resume.resume.experience.length">
+						<div class="title text-secondary">Experience</div>
+						<div class="repeat-wrapper">
+							<div class="item" *ngFor="let project of resume.resume.experience">
+								<div class="sub-title primary">
+									{{project.projectName}}
+								</div>
+								<div class="value">
+									{{project.description}}
+								</div>
+								<div class="detailed-description" fxLayout="row">
+									<div fxFlex="19">
+										<div class="label">
+											Team size
+										</div>
+										<div class="value">
+											{{project.teamSize}} team members
+										</div>
+									</div>
+									<div fxFlex="33">
+										<div class="label">
+											Involvement duration
+										</div>
+										<div class="value">{{project.involvementDuration}} months duration</div>
+									</div>
+									<div fxFlex="20">
+										<div class="label">
+											Customer
+										</div>
+										<div class="value">{{project.customer}}</div>
+									</div>
+									<div fxFlex="28">
+										<div class="label">
+											Project role
+										</div>
+										<div class="value">
+											{{project.role}}
+										</div>
+									</div>
+								</div>
+								<div class="detailed-description">
+									<div>
+										<div class="label">
+											Responsibilities
+										</div>
+										<div class="value">
+											{{project.responsibilities}}
+										</div>
+									</div>
+								</div>
+								<div class="detailed-description">
+									<div>
+										<div class="label">
+											Technologies
+										</div>
+										<div class="value">
+											{{project.technologies}}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="education resume-section" *ngIf="resume.resume.about.education">
+						<div class="title primary">
+							Education
+						</div>
+						<div class="text-primary">{{resume.resume.about.education}}</div>
+						<div>{{resume.resume.about.university}}</div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</ng-container>
 </div>
