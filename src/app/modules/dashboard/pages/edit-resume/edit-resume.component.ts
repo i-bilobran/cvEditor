@@ -155,6 +155,15 @@ export class EditResumeComponent implements OnInit {
 		};
 	}
 
+	public getResume2(resume?: ResumeForm): Resume[] {
+		return [{
+			general: this.generalInfoForm.value,
+			location: this.locationInfoForm.value,
+			photo: this.photoUrl.toString(),
+			resume: resume ? resume : this.resume
+		}];
+	}
+
 	private initInfoForm(general?: GeneralData, location?: LocationData): void {
 		this.generalInfoForm = this.formBuilder.group({
 			phone: general ? general.phone : '380 032 253 8076',

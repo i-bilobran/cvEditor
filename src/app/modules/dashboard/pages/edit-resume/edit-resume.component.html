@@ -1,5 +1,5 @@
 <app-page-header [search]="false" title="Create resume" description="See an example">
-	<div class="actions">
+	<div class="actions" *ngIf="resume">
 		<button mat-stroked-button (click)="openPreview()">Preview</button>
 		<button mat-raised-button color="primary" (click)="download(page)">Download</button>
 	</div>
@@ -22,7 +22,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="content">
+		<div class="page-content">
 			<div class="aside">
 				<button *ngIf="photoUrl" class="small small-photo" mat-stroked-button color="warn"
 					(click)="deletePhoto()">
@@ -90,4 +90,5 @@
 			Delete resume
 		</button>
 	</div>
+	<app-resume-preview [pages]="getResume2()" #page></app-resume-preview>
 </div>
