@@ -20,18 +20,6 @@ export class ResumePreviewComponent implements OnInit, AfterViewInit {
 			this.pages = cloneDeep(changes.base.currentValue);
 		}
 	}
-	// Array.from(temp1.childNodes).filter(el => el.hasChildNodes())
-
-	// recursion
-
-	// wrapper => pages.forEeach(page) =>
-	// if page height > 1133px: A
-	//
-
-	// A: split blocks => push redudant items to local variable => local variable = new page
-
-	// if last page height > 1133px : A
-	// else hidden => false
 
 	ngOnInit() {
 		console.log(this.base[0])
@@ -45,57 +33,85 @@ export class ResumePreviewComponent implements OnInit, AfterViewInit {
 		let currentHeight = 0;
 
 		items.forEach((item: HTMLElement, index: number) => {
-			currentHeight += item.offsetHeight;
 			const model = item.getAttribute('data-model');
+			const repeat = !!item.getElementsByClassName('repeat-wrapper').length;
 
-			if (currentHeight <= 1133) {
-				this.handlePageOverload(model, false);
+			// sub items
+			if (repeat) {
+				Array.from(item.getElementsByClassName('item')).map((subItem: HTMLElement, subIndex: number) => {
+					// console.log(currentHeight, model, subIndex)
+					if (subItem.hasAttribute('data-item')) {
+						if (model === 'skills' && subIndex % 2 === 0) {
+							currentHeight += subItem.offsetHeight;
+						}
+						if (model !== 'skills') {
+							currentHeight += subItem.offsetHeight;
+						}
+
+						if (currentHeight <= 962) {
+							this.handleItemOverload(model, false, subIndex);
+						} else {
+							this.handleItemOverload(model, true, subIndex);
+							console.log('sub overload', model, subIndex)
+						}
+					}
+				});
 			} else {
-				this.handlePageOverload(model, true);
+				currentHeight += item.offsetHeight;
+
+				if (currentHeight <= 962) {
+					// currentHeight += item.offsetHeight;
+					this.handleItemOverload(model, false);
+				} else {
+					console.log('top overload', model)
+					this.handleItemOverload(model, true);
+				}
 			}
+			currentHeight += 25;
 		});
+
+		console.log(this.pages);
 
 		this.cd.detectChanges();
 	}
 
-	private handlePageOverload(model: string, removal: boolean): void {
+	private handleItemOverload(model: string, removal: boolean, index?: number): void {
 		const basePage = this.pages[0];
-		let newPage = this.pages[0 + 1];
+		let newPage = cloneDeep(this.pages[0 + 1]);
+		console.log(newPage)
 
 		if (model !== 'fullInfo' && model !== 'education') {
 			if (removal) {
-				const newField = {} as ResumeForm;
-
-				newField[model] = clone(basePage.resume[model]);
+				console.log(model, index)
 
 				if (!newPage) {
-					newPage = clone(basePage);
-					newPage.resume = newField;
-				} else {
-					newPage.resume[model] = basePage.resume[model];
+					newPage = cloneDeep(basePage);
+					newPage.resume = {} as ResumeForm;
 				}
 
-				basePage.resume[model] = null;
-			} else {
+				console.log(newPage, basePage);
 
+				newPage.resume[model] = basePage.resume[model].slice(index);
+				basePage.resume[model] = index !== undefined
+					? basePage.resume[model].slice(0, index)
+					: null;
 			}
 		} else {
 			if (removal) {
-				const newField = basePage.resume.about[model];
-
 				if (!newPage) {
-					newPage = clone(basePage);
-					newPage.resume.about[model] = newField;
+					newPage = cloneDeep(basePage);
+					newPage.resume = { about: {} } as ResumeForm;
 				} else if (newPage && !newPage.resume.about) {
 					newPage.resume.about = {} as About;
-					newPage.resume.about[model] = newField;
 				} else {
-					newPage.resume.about[model] = newField;
 				}
 
+				newPage.resume.about[model] = basePage.resume.about[model];
 				basePage.resume.about[model] = null;
-			} else {
 			}
 		}
+
+		this.pages[0] = basePage;
+		this.pages[0 + 1] = newPage;
 	}
 }
