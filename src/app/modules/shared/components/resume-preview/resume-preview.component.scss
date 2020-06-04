@@ -4,17 +4,13 @@ $page-width: 794px;
 $page-height: 1133px;
 $header-height: 51px;
 
-.wrapper {
-	border: 1px solid black;
-}
-
 .resume-page {
 	width: $page-width;
 	height: $page-height;
 	padding: 40px 30px 60px 30px;
 	box-shadow: none;
 	font-size: 13px;
-	margin: 0 !important;
+	margin: 10px 0 !important;
 
 	.header {
 		height: $header-height;
@@ -40,6 +36,7 @@ $header-height: 51px;
 
 		.aside {
 			height: 100%;
+			min-width: 222px;
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
@@ -113,7 +110,7 @@ $header-height: 51px;
 			}
 
 			.resume-section {
-				margin-top: 25px;
+				margin-bottom: 25px;
 			}
 
 			.repeat-wrapper {

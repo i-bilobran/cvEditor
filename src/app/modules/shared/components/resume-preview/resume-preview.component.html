@@ -1,6 +1,6 @@
-<div class="wrapper" #wrapper>
-	<ng-container *ngFor="let resume of pages">
-		<div class="resume-page pdf-page">
+<div class="wrapper">
+	<ng-container *ngFor="let resume of pages; let i = index">
+		<div *ngIf="resume" class="resume-page pdf-page">
 			<div class="header">
 				<div class="contact-info">
 					<div class="content text-secondary">
@@ -18,24 +18,26 @@
 					<div>
 						<img src="assets/logo/creating-value.png" alt="logo-value">
 
-						<img class="photo" [src]="resume.photo">
+						<ng-container *ngIf="i === 0">
+							<img class="photo" [src]="resume.photo">
 
-						<div class="about-wrapper" *ngIf="true">
-							<div class="first-name text-primary">
-								<strong>
-									{{resume.resume.about.firstName}}
-								</strong>
+							<div class="about-wrapper" *ngIf="true">
+								<div class="first-name text-primary">
+									<strong>
+										{{resume.resume.about.firstName}}
+									</strong>
+								</div>
+								<div class="position text-secondary">
+									<strong>
+										{{resume.resume.about.position}}
+									</strong>
+								</div>
+								<div class="english">
+									<div class="primary">English Proficiency Level</div>
+									<div class="text-secondary">{{resume.resume.about.englishProficiencyLevel}}</div>
+								</div>
 							</div>
-							<div class="position text-secondary">
-								<strong>
-									{{resume.resume.about.position}}
-								</strong>
-							</div>
-							<div class="english">
-								<div class="primary">English Proficiency Level</div>
-								<div class="text-secondary">{{resume.resume.about.englishProficiencyLevel}}</div>
-							</div>
-						</div>
+						</ng-container>
 					</div>
 
 					<div class="location">
@@ -51,7 +53,8 @@
 					</div>
 				</div>
 				<div class="main">
-					<div class="full">
+
+					<div class="full resume-section" data-model="fullInfo" *ngIf="resume.resume.about && resume.resume.about.fullInfo">
 						<div class="title primary">
 							Full info
 						</div>
@@ -60,10 +63,10 @@
 						</div>
 					</div>
 
-					<div class="skills resume-section" *ngIf="resume.resume.skills">
+					<div class="skills resume-section" data-model="skills" *ngIf="resume.resume.skills && resume.resume.skills.length">
 						<div class="title text-secondary">Skills & Technologies</div>
 						<div class="repeat-wrapper">
-							<div class="item" *ngFor="let skill of resume.resume.skills">
+							<div class="item" [attr.data-item]="i" *ngFor="let skill of resume.resume.skills; let i = index">
 								<div class="sub-title primary">
 									{{skill.label}}
 								</div>
@@ -73,10 +76,9 @@
 							</div>
 						</div>
 					</div>
-
-					<div class="soft-skills resume-section" *ngIf="resume.resume.softSkills">
+					<div class="soft-skills resume-section" data-model="softSkills" *ngIf="resume.resume.softSkills">
 						<div class="title primary">Soft skills</div>
-						<div class="repeat-wrapper" fxLayout="row">
+						<div fxLayout="row">
 							<div fxFlex="50">
 								<div class="value text-primary">
 									Communication: <span class="text-secondary">{{resume.resume.softSkills.communication}}/5</span>
@@ -114,10 +116,10 @@
 						</div>
 					</div>
 
-					<div class="experience resume-section" *ngIf="resume.resume.experience.length">
+					<div class="experience resume-section" data-model="experience" *ngIf="resume.resume.experience && resume.resume.experience.length">
 						<div class="title text-secondary">Experience</div>
 						<div class="repeat-wrapper">
-							<div class="item" *ngFor="let project of resume.resume.experience">
+							<div class="item" [attr.data-item]="i" *ngFor="let project of resume.resume.experience; let i = index">
 								<div class="sub-title primary">
 									{{project.projectName}}
 								</div>
@@ -178,7 +180,7 @@
 						</div>
 					</div>
 
-					<div class="education resume-section" *ngIf="resume.resume.about.education">
+					<div class="education resume-section" data-model="education" *ngIf="resume.resume.about && resume.resume.about.education">
 						<div class="title primary">
 							Education
 						</div>
