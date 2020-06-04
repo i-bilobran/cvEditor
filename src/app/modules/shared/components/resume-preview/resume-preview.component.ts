@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit, ChangeDetectorRef, SimpleChanges } from '@angular/core';
 
 import { Resume, ResumeForm, About } from '@models/resume.models';
-import { clone, cloneDeep } from 'lodash';
+import { cloneDeep } from 'lodash';
 
 @Component({
 	selector: 'app-resume-preview',
@@ -26,102 +26,104 @@ export class ResumePreviewComponent implements OnInit, AfterViewInit {
 	}
 
 	ngAfterViewInit() {
-		const pages = Array.from(document.getElementsByClassName('pdf-page'));
-		const lastPage = pages[pages.length - 1];
-		const items = Array.from(lastPage.getElementsByClassName('main')[0].childNodes).filter(el => el.hasChildNodes());
+		this.buildPages();
+	}
 
+	private buildPages(): void {
+		const pages = Array.from(document.getElementsByClassName('pdf-page'));
+		const pageIndex = pages.length - 1;
+		const lastPage: Element = pages[pageIndex];
+		const items = (Array.from(lastPage.getElementsByClassName('main')[0].childNodes) as HTMLElement[])
+			.filter(el => el.hasChildNodes());
+
+		this.calculateMainContentHeight(items, pageIndex)
+
+		this.pages = [...this.pages];
+
+		if (this.pages.length !== pages.length) {
+			console.log('Overload. Build new PDF page');
+			this.buildPages();
+		} else {
+			console.log('PDF page building finished', this.pages);
+		}
+	}
+
+	private calculateMainContentHeight(items: HTMLElement[], pageIndex): void {
+		const contentHeight = 962;
 		let currentHeight = 0;
 
-		items.forEach((item: HTMLElement, index: number) => {
+		items.forEach((item: HTMLElement) => {
 			const model = item.getAttribute('data-model');
 			const repeat = !!item.getElementsByClassName('repeat-wrapper').length;
 
 			// sub items
 			if (repeat) {
-				console.log('repeat', model)
-				// title margin-bottom
+				// TODO: calculate margins dynamically, remove hardcode
+
 				const title = item.getElementsByClassName('title')[0] as HTMLElement;
 				currentHeight += title.offsetHeight + 10;
+				// 10 = title margin-bottom
 
 				Array.from(item.getElementsByClassName('item')).map((subItem: HTMLElement, subIndex: number) => {
 					if (subItem.hasAttribute('data-item')) {
 						if (model === 'skills' && subIndex % 2 === 0) {
+							// 15 = sub item margin bottom px
 							currentHeight += subItem.offsetHeight + 15;
 						}
 						if (model !== 'skills') {
+							// 15 = sub item margin bottom px
 							currentHeight += subItem.offsetHeight + 15;
 						}
 
-						if (currentHeight <= 962) {
-							// this.handleItemOverload(model, false, subIndex);
-						} else {
-							this.handleItemOverload(model, true, subIndex);
+						if (currentHeight >= contentHeight) {
+							this.handleItemOverload(model, pageIndex, subIndex);
 						}
 					}
 				});
 			} else {
 				currentHeight += item.offsetHeight;
-				console.log(model, currentHeight)
-				if (currentHeight <= 962) {
-					// currentHeight += item.offsetHeight;
-					// this.handleItemOverload(model, false);
-				} else {
-					this.handleItemOverload(model, true);
+
+				if (currentHeight >= contentHeight) {
+					this.handleItemOverload(model, pageIndex);
 				}
 			}
-
-			currentHeight += 25;
 		});
-
-		this.pages = [...this.pages];
-
-		setTimeout(() => {
-			this.cd.detectChanges();
-		}, 100);
-
-		console.log(this.pages)
 	}
 
-	private handleItemOverload(model: string, removal: boolean, index?: number): void {
-		const basePage = this.pages[0];
-		let newPage = this.pages[0 + 1];
-
-		console.log('overload', model, index, 'new page: ', newPage, 'base page: ', basePage);
+	private handleItemOverload(model: string, pageIndex: number, index?: number): void {
+		const basePage = this.pages[pageIndex];
+		let newPage = this.pages[pageIndex + 1];
 
 		if (model !== 'fullInfo' && model !== 'education') {
-			if (removal) {
-				if (!newPage) {
-					newPage = cloneDeep(basePage);
-					newPage.resume = {} as ResumeForm;
-				}
-
-				newPage.resume[model] = index !== undefined
-					? !newPage.resume[model] ? basePage.resume[model].slice(index) : newPage.resume[model]
-					: basePage.resume[model];
-
-				basePage.resume[model] = index !== undefined
-					? basePage.resume[model].length ? basePage.resume[model].slice(0, index) : []
-					: null;
+			if (!newPage) {
+				newPage = cloneDeep(basePage);
+				newPage.resume = {} as ResumeForm;
 			}
+
+			newPage.resume[model] = index !== undefined
+				? !newPage.resume[model] ? basePage.resume[model].slice(index) : newPage.resume[model]
+				: basePage.resume[model];
+
+			basePage.resume[model] = index !== undefined
+				? basePage.resume[model].length ? basePage.resume[model].slice(0, index) : []
+				: null;
 		} else {
-			if (removal) {
-				if (!newPage) {
-					console.log('new page create')
-					newPage = cloneDeep(basePage);
-					newPage.resume = {
-						about: {}
-					} as ResumeForm;
-				} else if (newPage && !newPage.resume.about) {
-					newPage.resume.about = {} as About;
-				}
-
-				newPage.resume.about[model] = basePage.resume.about[model];
-				basePage.resume.about[model] = null;
+			if (!newPage) {
+				console.log('new page create')
+				newPage = cloneDeep(basePage);
+				newPage.resume = {
+					about: {}
+				} as ResumeForm;
+			} else if (newPage && !newPage.resume.about) {
+				newPage.resume.about = {} as About;
 			}
+
+			newPage.resume.about[model] = basePage.resume.about[model];
+			basePage.resume.about[model] = null;
 		}
 
-		this.pages[0] = basePage;
-		this.pages[0 + 1] = newPage;
+		this.pages[pageIndex] = basePage;
+		this.pages[pageIndex + 1] = newPage;
 
 		this.cd.detectChanges();
 	}
