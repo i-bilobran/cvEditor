@@ -38,72 +38,81 @@ export class ResumePreviewComponent implements OnInit, AfterViewInit {
 
 			// sub items
 			if (repeat) {
+				console.log('repeat', model)
+				// title margin-bottom
+				const title = item.getElementsByClassName('title')[0] as HTMLElement;
+				currentHeight += title.offsetHeight + 10;
+
 				Array.from(item.getElementsByClassName('item')).map((subItem: HTMLElement, subIndex: number) => {
-					// console.log(currentHeight, model, subIndex)
 					if (subItem.hasAttribute('data-item')) {
 						if (model === 'skills' && subIndex % 2 === 0) {
-							currentHeight += subItem.offsetHeight;
+							currentHeight += subItem.offsetHeight + 15;
 						}
 						if (model !== 'skills') {
-							currentHeight += subItem.offsetHeight;
+							currentHeight += subItem.offsetHeight + 15;
 						}
 
 						if (currentHeight <= 962) {
-							this.handleItemOverload(model, false, subIndex);
+							// this.handleItemOverload(model, false, subIndex);
 						} else {
 							this.handleItemOverload(model, true, subIndex);
-							console.log('sub overload', model, subIndex)
 						}
 					}
 				});
 			} else {
 				currentHeight += item.offsetHeight;
-
+				console.log(model, currentHeight)
 				if (currentHeight <= 962) {
 					// currentHeight += item.offsetHeight;
-					this.handleItemOverload(model, false);
+					// this.handleItemOverload(model, false);
 				} else {
-					console.log('top overload', model)
 					this.handleItemOverload(model, true);
 				}
 			}
+
 			currentHeight += 25;
 		});
 
-		console.log(this.pages);
+		this.pages = [...this.pages];
 
-		this.cd.detectChanges();
+		setTimeout(() => {
+			this.cd.detectChanges();
+		}, 100);
+
+		console.log(this.pages)
 	}
 
 	private handleItemOverload(model: string, removal: boolean, index?: number): void {
 		const basePage = this.pages[0];
-		let newPage = cloneDeep(this.pages[0 + 1]);
-		console.log(newPage)
+		let newPage = this.pages[0 + 1];
+
+		console.log('overload', model, index, 'new page: ', newPage, 'base page: ', basePage);
 
 		if (model !== 'fullInfo' && model !== 'education') {
 			if (removal) {
-				console.log(model, index)
-
 				if (!newPage) {
 					newPage = cloneDeep(basePage);
 					newPage.resume = {} as ResumeForm;
 				}
 
-				console.log(newPage, basePage);
+				newPage.resume[model] = index !== undefined
+					? !newPage.resume[model] ? basePage.resume[model].slice(index) : newPage.resume[model]
+					: basePage.resume[model];
 
-				newPage.resume[model] = basePage.resume[model].slice(index);
 				basePage.resume[model] = index !== undefined
-					? basePage.resume[model].slice(0, index)
+					? basePage.resume[model].length ? basePage.resume[model].slice(0, index) : []
 					: null;
 			}
 		} else {
 			if (removal) {
 				if (!newPage) {
+					console.log('new page create')
 					newPage = cloneDeep(basePage);
-					newPage.resume = { about: {} } as ResumeForm;
+					newPage.resume = {
+						about: {}
+					} as ResumeForm;
 				} else if (newPage && !newPage.resume.about) {
 					newPage.resume.about = {} as About;
-				} else {
 				}
 
 				newPage.resume.about[model] = basePage.resume.about[model];
@@ -113,5 +122,7 @@ export class ResumePreviewComponent implements OnInit, AfterViewInit {
 
 		this.pages[0] = basePage;
 		this.pages[0 + 1] = newPage;
+
+		this.cd.detectChanges();
 	}
 }
