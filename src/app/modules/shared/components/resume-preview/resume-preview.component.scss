@@ -20,7 +20,13 @@ $header-height: 51px;
 		height: $header-height;
 		margin-bottom: 0px;
 		display: flex;
-		justify-content: flex-end;
+		justify-content: space-between;
+
+		.page-number {
+			font-size: 15px;
+			padding: 3px 0;
+			margin-left: 15px;
+		}
 
 		.contact-info {
 			display: flex;

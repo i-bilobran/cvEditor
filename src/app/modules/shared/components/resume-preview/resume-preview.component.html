@@ -2,6 +2,9 @@
 	<ng-container *ngFor="let resume of pages; let i = index">
 		<div *ngIf="resume" class="resume-page pdf-page">
 			<div class="header">
+				<div class="page-number text-light">
+					<span *ngIf="i">{{i + 1}}</span>
+				</div>
 				<div class="contact-info">
 					<div class="content text-secondary">
 						<div>
