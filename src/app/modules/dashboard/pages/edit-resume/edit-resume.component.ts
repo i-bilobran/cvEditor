@@ -61,7 +61,10 @@ export class EditResumeComponent implements OnInit {
 
 		const dialogRef = this.dialog.open(PreviewModalComponent, {
 			data,
-			ariaLabel: 'preview'
+			hasBackdrop: true,
+			ariaLabel: 'preview',
+			maxHeight: '100vh',
+			panelClass: 'resume-preview-overlay'
 		});
 
 		dialogRef.afterClosed().subscribe(() => {

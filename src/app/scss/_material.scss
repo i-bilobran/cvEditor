@@ -38,8 +38,8 @@ $sombra-primary: (
 		A100: #000000,
 		A200: #000000,
 		A400: #000000,
-		A700: #000000
-	)
+		A700: #000000,
+	),
 );
 
 $sombra-warn: (
@@ -71,8 +71,8 @@ $sombra-warn: (
 		A100: #000000,
 		A200: #000000,
 		A400: #000000,
-		A700: #000000
-	)
+		A700: #000000,
+	),
 );
 
 $sombra-accent: (
@@ -104,8 +104,8 @@ $sombra-accent: (
 		A100: #000000,
 		A200: #000000,
 		A400: #000000,
-		A700: #000000
-	)
+		A700: #000000,
+	),
 );
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
@@ -139,4 +139,11 @@ button {
 
 mat-form-field.mat-form-field {
 	font-size: 14px;
+}
+
+.resume-preview-overlay {
+	.mat-dialog-container {
+		background: transparent;
+		box-shadow: none;
+	}
 }

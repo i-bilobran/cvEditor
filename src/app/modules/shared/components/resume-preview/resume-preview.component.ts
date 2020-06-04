@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit, ChangeDetectorRef, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef, SimpleChanges, OnChanges, AfterViewInit } from '@angular/core';
 
 import { Resume, ResumeForm, About } from '@models/resume.models';
 import { cloneDeep } from 'lodash';
@@ -8,7 +8,7 @@ import { cloneDeep } from 'lodash';
 	templateUrl: './resume-preview.component.html',
 	styleUrls: ['./resume-preview.component.scss']
 })
-export class ResumePreviewComponent implements OnInit, AfterViewInit {
+export class ResumePreviewComponent implements OnInit, OnChanges, AfterViewInit {
 	@Input() base: Resume[];
 
 	public pages: Resume[];

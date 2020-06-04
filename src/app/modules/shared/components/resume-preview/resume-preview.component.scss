@@ -4,6 +4,10 @@ $page-width: 794px;
 $page-height: 1133px;
 $header-height: 51px;
 
+.wrapper {
+	background: transparent;
+}
+
 .resume-page {
 	width: $page-width;
 	height: $page-height;
@@ -99,7 +103,6 @@ $header-height: 51px;
 		.main {
 			padding-left: 15px;
 			width: 100%;
-			border: 1px solid blue;
 			font-size: 14px;
 			color: $text-secondary;
 
