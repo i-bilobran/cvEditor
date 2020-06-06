@@ -37,9 +37,9 @@ export class ResumePreviewComponent implements OnChanges, AfterViewInit {
 	}
 
 	private buildPages(): void {
-		const pages = Array.from(document.getElementsByClassName('pdf-page'));
+		const pages = Array.from(this.wrapper.nativeElement.getElementsByClassName('pdf-page'));
 		const pageIndex = pages.length - 1;
-		const lastPage: Element = pages[pageIndex];
+		const lastPage = pages[pageIndex] as Element;
 		const items = (Array.from(lastPage.getElementsByClassName('main')[0].childNodes) as HTMLElement[])
 			.filter(el => el.hasChildNodes());
 

@@ -52,7 +52,8 @@ import { PreviewModalComponent } from './components/preview-modal/preview-modal.
 		ImageCropperModule
 	],
 	entryComponents: [
-		PreviewModalComponent
+		PreviewModalComponent,
+		ResumePreviewComponent
 	],
 	exports: [
 		MaterialModule,
