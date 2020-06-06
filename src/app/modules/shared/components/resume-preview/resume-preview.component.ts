@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, ChangeDetectorRef, SimpleChanges, OnChanges, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef, SimpleChanges, OnChanges, AfterViewInit, ViewChild, ViewRef, TemplateRef, ElementRef } from '@angular/core';
 
 import { Resume, ResumeForm, About } from '@models/resume.models';
 import { cloneDeep } from 'lodash';
+import { ResumeService } from '@services/resume.service';
 
 @Component({
 	selector: 'app-resume-preview',
@@ -13,7 +14,12 @@ export class ResumePreviewComponent implements OnInit, OnChanges, AfterViewInit 
 
 	public pages: Resume[];
 
-	constructor(private cd: ChangeDetectorRef) { }
+	@ViewChild('wrapper', { static: false }) wrapper: ElementRef;
+
+	constructor(
+		private cd: ChangeDetectorRef,
+		private resumeService: ResumeService
+	) { }
 
 	ngOnChanges(changes: SimpleChanges): void {
 		if (!this.pages && changes.base.currentValue) {
@@ -27,6 +33,10 @@ export class ResumePreviewComponent implements OnInit, OnChanges, AfterViewInit 
 
 	ngAfterViewInit() {
 		this.buildPages();
+	}
+
+	public download(): void {
+		this.resumeService.generatePDF(this.wrapper.nativeElement);
 	}
 
 	private buildPages(): void {

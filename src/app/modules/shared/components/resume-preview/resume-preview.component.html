@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper" #wrapper>
 	<ng-container *ngFor="let resume of pages; let i = index">
 		<div *ngIf="resume" class="resume-page pdf-page">
 			<div class="header">
@@ -57,7 +57,8 @@
 				</div>
 				<div class="main">
 
-					<div class="full resume-section" data-model="fullInfo" *ngIf="resume.resume.about && resume.resume.about.fullInfo">
+					<div class="full resume-section" data-model="fullInfo"
+						*ngIf="resume.resume.about && resume.resume.about.fullInfo">
 						<div class="title primary">
 							Full info
 						</div>
@@ -66,10 +67,12 @@
 						</div>
 					</div>
 
-					<div class="skills resume-section" data-model="skills" *ngIf="resume.resume.skills && resume.resume.skills.length">
+					<div class="skills resume-section" data-model="skills"
+						*ngIf="resume.resume.skills && resume.resume.skills.length">
 						<div class="title text-secondary">Skills & Technologies</div>
 						<div class="repeat-wrapper">
-							<div class="item" [attr.data-item]="i" *ngFor="let skill of resume.resume.skills; let i = index">
+							<div class="item" [attr.data-item]="i"
+								*ngFor="let skill of resume.resume.skills; let i = index">
 								<div class="sub-title primary">
 									{{skill.label}}
 								</div>
@@ -84,33 +87,42 @@
 						<div fxLayout="row">
 							<div fxFlex="50">
 								<div class="value text-primary">
-									Communication: <span class="text-secondary">{{resume.resume.softSkills.communication}}/5</span>
+									Communication: <span
+										class="text-secondary">{{resume.resume.softSkills.communication}}/5</span>
 								</div>
 								<div class="value text-primary">
-									Positive attitude: <span class="text-secondary">{{resume.resume.softSkills.positiveAttitude}}/5</span>
+									Positive attitude: <span
+										class="text-secondary">{{resume.resume.softSkills.positiveAttitude}}/5</span>
 								</div>
 								<div class="value text-primary">
-									Teamwork: <span class="text-secondary">{{resume.resume.softSkills.teamwork}}/5</span>
+									Teamwork: <span
+										class="text-secondary">{{resume.resume.softSkills.teamwork}}/5</span>
 								</div>
 								<div class="value text-primary">
-									Responsibility: <span class="text-secondary">{{resume.resume.softSkills.responsibility}}/5</span>
+									Responsibility: <span
+										class="text-secondary">{{resume.resume.softSkills.responsibility}}/5</span>
 								</div>
 								<div class="value text-primary">
-									Handing pressure: <span class="text-secondary">{{resume.resume.softSkills.handingPressure}}/5</span>
+									Handing pressure: <span
+										class="text-secondary">{{resume.resume.softSkills.handingPressure}}/5</span>
 								</div>
 							</div>
 							<div fxFlex="50">
 								<div class="value text-primary">
-									Flexibility: <span class="text-secondary">{{resume.resume.softSkills.flexibility}}/5</span>
+									Flexibility: <span
+										class="text-secondary">{{resume.resume.softSkills.flexibility}}/5</span>
 								</div>
 								<div class="value text-primary">
-									Problem solving: <span class="text-secondary">{{resume.resume.softSkills.problemSolving}}/5</span>
+									Problem solving: <span
+										class="text-secondary">{{resume.resume.softSkills.problemSolving}}/5</span>
 								</div>
 								<div class="value text-primary">
-									Critical thinking: <span class="text-secondary">{{resume.resume.softSkills.criticalThinking}}/5</span>
+									Critical thinking: <span
+										class="text-secondary">{{resume.resume.softSkills.criticalThinking}}/5</span>
 								</div>
 								<div class="value text-primary">
-									Work ethics: <span class="text-secondary">{{resume.resume.softSkills.workEthics}}/5</span>
+									Work ethics: <span
+										class="text-secondary">{{resume.resume.softSkills.workEthics}}/5</span>
 								</div>
 								<div class="value text-primary">
 									Leading: <span class="text-secondary">{{resume.resume.softSkills.leading}}/5</span>
@@ -119,10 +131,12 @@
 						</div>
 					</div>
 
-					<div class="experience resume-section" data-model="experience" *ngIf="resume.resume.experience && resume.resume.experience.length">
+					<div class="experience resume-section" data-model="experience"
+						*ngIf="resume.resume.experience && resume.resume.experience.length">
 						<div class="title text-secondary">Experience</div>
 						<div class="repeat-wrapper">
-							<div class="item" [attr.data-item]="i" *ngFor="let project of resume.resume.experience; let i = index">
+							<div class="item" [attr.data-item]="i"
+								*ngFor="let project of resume.resume.experience; let i = index">
 								<div class="sub-title primary">
 									{{project.projectName}}
 								</div>
@@ -183,7 +197,8 @@
 						</div>
 					</div>
 
-					<div class="education resume-section" data-model="education" *ngIf="resume.resume.about && resume.resume.about.education">
+					<div class="education resume-section" data-model="education"
+						*ngIf="resume.resume.about && resume.resume.about.education">
 						<div class="title primary">
 							Education
 						</div>
