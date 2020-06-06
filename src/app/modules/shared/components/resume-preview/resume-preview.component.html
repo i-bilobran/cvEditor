@@ -1,4 +1,4 @@
-<div class="wrapper" #wrapper>
+<div class="wrapper" [ngStyle]="{'position': preview ? 'relative' : 'absolute'}" #wrapper>
 	<ng-container *ngFor="let resume of pages; let i = index">
 		<div *ngIf="resume" class="resume-page pdf-page">
 			<div class="header">

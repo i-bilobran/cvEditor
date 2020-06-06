@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
@@ -10,6 +10,7 @@ import { FirestoreApiService } from '@services/firestore-api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PreviewModalComponent } from '@shared/components/preview-modal/preview-modal.component';
 import { ResumeService } from '@services/resume.service';
+import { ResumePreviewComponent } from '@shared/components/resume-preview/resume-preview.component';
 
 @Component({
 	templateUrl: './edit-resume.component.html',
@@ -29,6 +30,8 @@ export class EditResumeComponent implements OnInit {
 	public photoUrl: SafeUrl;
 	public imageChangedEvent: any;
 	private croppedImage: string;
+
+	@ViewChild(ResumePreviewComponent, { static: false }) preview: ResumePreviewComponent;
 
 	constructor(
 		private formBuilder: FormBuilder,
@@ -50,10 +53,10 @@ export class EditResumeComponent implements OnInit {
 		}
 	}
 
-	public download(component): void {
-		if (component) {
-			this.resumeService.makePDF(component.element.nativeElement);
-		}
+	public download(): void {
+		const wrapper = this.preview.wrapper.nativeElement;
+
+		this.resumeService.generatePDF(wrapper);
 	}
 
 	public openPreview(): void {

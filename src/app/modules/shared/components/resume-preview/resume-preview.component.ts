@@ -11,6 +11,7 @@ import { ResumeService } from '@services/resume.service';
 })
 export class ResumePreviewComponent implements OnInit, OnChanges, AfterViewInit {
 	@Input() base: Resume[];
+	@Input() preview: boolean;
 
 	public pages: Resume[];
 

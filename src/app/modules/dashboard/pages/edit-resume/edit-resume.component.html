@@ -1,7 +1,7 @@
 <app-page-header [search]="false" title="Create resume" description="See an example">
 	<div class="actions" *ngIf="resume">
 		<button mat-stroked-button (click)="openPreview()">Preview</button>
-		<button mat-raised-button color="primary" (click)="download(page)">Download</button>
+		<button mat-raised-button color="primary" (click)="download()">Download</button>
 	</div>
 </app-page-header>
 <div class="section">
@@ -91,3 +91,4 @@
 		</button>
 	</div>
 </div>
+<app-resume-preview *ngIf="resume" [base]="[getResume()]" [preview]="false"></app-resume-preview>
