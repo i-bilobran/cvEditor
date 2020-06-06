@@ -29,7 +29,9 @@ export class ResumePreviewComponent implements OnChanges, AfterViewInit {
 	}
 
 	ngAfterViewInit() {
-		this.buildPages();
+		if (this.wrapper) {
+			this.buildPages();
+		}
 	}
 
 	public download(): void {

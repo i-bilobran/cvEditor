@@ -1,7 +1,9 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ComponentFactoryResolver, ViewChild, ViewContainerRef } from '@angular/core';
 
 import { FirestoreApiService } from '@services/firestore-api.service';
-import { ResumeCard } from '@models/resume.models';
+import { ResumeCard, Resume } from '@models/resume.models';
+import { ResumePreviewComponent } from '@shared/components/resume-preview/resume-preview.component';
+import { ResumeService } from '@services/resume.service';
 
 @Component({
 	templateUrl: './home.component.html',
@@ -11,9 +13,13 @@ export class HomeComponent implements OnInit {
 	public resumeCards: ResumeCard[];
 	private initialResumeCards: ResumeCard[];
 
+	@ViewChild('container', { static: false, read: ViewContainerRef }) container: ViewContainerRef;
+
 	constructor(
 		private store: FirestoreApiService,
-		private changeDetectorRef: ChangeDetectorRef
+		private changeDetectorRef: ChangeDetectorRef,
+		private componentFactoryResolver: ComponentFactoryResolver,
+		private resumeService: ResumeService
 	) { }
 
 	ngOnInit() {
@@ -45,7 +51,27 @@ export class HomeComponent implements OnInit {
 	}
 
 	public downloadResume(id: string): void {
+		this.store.getResume(id)
+			.subscribe((response: Resume) => {
+				this.downloadPDF(response);
+			})
+	}
 
+	private downloadPDF(resume: Resume): void {
+		const componentFactory = this.componentFactoryResolver.resolveComponentFactory(ResumePreviewComponent);
+
+		this.container.clear();
+
+		const componentRef = this.container.createComponent(componentFactory);
+		const instance = <ResumePreviewComponent>componentRef.instance;
+
+		instance.base = [resume];
+		instance.preview = true;
+		instance.pages = [resume];
+
+		componentRef.changeDetectorRef.detectChanges();
+
+		this.resumeService.generatePDF(instance.wrapper.nativeElement)
 	}
 
 	private getResumeCards(): void {
