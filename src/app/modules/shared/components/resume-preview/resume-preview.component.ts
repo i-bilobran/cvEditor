@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectorRef, SimpleChanges, OnChanges, AfterViewInit, ViewChild, ViewRef, TemplateRef, ElementRef } from '@angular/core';
+import { Component, Input, ChangeDetectorRef, SimpleChanges, OnChanges, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 
 import { Resume, ResumeForm, About } from '@models/resume.models';
 import { cloneDeep } from 'lodash';
@@ -9,7 +9,7 @@ import { ResumeService } from '@services/resume.service';
 	templateUrl: './resume-preview.component.html',
 	styleUrls: ['./resume-preview.component.scss']
 })
-export class ResumePreviewComponent implements OnInit, OnChanges, AfterViewInit {
+export class ResumePreviewComponent implements OnChanges, AfterViewInit {
 	@Input() base: Resume[];
 	@Input() preview: boolean;
 
@@ -26,10 +26,6 @@ export class ResumePreviewComponent implements OnInit, OnChanges, AfterViewInit 
 		if (!this.pages && changes.base.currentValue) {
 			this.pages = cloneDeep(changes.base.currentValue);
 		}
-	}
-
-	ngOnInit() {
-		console.log(this.base[0])
 	}
 
 	ngAfterViewInit() {
