@@ -29,7 +29,8 @@ export class ResumeService {
 				height: 1133,
 				width: 794,
 				logging: false,
-				// scale: canvasQuality
+				scale: 2
+
 			}))
 				.pipe(map((canvas) => {
 					const imgData = canvas.toDataURL('image/jpeg', 1.0);

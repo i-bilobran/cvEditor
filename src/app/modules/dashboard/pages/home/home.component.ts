@@ -66,7 +66,7 @@ export class HomeComponent implements OnInit {
 		const instance = <ResumePreviewComponent>componentRef.instance;
 
 		instance.base = [resume];
-		instance.preview = true;
+		instance.preview = false;
 		instance.pages = [resume];
 
 		componentRef.changeDetectorRef.detectChanges();
