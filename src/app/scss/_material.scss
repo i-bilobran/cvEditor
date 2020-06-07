@@ -145,5 +145,9 @@ mat-form-field.mat-form-field {
 	.mat-dialog-container {
 		background: transparent;
 		box-shadow: none;
+		overflow: hidden;
+	}
+	.cdk-global-overlay-wrapper {
+		overflow: auto;
 	}
 }

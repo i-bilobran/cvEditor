@@ -66,7 +66,6 @@ export class EditResumeComponent implements OnInit {
 			data,
 			hasBackdrop: true,
 			ariaLabel: 'preview',
-			maxHeight: '100vh',
 			panelClass: 'resume-preview-overlay'
 		});
 

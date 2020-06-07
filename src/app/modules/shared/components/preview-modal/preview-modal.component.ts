@@ -6,7 +6,11 @@ import { Resume } from '@models/resume.models';
 @Component({
 	selector: 'app-preview-modal',
 	templateUrl: './preview-modal.component.html',
-	styleUrls: ['./preview-modal.component.scss']
+	styles: [`
+		::ng-deep .cdk-global-overlay-wrapper {
+			overflow: auto;
+		}
+	`]
 })
 export class PreviewModalComponent {
 	constructor(
