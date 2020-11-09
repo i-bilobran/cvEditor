@@ -1,16 +1,5 @@
 # CvEditor
 
-## Milestones:
-
-1. Corporate Auth via Google API
-2. Mockups
-3. Dynamic form functionality + (formly/shema's investigation)
-4. Main functionality
-5. Firebase configuration
-6. CI/CD, Enviroment variables setup
-7. PWA
-8. Unit tests
-
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
